@@ -1,117 +1,224 @@
 <template>
-  <div class="login">
-    <div class="formmodal">
-      <h3 class="title">后台登陆</h3>
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
-        <el-form-item prop="name">
-          <el-input type="text" v-model="ruleForm.name" placeholder="请输入帐号"></el-input>
-        </el-form-item>
-        <el-form-item prop="pass">
-          <el-input type="password" v-model="ruleForm.pass" placeholder="请输入密码"></el-input>
-        </el-form-item>
-        <el-form-item prop="captcha">
-          <el-col :span="10">
-            <el-input type="text" v-model="ruleForm.captcha" placeholder="请输入验证码"></el-input>
-          </el-col>
-          <el-col :span="6" :offset="2">
-            <img :src="captchaUrl" @click="refreshCaptcha">
-          </el-col>
-        </el-form-item>
-        <el-form-item prop="rememberMe">
-          <el-checkbox v-model="ruleForm.rememberMe">七天免登陆</el-checkbox>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" style="width:100%;" v-loading="loading" @click="submitForm('ruleForm2')">提交
+  <div>
+    <Row>
+      <Col span="14" offset="5">
+      <div class="alert-title">
+        <Alert type="success" show-icon v-show="successShow">
+          {{successMsg}}
+          <span slot="desc"> </span>
+        </Alert>
+        <Alert type="warning" show-icon v-show="warningShow">
+          {{warningMsg}}
+          <span slot="desc"> </span>
+        </Alert>
+      </div>
+      </Col>
+    </Row>
+    <Row>
+      <Col span="14" offset="5">
+      <div class="login-form" v-show="showlogin">
+        <h2 class="title">小节点后台管理</h2>
+        <Form ref="loginform" :model="loginform" :rules="loginRule">
+          <Form-item prop="name">
+            <Input type="text" v-model="loginform.name" size="large" placeholder="用户名">
+            <Icon type="ios-person-outline" slot="prepend"></Icon>
+            </Input>
+          </Form-item>
+          <Form-item prop="pwd">
+            <Input type="password" v-model="loginform.pwd" size="large" placeholder="密码">
+            <Icon type="ios-locked-outline" slot="prepend"></Icon>
+            </Input>
+          </Form-item>
+          <Form-item prop="verifyCode">
+            <Row>
+              <Col span="8">
+              <Input type="text" v-model="loginform.verifyCode" size="large" placeholder="验证码">
+              <Icon type="images" slot="prepend"></Icon>
+              </Input>
+              </Col>
+              <Col span="12">
+              <img :src="verifyUrl" @click="refreshVerify()" class="verify-pos"/>
+              </Col>
+            </Row>
+          </Form-item>
+          <Form-item>
+            <Checkbox v-model="rememberMe">记住我</Checkbox>
+          </Form-item>
+          <Form-item>
+            <Button type="primary" @click="handleSubmit('loginform')" size="large" :loading="loading" long
+                    icon="log-in">登录
+            </Button>
+          </Form-item>
+        </Form>
+      </div>
+      </Col>
 
-
-
-
-
-
-          </el-button>
-        </el-form-item>
-      </el-form>
-    </div>
+    </Row>
   </div>
 </template>
-
-<script type="text/ecmascript-6">
-  export default{
+<script>
+  import http from '../../assets/js/http.js'
+  export default {
     data() {
       return {
-        loading: false,
-        ruleForm: {
+        showlogin: false,
+        loginform: {
           name: '',
-          pass: '',
-          captcha: '',
-          rememberMe: ''
+          pwd: '',
+          verifyCode: '',
         },
-        captchaUrl: '',
-        rules: {
+        loginRule: {
           name: [
-            {required: true, message: '请输入名称', trigger: 'blur'}
+            {required: true, message: '请填写用户名', trigger: 'blur'}
           ],
-          pass: [
-            {required: true, message: '请输入密码', trigger: 'blur'}
+          pwd: [
+            {required: true, message: '请填写密码', trigger: 'blur'},
+            {type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur'}
           ],
-          captcha: [
+          verifyCode: [
             {required: true, message: '请输入验证码', trigger: 'blur'}
           ]
-        }
+        },
+        title: '',
+        systemName: '',
+        loading: false,
+        verifyUrl: '',
+        verifyImg: 'http://sitegroup.youdao.so/index.php/captcha.html',
+        successMsg: '',
+        successShow: false,
+        warningMsg: '',
+        warningShow: false,
+        rememberMe: true,
+        modal1: false
       }
-    },
-    created() {
-      this.autoLogin()
-      this.refreshCaptcha()
     },
     methods: {
-      refreshCaptcha() {
-        let _this = this
-        this.$http.post(Window.host + '/index/login/getCaptcha').then(function (response) {
-          if (response.status !== 200) return
-          _this.captchaUrl = Window.host + response.data.captchaUrl + '?number=' + Math.random()
+      showMsg(type, msg){
+        switch (type) {
+          case 'warning':
+            this.warningMsg = msg;
+            this.warningShow = true;
+            break;
+          case 'success':
+            this.successMsg = msg;
+            this.successShow = true;
+        }
+      },
+      refreshVerify() {
+        this.verifyUrl = ''
+        setTimeout(() => {
+          this.verifyUrl = this.verifyImg + '?v=' + moment().unix()
+        }, 300)
+      },
+      checkIsRememberPwd() {
+        if (Cookies.get('rememberMe')) {
+          this.$Message.success('正在尝试自动登录......');
+          let data = {
+            remember: Lockr.get('rememberKey'),
+            site_id: Lockr.get('site_id')
+          }
+          this.apiPost('user/login/autoLogin', data).then((res) => {
+            this.handelResponse(res, (data, msg) => {
+              //成功的操作
+              this.resetCommonData(data)
+            }, (data, msg) => {
+              //失败的操作
+              this.showMsg('warning', '自动登录失败，请重新登陆')
+              Cookies.set('rememberMe', false)
+              this.showlogin = true
+            })
+          })
+        } else {
+          this.showlogin = true;
+        }
+      },
+      handleSubmit(form) {
+        if (this.loading) return
+        this.$refs.loginform.validate((valid) => {
+          if (valid) {
+            let data = {}
+            data.name = this.loginform.name
+            data.pwd = this.loginform.pwd
+            data.verifyCode = this.loginform.verifyCode
+            this.loading = !this.loading
+            let _this = this
+            this.apiPost('user/login/login', data).then((res) => {
+              this.handelResponse(res, (data, msg) => {
+                if (_this.rememberMe) {
+                  Cookies.set('rememberMe', true, {expires: 7})
+                  Cookies.set('code', data.remember, {expire: 7});
+                }
+                this.resetCommonData(data)
+              }, (data, msg) => {
+                //根据状态来判断登陆状态
+                this.refreshVerify()
+                this.loading = !this.loading
+                this.showMsg('warning', msg);
+              })
+            }, (res) => {
+              //处理错误信息
+              this.showMsg('warning', '网络异常，请稍后重试');
+            })
+          } else {
+            return false
+          }
         })
       },
-      // 自动登陆
-      autoLogin() {
-        // 判断浏览器端的cookie是否存在
-        if (Window.cookie.get('autoLogin')) {
-          // 加载动画
-          let loadingInstance = this.$loading({text: '正在加载.....', body: true, lock: true})
-          let _this = this
-          this.$http.post(Window.host + '/index/login/autoLogin').then(function (response) {
-            if (response.status !== 200) return
-            if (response.data.errno !== 0) {
-              Window.cookie.remove('autoLogin')
-              loadingInstance.close()
-            } else {
-              _this.$router.replace('/index/menu/content')
-              loadingInstance.close()
-            }
-          })
-        }
-      }
-    }
+    },
+    created(){
+      //第一次如果是记住密码的话  会到本地存储中取出相关数据 然后自动登录
+      this.checkIsRememberPwd()
+      //没有设置记住密码 的话 或者是第一次登陆的情况下 会到后台获取基本的配置数据
+
+      this.verifyUrl = this.verifyImg
+    },
+    mixins: [http]
+  }
+</script>
+
+
+<style scoped>
+  .login-form {
+    padding: 35px 35px 15px 35px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-clip: padding-box;
+    margin-bottom: 20px;
+    background-color: #F9FAFC;
+    margin: 20px auto;
+    width: 450px;
+    border: 2px solid #8492A6;
   }
 
-</script>
-<style lang="stylus" rel="stylesheet/stylus">
-  .login
-    position: relative
+  .alert-title {
+    width: 450px;
+    margin: 30px auto;
+  }
 
-  .formmodal
-    width: 400px
-    height: 300px
-    margin: 150px 0 0 -200px
-    position: absolute
-    left: 50%
-    right: 50%
-    border: 1px solid #ccc
-    border-radius: 5px
-    padding: 30px
-    background: #f9fafc
+  .title {
+    margin: 0px auto 30px auto;
+    text-align: center;
+    color: #505458;
+  }
 
-  .title
-    text-align: center
-    color: #505458
+  .verify-pos {
+    position: absolute;
+    right: 50px;
+    top: 0px;
+  }
+
+  .card-box {
+    padding: 20px;
+    /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-clip: padding-box;
+    margin-bottom: 20px;
+    background-color: #F9FAFC;
+    margin: 120px auto;
+    width: 400px;
+    border: 2px solid #8492A6;
+  }
+
 </style>
