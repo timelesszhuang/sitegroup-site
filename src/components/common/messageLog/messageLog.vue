@@ -68,7 +68,7 @@
             rows: this.rows,
           }
         }
-        this.apiGet('article/getErrorInfo', data).then((data) => {
+        this.apiGet('user/getErrorInfo', data).then((data) => {
           this.handelResponse(data, (data, msg) => {
             this.datas = data.rows
             this.total = data.total;

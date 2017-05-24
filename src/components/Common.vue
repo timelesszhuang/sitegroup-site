@@ -85,82 +85,6 @@
               <span class="layout-text" @click="routerChange('/common/article','文章')">文章</span>
             </Menu-item>
           </Submenu>
-          <Submenu name="3">
-            <template slot="title">
-              <Icon type="scissors"></Icon>
-              零散文章段落
-            </template>
-            <Menu-item name="零散文章">
-              <Icon type="social-dropbox-outline"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/scatteredarticle','零散文章')">零散文章</span>
-            </Menu-item>
-            <Menu-item name="零散文章标题">
-              <Icon type="flag"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/title','零散文章标题')">零散文章标题</span>
-            </Menu-item>
-          </Submenu>
-          <Submenu name="4">
-            <template slot="title">
-              <Icon type="chatbox-working"></Icon>
-              问答管理
-            </template>
-            <Menu-item name="问答分类">
-              <Icon type="settings"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/questiontype','问答分类')">问答分类</span>
-            </Menu-item>
-            <Menu-item name="问答">
-              <Icon type="help"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/question','问答')">问答</span>
-            </Menu-item>
-          </Submenu>
-          <Submenu name="5">
-            <template slot="title">
-              <Icon type="briefcase"></Icon>
-              基础元素设置
-            </template>
-            <Menu-item name="栏目">
-              <Icon type="drag"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/navigation','栏目')">栏目</span>
-            </Menu-item>
-            <Menu-item name="域名管理">
-              <Icon type="android-globe"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/domain','域名管理')">域名管理</span>
-            </Menu-item>
-            <Menu-item name="公共代码管理">
-              <Icon type="social-javascript"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/code','公共代码管理')">公共代码管理</span>
-            </Menu-item>
-            <Menu-item name="联系方式管理">
-              <Icon type="ios-telephone"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/contactway','联系方式管理')">联系方式管理</span>
-            </Menu-item>
-            <Menu-item name="主题/活动创意">
-              <Icon type="beer"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/activity','主题/活动创意')">主题/活动创意</span>
-            </Menu-item>
-            <Menu-item name="模板管理">
-              <Icon type="map"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/template','模板管理')">模板管理</span>
-            </Menu-item>
-          </Submenu>
-          <Submenu name="6">
-            <template slot="title">
-              <Icon type="pinpoint"></Icon>
-              站点/用户管理
-            </template>
-            <Menu-item name="站点分类">
-              <Icon type="android-cloud-circle"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/sitetype','站点分类')">站点分类</span>
-            </Menu-item>
-            <Menu-item name="站点管理">
-              <Icon type="android-cloud-circle"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/site','站点管理')">站点管理</span>
-            </Menu-item>
-            <Menu-item name="用户管理">
-              <Icon type="person"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/siteuser','用户管理')">用户管理</span>
-            </Menu-item>
-          </Submenu>
           <Menu-item name="重置密码">
 
           </Menu-item>
@@ -206,11 +130,12 @@
       </i-col>
     </Row>
     <logout ref="logout"></logout>
+    <changepwd ref="changePwd"></changepwd>
   </div>
 </template>
 <script>
   import logout from './login/Logout.vue';
-//  import changepwd from './Account/Changepwd.vue';
+  import changepwd from './login/Changepwd.vue';
   export default {
     data(){
 
@@ -219,7 +144,7 @@
       }
     },
     components: {
-//      changepwd,
+      changepwd,
       logout
 
     },
@@ -231,6 +156,9 @@
       logOut(){
         this.$refs.logout.modal = true
       },
+      changePwd(){
+        this.$refs.changePwd.modal = true
+  },
       messageLog(){
         router.replace('/common/messageLog');
       }
