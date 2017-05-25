@@ -81,7 +81,7 @@ const ajaxMethods = {
           this.showMsg('warning', '用户无管理网站');
           this.loading = !this.loading
         }, 1000);
-      }else if(data.user_info ==0){
+      }else if(data.user_info.length ==0){
         setTimeout(() => {
           Lockr.flush();
           Cookies.remove('rememberMe');
