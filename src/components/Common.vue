@@ -68,8 +68,6 @@
               <Icon type="key"></Icon>
               <span class="layout-text" @click="routerChange('/admin/keyword','关键词管理')">关键词管理</span>
             </Menu-item>
-            <!--            <Menu-item name="1-2">选项 2</Menu-item>
-                        <Menu-item name="1-3">选项 3</Menu-item>-->
           </Submenu>
           <Submenu name="2">
             <template slot="title">
