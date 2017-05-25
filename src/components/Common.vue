@@ -53,11 +53,9 @@
 <template>
   <div class="layout">
     <Row type="flex">
-
       <i-col span="4" class="layout-menu-left">
         <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
           <div class="layout-logo-left">
-
           </div>
           <Submenu name="1">
             <template slot="title">
@@ -84,7 +82,6 @@
             </Menu-item>
           </Submenu>
           <Menu-item name="重置密码">
-
           </Menu-item>
           <Menu-item name="退出系统">
             <Icon type="log-out" @click="logOut()"></Icon>
@@ -96,7 +93,7 @@
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
             <Col span="2" align="center" >
-            <Badge  count="3" >
+            <Badge  :count="count" >
               <span @click="routerChange('/common/messageLog','错误日志')" style="cursor:pointer;">
                 <Icon type="ios-bell-outline" size="26" ></Icon>
               </span>
@@ -134,19 +131,32 @@
 <script>
   import logout from './login/Logout.vue';
   import changepwd from './login/Changepwd.vue';
+  import http from '../assets/js/http.js';
   export default {
     data(){
-
-        return {
+      return {
           activeName: '',
+          count:'无'
       }
     },
     components: {
       changepwd,
       logout
-
     },
     methods: {
+      checkAlert() {
+        this.apiGet('user/getErrorStatus').then((res) => {
+          this.handelResponse(res, (data, msg) => {
+            this.count=data;
+            console.log(data)
+          }, (data, msg) => {
+            this.$Message.error(msg);
+          })
+        }, (res) => {
+          //处理错误信息
+          this.$Message.error('网络异常，请稍后重试。');
+        })
+      },
       routerChange (path, activeName) {
         this.activeName = activeName;
         router.push(path);
@@ -162,6 +172,13 @@
       }
 
     },
+    created () {
+      let _this = this;
+      setInterval(function(){
+        _this.checkAlert();
+      },5000);
+    },
     //created 是函数
+    mixins: [http]
   }
 </script>
