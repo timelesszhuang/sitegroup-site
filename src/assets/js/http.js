@@ -81,7 +81,20 @@ const ajaxMethods = {
           this.showMsg('warning', '用户无管理网站');
           this.loading = !this.loading
         }, 1000);
-      }else{
+      }else if(data.user_info ==0){
+        setTimeout(() => {
+          Lockr.flush();
+          Cookies.remove('rememberMe');
+          Cookies.remove('code');
+          this.modal = false;
+          this.modal_loading = false;
+          this.showMsg('warning', '没有此用户');
+          this.loading = !this.loading
+        }, 1000);
+
+      }
+
+      else {
          routerUrl = '/admin/';
       }
       setTimeout(() => {
