@@ -111,10 +111,10 @@
         }, 300)
       },
       checkIsRememberPwd() {
-        if (Cookies.get('rememberMe')) {
+        if (Cookies.get('site_rememberMe')) {
           this.$Message.success('正在尝试自动登录......');
           let data = {
-            remember: Lockr.get('rememberKey'),
+            remember: Lockr.get('site_rememberKey'),
             site_id: Lockr.get('site_id')
           }
           this.apiPost('user/login/autoLogin', data).then((res) => {
@@ -124,7 +124,7 @@
             }, (data, msg) => {
               //失败的操作
               this.showMsg('warning', '自动登录失败，请重新登陆')
-              Cookies.set('rememberMe', false)
+              Cookies.set('site_rememberMe', false)
               this.showlogin = true
             })
           })
@@ -145,8 +145,8 @@
             this.apiPost('user/login/login', data).then((res) => {
               this.handelResponse(res, (data, msg) => {
                 if (_this.rememberMe) {
-                  Cookies.set('rememberMe', true, {expires: 7})
-                  Cookies.set('code', data.remember, {expire: 7});
+                  Cookies.set('site_rememberMe', true, {expires: 7})
+                  Cookies.set('site_code', data.remember, {expire: 7});
                 }
                 this.resetCommonData(data)
               }, (data, msg) => {

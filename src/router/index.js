@@ -8,6 +8,7 @@ import Common from '../components/Common.vue'
 import Article from '../components/common/article/index.vue'
 import Messagelog from '../components/common/messageLog/messageLog.vue'
 import VueQuillEditor from 'vue-quill-editor'
+import Question from '../components/common/question/index.vue'
 
 Vue.use(Router)
 Vue.use(ElementUI)
@@ -26,6 +27,7 @@ export default new Router({
       component: Common,
       children: [
         {path: 'article', component: Article, name: 'article'},
+        {path: 'question', component: Question, name: 'question'},
         {path: 'messagelog', component: Messagelog, name: 'messagelog'},
       ]
     },

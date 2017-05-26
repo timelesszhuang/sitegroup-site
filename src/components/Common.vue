@@ -70,11 +70,11 @@
           <Submenu name="2">
             <template slot="title">
               <Icon type="ios-keypad"></Icon>
-              文章管理
+              管理
             </template>
-            <Menu-item name="文章分类">
+            <Menu-item name="问答">
               <Icon type="settings"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/articletype','文章分类')">文章分类</span>
+              <span class="layout-text" @click="routerChange('/common/question','问答')">问答</span>
             </Menu-item>
             <Menu-item name="文章">
               <Icon type="document"></Icon>
