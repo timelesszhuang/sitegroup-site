@@ -2,7 +2,7 @@
   <div>
     <div class="content" style="margin-top:10px;">
       <Table :context="self" :border="border" :stripe="stripe" :show-header="showheader"
-             :size="size" :data="datas" :columns="tableColumns" @on-row-click="showMessage(datas)" style="width: 100%">
+             :size="size" :data="datas" :columns="tableColumns" @on-row-click="showMessage" style="width: 100%">
       </Table>
       <div style="margin: 10px;overflow: hidden">
         <div style="float: right;">
@@ -47,11 +47,24 @@
       this.getData();
     },
     methods: {
-      showMessage(item){
+      showMessage(row){
         this.errorMessage = true
-        this.operator = item[0].operator;
-        this.message = item[0].msg
-        this.site_name=item[0].site_name
+        this.operator = row.operator;
+        this.message = row.msg
+        this.site_name = row.site_name
+        this.changeStatus(row.id)
+      },
+      changeStatus(id){
+
+        this.apiPost('user/changeErrorStatus/'+id).then((data) => {
+          this.handelResponse(data, (data, msg) => {
+            console.log(data)
+          }, (data, msg) => {
+            this.$Message.error(msg);
+          })
+        }, (data) => {
+          this.$Message.error('网络异常，请稍后重试');
+        })
       },
       changePage(page){
         this.page = page;
@@ -122,6 +135,8 @@
   }
 
 </script>
+
+
 <style>
 
 
