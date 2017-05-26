@@ -2,7 +2,7 @@
   "name": "site",
   "version": "1.0.0",
   "description": "site login",
-  "author": "2301887641 <sgz19861126>",
+  "author": "222222",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
