@@ -148,6 +148,7 @@
                   Cookies.set('site_rememberMe', true, {expires: 7})
                   Cookies.set('site_code', data.remember, {expire: 7});
                 }
+
                 this.resetCommonData(data)
               }, (data, msg) => {
                 //根据状态来判断登陆状态

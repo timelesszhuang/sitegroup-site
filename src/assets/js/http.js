@@ -68,7 +68,6 @@ const ajaxMethods = {
       //用户类型
       Lockr.set('site_info', data.site_info)
       // this.modal1 = true
-
       //跳转到地方
       let routerUrl ="";
       if(data.site_info.length == 0 ){
