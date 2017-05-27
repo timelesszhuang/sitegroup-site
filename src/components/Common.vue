@@ -166,19 +166,28 @@
       },
       changePwd(){
         this.$refs.changePwd.modal = true
-  },
+      },
       messageLog(){
         router.replace('/common/messageLog');
       }
 
     },
     created () {
+      let rememberKey = Lockr.get('site_rememberKey')
+//      console.log(rememberKey)
+      let site_id = Lockr.get('site_id')
+      if (!rememberKey) {
+        //表示没有登陆
+        setTimeout(() => {
+          router.replace('/')
+        }, 1500)
+        return
+      }
       let _this = this;
       setInterval(function(){
         _this.checkAlert();
       },5000);
     },
-    //created 是函数
     mixins: [http]
   }
 </script>

@@ -21,19 +21,22 @@
       }
     },
     created () {
-      this.getdata(),
-        this.name = Lockr.get('userInfo').name
-      document.title = this.name
       let rememberKey = Lockr.get('site_rememberKey')
+//      console.log(rememberKey)
       let site_id = Lockr.get('site_id')
-      if (!rememberKey || !site_id ) {
+      if (!rememberKey) {
         //表示没有登陆
         setTimeout(() => {
           router.replace('/')
         }, 1500)
         return
       }
+      this.getdata(),
+        this.name = Lockr.get('userInfo').name
+      document.title = this.name
+
     },
+
     methods: {
         formatter_str(str) {
           return "http://"+str;
