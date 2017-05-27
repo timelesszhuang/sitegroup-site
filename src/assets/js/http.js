@@ -95,6 +95,7 @@ const ajaxMethods = {
 
       else {
          routerUrl = '/admin/';
+
       }
       setTimeout(() => {
         let path = this.$router.path
