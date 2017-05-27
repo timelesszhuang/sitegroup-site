@@ -72,9 +72,9 @@
               <Icon type="ios-keypad"></Icon>
               管理
             </template>
-            <Menu-item name="问答">
+            <Menu-item name="tdk">
               <Icon type="settings"></Icon>
-              <span class="layout-text" @click="routerChange('/common/question','问答')">问答</span>
+              <span class="layout-text" @click="routerChange('/common/tdk','问答')">tdk</span>
             </Menu-item>
             <Menu-item name="文章">
               <Icon type="document"></Icon>

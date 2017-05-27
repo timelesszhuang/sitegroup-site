@@ -24,7 +24,7 @@
       this.getdata(),
         this.name = Lockr.get('userInfo').name
       document.title = this.name
-      let rememberKey = Lockr.get('rememberKey')
+      let rememberKey = Lockr.get('site_rememberKey')
       let site_id = Lockr.get('site_id')
       if (!rememberKey || !site_id ) {
         //表示没有登陆
