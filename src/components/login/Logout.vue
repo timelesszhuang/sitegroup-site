@@ -27,8 +27,8 @@
         this.modal_loading = true;
         setTimeout(() => {
           Lockr.flush();
-          Cookies.remove('rememberMe');
-          Cookies.remove('code');
+          Cookies.remove('site_rememberMe');
+          Cookies.remove('site_code');
           this.modal_loading = false;
           this.modal = false;
           router.replace('/');
