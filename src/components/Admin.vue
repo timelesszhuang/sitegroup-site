@@ -4,11 +4,10 @@
         <Col span="14" offset="5">
         <div class="alert-title">
           <Alert type="success" show-icon v-show="successShow">
-            <span slot="desc"> 正在进入站点</span>
-            <Icon  v-show="successShow" type="load-c"  class="demo-spin-icon-load"></Icon>
+            <span slot="desc"> 正在进入站点&nbsp;&nbsp;&nbsp;<Icon  v-show="successShow" type="load-c"  class="demo-spin-icon-load"></Icon></span>
+
           </Alert>
         </div>
-
         </Col>
       </Row>
       <Row>
@@ -18,7 +17,6 @@
           <ul>
             <li class="todo" v-for="todo in site">
               <Button class="btn" @click="change(todo.id,todo.site_name)">{{ todo.site_name }}
-
               </Button>
               <a class="link" :href=formatter_str(todo.domain) target="_blank">{{todo.domain}}</a>
             </li>
@@ -43,13 +41,13 @@
       let site_id = Lockr.get('site_id')
       if (!rememberKey) {
         //表示没有登陆
+        this.$Message.error("请先登录");
         setTimeout(() => {
           router.replace('/')
         }, 1500)
         return
       }
-      this.getdata(),
-        this.name = Lockr.get('userInfo').name
+      this.getdata(), this.name = Lockr.get('userInfo').name
       document.title = this.name
 
     },
