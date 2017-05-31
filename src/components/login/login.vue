@@ -17,7 +17,7 @@
     <Row>
       <Col span="14" offset="5">
       <div class="login-form" v-show="showlogin">
-        <h2 class="title">小节点后台管理</h2>
+        <h2 class="title">站点后台管理</h2>
         <Form ref="loginform" :model="loginform" :rules="loginRule">
           <Form-item prop="name">
             <Input type="text" v-model="loginform.name" size="large" placeholder="用户名">
