@@ -80,6 +80,10 @@
               <Icon type="document"></Icon>
               <span class="layout-text" @click="routerChange('/common/article','文章')">文章</span>
             </Menu-item>
+            <Menu-item name="流量">
+              <Icon type="document"></Icon>
+              <span class="layout-text" @click="routerChange('/common/flow','流量')">流量</span>
+            </Menu-item>
           </Submenu>
           <Menu-item name="重置密码">
           </Menu-item>

@@ -9,6 +9,11 @@ import Lockr from 'lockr'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import moment from 'moment'
+import Drilldown from '../node_modules/highcharts/modules/drilldown.js'
+import Highcharts from 'highcharts'
+Drilldown(Highcharts);
+
+
 
 Vue.use(iView);
 window.Cookies = Cookies
