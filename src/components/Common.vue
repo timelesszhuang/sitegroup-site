@@ -84,6 +84,10 @@
               <Icon type="document"></Icon>
               <span class="layout-text" @click="routerChange('/common/flow','流量')">流量</span>
             </Menu-item>
+            <Menu-item name="关键词占比">
+              <Icon type="document"></Icon>
+              <span class="layout-text" @click="routerChange('/common/keyword','关键词占比')">关键词占比</span>
+            </Menu-item>
           </Submenu>
           <Menu-item name="重置密码">
           </Menu-item>

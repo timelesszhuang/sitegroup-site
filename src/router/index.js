@@ -10,6 +10,9 @@ import Messagelog from '../components/common/messageLog/messageLog.vue'
 import Tdk from '../components/common/tdk/index.vue'
 import VueQuillEditor from 'vue-quill-editor'
 import Flow from '../components/common/flow/index.vue';
+import Keyword from '../components/common/keyword/index.vue';
+
+
 
 Vue.use(Router)
 Vue.use(ElementUI)
@@ -30,7 +33,8 @@ export default new Router({
         {path: 'article', component: Article, name: 'article'},
         {path: 'messagelog', component: Messagelog, name: 'messagelog'},
         {path: 'tdk', component: Tdk, name: 'tdk'},
-        {path: 'flow',component:Flow,name: 'flow'}
+        {path: 'flow',component:Flow,name: 'flow'},
+        {path: 'keyword',component:Keyword,name: 'keyword'}
       ]
     },
     {

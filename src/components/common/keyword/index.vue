@@ -1,17 +1,16 @@
 <template>
   <div>
     <div style="margin-left: 35%;padding-top:1%;padding-bottom: 5%">
-    <Row>
-      <Col span="6">
-      <Date-picker type="daterange" v-model="time" placement="bottom-end" placeholder="选择日期查询" ></Date-picker>
-      </Col>
-      &nbsp;
-      <Button type="primary" @click="queryData">查询</Button>
-    </Row>
+      <Row>
+        <Col span="6">
+        <Date-picker type="daterange" v-model="time" placement="bottom-end" placeholder="选择日期查询" ></Date-picker>
+        </Col>
+        &nbsp;
+        <Button type="primary" @click="queryData">查询</Button>
+      </Row>
 
     </div>
-  <vue-highcharts :options="options" :data="data" ref="lineCharts"></vue-highcharts>
-  <!--<button @click="load">load</button>-->
+    <vue-highcharts :options="options" :data="data" ref="lineCharts"></vue-highcharts>
   </div>
 
 </template>
@@ -27,14 +26,14 @@
     },
     data(){
       return{
-          time:[],
+        time:"",
         data:[],
         options: {
           chart: {
             type: 'pie'
           },
           title: {
-            text: '搜索引擎占比'
+            text: '搜索关键词占比'
           },
           subtitle: {
             text: ''
@@ -57,30 +56,35 @@
           },
           series: []
         }
-    }
+      }
     },
     methods:{
       getData() {
         let data = {
+          params: {
             time: this.time
+          }
+
         }
-      this.apiGet('user/acount',data).then((data) => {
-      this.handelResponse(data, (data, msg) => {
-        this.load(data)
-      }, (data, msg) => {
-        this.$Message.error(msg);
-      })
-    },)
-  },
+//        console.log(this.time)
+        this.apiGet('user/keyword',data).then((data) => {
+          this.handelResponse(data, (data, msg) => {
+            this.load(data)
+          }, (data, msg) => {
+            this.$Message.error(msg);
+          })
+        },)
+      },
       queryData(){
         this.getData();
       },
       load(data){
         let lineCharts = this.$refs.lineCharts;
         lineCharts.delegateMethod('showLoading', 'Loading...');
-          lineCharts.addSeries({"name":"搜索引擎",data:data});
+        setTimeout(() => {
+          lineCharts.addSeries({"name":"关键词",data:data});
           lineCharts.hideLoading();
-        console.log(data)
+        }, 1000)
       }
     },
     mixins: [http]
