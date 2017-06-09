@@ -1,88 +1,101 @@
 <template>
-  <div>
+  <div class="echarts">
+    <div style="font-size:15px">  搜索引擎占比：</div>
+
     <div style="margin-left: 35%;padding-top:1%;padding-bottom: 5%">
-    <Row>
-      <Col span="6">
-      <Date-picker type="daterange" v-model="time" placement="bottom-end" placeholder="选择日期查询" ></Date-picker>
-      </Col>
-      &nbsp;
-      <Button type="primary" @click="queryData">查询</Button>
-    </Row>
+      <Row>
+        <Col span="9">
+        <Date-picker type="daterange" v-model="time" placement="bottom-end" placeholder="选择日期查询" ></Date-picker>
+        </Col>
+        &nbsp;
+        <Button type="primary" @click="queryData">查询</Button>
+      </Row>
 
     </div>
-  <vue-highcharts :options="options" :data="data" ref="lineCharts"></vue-highcharts>
-  <!--<button @click="load">load</button>-->
+    <IEcharts :option="bar" :loading="loading" @ready="onReady" @click="onClick"></IEcharts>
+    <!--<button @click="doRandom">Random</button>-->
   </div>
-
 </template>
-<script>
-  import VueHighcharts from 'vue2-highcharts';
+
+<script type="text/babel">
+  import IEcharts from 'vue-echarts-v3/src/full.vue';
   import http from '../../../assets/js/http.js';
-  export default{
+  export default {
+    name: 'view',
     components: {
-      VueHighcharts
+      IEcharts
     },
-    created () {
-      this.getData();
+    props: {
     },
-    data(){
-      return{
-          time:[],
-        data:[],
-        options: {
-          chart: {
-            type: 'pie'
-          },
-          title: {
-            text: '搜索引擎占比'
-          },
-          subtitle: {
-            text: ''
-          },
-          tooltip: {
-            crosshairs: true,
-            shared: true
-          },
-          credits: {
-            enabled: false
-          },
-          plotOptions: {
-            spline: {
-              marker: {
-                radius: 4,
-                lineColor: '#666666',
-                lineWidth: 1
-              }
+    data: () => ({
+      loading: false,
+      bar: {
+        color:["#20a0ff","#13CE66","#F7BA2A","#FF4949","#61a0a8"],
+        tooltip: {
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        series: [{
+          name: '搜索引擎',
+          type: 'pie',
+          radius : '55%',
+          center: ['50%', '50%'],
+          avoidLabelOverlap: false,
+          labelLine: {
+            normal: {
+              show: false
             }
           },
-          series: []
-        }
-    }
-    },
-    methods:{
-      getData() {
-        let data = {
-            time: this.time
-        }
-      this.apiGet('user/acount',data).then((data) => {
-      this.handelResponse(data, (data, msg) => {
-        this.load(data)
-      }, (data, msg) => {
-        this.$Message.error(msg);
-      })
-    },)
-  },
-      queryData(){
-        this.getData();
+          data: [
+
+          ]
+        }]
       },
-      load(data){
-        let lineCharts = this.$refs.lineCharts;
-        lineCharts.delegateMethod('showLoading', 'Loading...');
-          lineCharts.addSeries({"name":"搜索引擎",data:data});
-          lineCharts.hideLoading();
-        console.log(data)
+      label: {
+        normal: {
+          textStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        }
+      },
+    }),
+    created() {
+      this.doRandom();
+    },
+    methods: {
+      queryData() {
+        this.doRandom();
+      },
+      doRandom() {
+        const that = this;
+        let data = {
+          params: {
+            time:this.time
+          }}
+        this.apiGet('user/acount',data).then((data) => {
+          this.handelResponse(data, (data, msg) => {
+            that.bar.series[0].data = data;
+          }, (data, msg) => {
+            this.$Message.error(msg);
+          })
+        },)
+//        that.loading = !that.loading;
+      },
+      onReady(instance) {
+        console.log(instance);
+      },
+      onClick(event, instance, echarts) {
+        console.log(arguments);
       }
     },
     mixins: [http]
-  }
+
+  };
 </script>
+
+<style scoped>
+  .echarts {
+    width: 800px;
+    margin: 0 auto;
+    height: 400px;
+  }
+</style>

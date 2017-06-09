@@ -11,12 +11,12 @@
             <Form-item label="title" prop="title">
               <Input type="text" v-model="form.title" placeholder="请输入title"></Input>
             </Form-item>
-            <Form-item label="description" prop="description">
-              <Input type="text" v-model="form.description" placeholder="请输入description"></Input>
-            </Form-item>
             <Form-item label="关键词" prop="keyword">
-              <Input v-model="form.keyword" type="textarea" :autosize="{minRows: 2,maxRows: 20}"
-                     placeholder="请输入关键词用逗号隔开">
+              <Input type="text" v-model="form.keyword" placeholder="请输入关键词用逗号隔开"></Input>
+            </Form-item>
+            <Form-item label="description" prop="description">
+              <Input v-model="form.description" type="textarea" :autosize="{minRows: 2,maxRows: 20}"
+                     placeholder="请输入description">
               </Input>
             </Form-item>
           </Form>

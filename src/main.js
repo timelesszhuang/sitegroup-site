@@ -9,9 +9,6 @@ import Lockr from 'lockr'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import moment from 'moment'
-import Drilldown from '../node_modules/highcharts/modules/drilldown.js'
-import Highcharts from 'highcharts'
-Drilldown(Highcharts);
 
 
 
@@ -19,7 +16,7 @@ Vue.use(iView);
 window.Cookies = Cookies
 window.axios = axios
 
-let domain = 'sitegroup.youdao.so'
+let domain = 'api.mypc.com.cn'
 var HOST = 'http://' + domain + '/index.php/'
 var ROOTHOST = 'http://' + domain + '/'
 

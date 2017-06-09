@@ -88,6 +88,10 @@
               <Icon type="document"></Icon>
               <span class="layout-text" @click="routerChange('/common/keyword','关键词占比')">关键词占比</span>
             </Menu-item>
+            <Menu-item name="操作">
+              <Icon type="document"></Icon>
+              <span class="layout-text" @click="operation()">操作</span>
+            </Menu-item>
           </Submenu>
           <Menu-item name="重置密码">
           </Menu-item>
@@ -134,11 +138,13 @@
     </Row>
     <logout ref="logout"></logout>
     <changepwd ref="changePwd"></changepwd>
+    <operation ref="operation"> </operation>
   </div>
 </template>
 <script>
   import logout from './login/Logout.vue';
   import changepwd from './login/Changepwd.vue';
+  import operation from './operation/operation.vue';
   import http from '../assets/js/http.js';
   export default {
     data(){
@@ -149,7 +155,8 @@
     },
     components: {
       changepwd,
-      logout
+      logout,
+      operation,
     },
     methods: {
       checkAlert() {
@@ -168,6 +175,8 @@
       routerChange (path, activeName) {
         this.activeName = activeName;
         router.push(path);
+      }, operation(){
+        this.$refs.operation.modal = true
       },
       logOut(){
         this.$refs.logout.modal = true
@@ -175,6 +184,7 @@
       changePwd(){
         this.$refs.changePwd.modal = true
       },
+
       messageLog(){
         router.replace('/common/messageLog');
       }
