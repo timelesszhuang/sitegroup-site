@@ -57,7 +57,7 @@
         <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
           <div class="layout-logo-left">
           </div>
-          <Submenu name="2">
+
             <template slot="title">
               <Icon type="ios-keypad"></Icon>
               管理
@@ -82,7 +82,6 @@
               <Icon type="document"></Icon>
               <span class="layout-text" @click="operation()">操作</span>
             </Menu-item>
-          </Submenu>
           <Menu-item name="重置密码">
           </Menu-item>
         </Menu>
@@ -191,7 +190,7 @@
       let _this = this;
       setInterval(function(){
         _this.checkAlert();
-      },5000);
+      },120000);
     },
     mixins: [http]
   }
