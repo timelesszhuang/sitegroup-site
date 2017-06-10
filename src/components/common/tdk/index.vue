@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="top">tdk管理:
+    <div class="top">SEO属性管理:
 
     </div>
     <div class="content" style="margin-top:10px;">

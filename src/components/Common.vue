@@ -57,24 +57,14 @@
         <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
           <div class="layout-logo-left">
           </div>
-          <Submenu name="1">
-            <template slot="title">
-              <Icon type="ios-navigate"></Icon>
-              关键词
-            </template>
-            <Menu-item name="关键词管理">
-              <Icon type="key"></Icon>
-              <span class="layout-text" @click="routerChange('/admin/keyword','关键词管理')">关键词管理</span>
-            </Menu-item>
-          </Submenu>
           <Submenu name="2">
             <template slot="title">
               <Icon type="ios-keypad"></Icon>
               管理
             </template>
-            <Menu-item name="tdk">
+            <Menu-item name="SEO属性管理">
               <Icon type="settings"></Icon>
-              <span class="layout-text" @click="routerChange('/common/tdk','问答')">tdk</span>
+              <span class="layout-text" @click="routerChange('/common/tdk','SEO属性')">SEO属性</span>
             </Menu-item>
             <Menu-item name="文章">
               <Icon type="document"></Icon>
@@ -94,10 +84,6 @@
             </Menu-item>
           </Submenu>
           <Menu-item name="重置密码">
-          </Menu-item>
-          <Menu-item name="退出系统">
-            <Icon type="log-out" @click="logOut()"></Icon>
-            <span class="layout-text" @click="logOut()">退出系统</span>
           </Menu-item>
         </Menu>
       </i-col>
