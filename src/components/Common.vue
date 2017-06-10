@@ -67,20 +67,20 @@
               <span class="layout-text" @click="routerChange('/common/tdk','SEO属性')">SEO属性</span>
             </Menu-item>
             <Menu-item name="文章">
-              <Icon type="document"></Icon>
+              <Icon type="ios-book-outline"></Icon>
               <span class="layout-text" @click="routerChange('/common/article','文章')">文章</span>
             </Menu-item>
             <Menu-item name="流量">
-              <Icon type="document"></Icon>
+              <Icon type="monitor"></Icon>
               <span class="layout-text" @click="routerChange('/common/flow','流量')">流量</span>
             </Menu-item>
             <Menu-item name="关键词占比">
-              <Icon type="document"></Icon>
+              <Icon type="bug"></Icon>
               <span class="layout-text" @click="routerChange('/common/keyword','关键词占比')">关键词占比</span>
             </Menu-item>
-            <Menu-item name="操作">
-              <Icon type="document"></Icon>
-              <span class="layout-text" @click="operation()">操作</span>
+            <Menu-item name="静态化">
+              <Icon type="ios-cog"></Icon>
+              <span class="layout-text" @click="operation()">静态化</span>
             </Menu-item>
           <Menu-item name="重置密码">
           </Menu-item>
