@@ -40,7 +40,7 @@
           okText: '确认',
           cancelText: '取消',
           onOk: () => {
-            _this.apiGet('links/', id).then((res) => {
+            _this.apiGet('allstatic/').then((res) => {
               _this.handelResponse(res, (data, msg) => {
                 _this.getData()
                 _this.$Message.success(msg);
@@ -65,7 +65,7 @@
           okText: '确认',
           cancelText: '取消',
           onOk: () => {
-            _this.apiGet('links/', id).then((res) => {
+            _this.apiGet('artilestatic/').then((res) => {
               _this.handelResponse(res, (data, msg) => {
                 _this.getData()
                 _this.$Message.success(msg);
@@ -90,7 +90,7 @@
           okText: '确认',
           cancelText: '取消',
           onOk: () => {
-            _this.apiGet('links/', id).then((res) => {
+            _this.apiGet('menustatic/').then((res) => {
               _this.handelResponse(res, (data, msg) => {
                 _this.getData()
                 _this.$Message.success(msg);
@@ -115,7 +115,7 @@
           okText: '确认',
           cancelText: '取消',
           onOk: () => {
-            _this.apiGet('', id).then((res) => {
+            _this.apiGet('indexstatic').then((res) => {
               _this.handelResponse(res, (data, msg) => {
                 _this.getData()
                 _this.$Message.success(msg);
