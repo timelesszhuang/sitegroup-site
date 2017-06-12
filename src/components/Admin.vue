@@ -70,6 +70,7 @@
               site_id:id,
               site_name:site_name
           }
+        Lockr.set('currentSiteId',data.site_id);
         this.apiPost('user/siteInfo',data).then((res) => {
               this.handelResponse(res, (data, msg) => {
                 let routerUrl = '/common/';

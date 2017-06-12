@@ -176,9 +176,11 @@
 
     },
     created () {
+
       let rememberKey = Lockr.get('site_rememberKey')
 //      console.log(rememberKey)
       let site_id = Lockr.get('site_id')
+      console.log(site_id)
       if (!rememberKey) {
         //表示没有登陆
         this.$Message.error("请先登录");

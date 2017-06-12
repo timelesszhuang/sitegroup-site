@@ -34,18 +34,20 @@
     methods: {
         generate(){
         let _this = this
+          let id =  Lockr.get("currentSiteId")
         this.$Modal.confirm({
           title: '确认',
           content: '您确定一键生成?',
           okText: '确认',
           cancelText: '取消',
           onOk: () => {
-            _this.apiGet('allstatic').then((res) => {
+            _this.apiGet('user /siteGetCurl/' + id + '/aKeyGeneration').then((res) => {
               _this.handelResponse(res, (data, msg) => {
                 _this.getData()
                 _this.$Message.success(msg);
               }, (data, msg) => {
-                _this.$Message.error(msg);
+                _this.modal_loading = false;
+                _this.$Message.error(msg, 5);
               })
             }, (res) => {
               //处理错误信息
@@ -59,13 +61,14 @@
       },
       article(){
         let _this = this
+        let id =  Lockr.get("currentSiteId")
         this.$Modal.confirm({
           title: '确认',
           content: '您确定同步文章?',
           okText: '确认',
           cancelText: '取消',
           onOk: () => {
-            _this.apiGet('artilestatic').then((res) => {
+            _this.apiGet('user/siteGetCurl/' + id + '/generatArticle').then((res) => {
               _this.handelResponse(res, (data, msg) => {
                 _this.getData()
                 _this.$Message.success(msg);
@@ -84,13 +87,14 @@
       },
       menu(){
         let _this = this
+        let id =  Lockr.get("currentSiteId")
         this.$Modal.confirm({
           title: '确认',
           content: '您确定更新栏目?',
           okText: '确认',
           cancelText: '取消',
           onOk: () => {
-            _this.apiGet('menustatic').then((res) => {
+            _this.apiGet('user/siteGetCurl/' + id + '/generatMenu').then((res) => {
               _this.handelResponse(res, (data, msg) => {
                 _this.getData()
                 _this.$Message.success(msg);
@@ -109,13 +113,14 @@
       },
       homepage(){
         let _this = this
+        let id =  Lockr.get("currentSiteId")
         this.$Modal.confirm({
           title: '确认',
           content: '您确定生成首页?',
           okText: '确认',
           cancelText: '取消',
           onOk: () => {
-            _this.apiGet('indexstatic').then((res) => {
+            _this.apiGet('user/siteGetCurl/' + id + '/generatIndex').then((res) => {
               _this.handelResponse(res, (data, msg) => {
                 _this.getData()
                 _this.$Message.success(msg);
