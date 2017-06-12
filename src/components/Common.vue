@@ -57,12 +57,7 @@
         <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
           <div class="layout-logo-left">
           </div>
-
-            <template slot="title">
-              <Icon type="ios-keypad"></Icon>
-              管理
-            </template>
-            <Menu-item name="SEO属性管理">
+          <Menu-item name="SEO属性管理">
               <Icon type="settings"></Icon>
               <span class="layout-text" @click="routerChange('/common/tdk','SEO属性')">SEO属性</span>
             </Menu-item>
