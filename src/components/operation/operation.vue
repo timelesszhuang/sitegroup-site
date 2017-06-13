@@ -41,7 +41,7 @@
           okText: '确认',
           cancelText: '取消',
           onOk: () => {
-            _this.apiGet('user /siteGetCurl/' + id + '/aKeyGeneration').then((res) => {
+            _this.apiGet('user/siteGetCurl/' + id + '/aKeyGeneration').then((res) => {
               _this.handelResponse(res, (data, msg) => {
                 _this.getData()
                 _this.$Message.success(msg);
