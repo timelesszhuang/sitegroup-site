@@ -14,6 +14,7 @@ import Keyword from '../components/common/keyword/index.vue';
 import Pv from '../components/common/pv/pv.vue';
 import Show from '../components/common/show/index.vue';
 import Crawler from '../components/common/crawler/crawler.vue';
+import Count from '../components/common/count/index.vue';
 
 
 
@@ -42,6 +43,7 @@ export default new Router({
         {path: 'pv',component:Pv,name: 'pv'},
         {path: 'show',component:Show,name: 'show'},
         {path: 'crawler',component:Crawler,name: 'crawler'},
+        {path: 'count',component:Count,name: 'count'},
       ]
     },
     {

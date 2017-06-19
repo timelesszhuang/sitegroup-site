@@ -45,17 +45,18 @@
   .layout-logo-left {
     width: 90%;
     height: 30px;
-    background: #5b6270;
     border-radius: 3px;
     margin: 15px auto;
   }
 </style>
 <template>
   <div class="layout">
+
     <Row type="flex">
       <i-col span="4" class="layout-menu-left">
         <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
-          <div class="layout-logo-left">
+          <div class="layout-logo-left"style="width: 150px;height: 58px;margin: 10px auto;">
+            <img style="" src="../../dist/static/img/云创意logo1.png" alt="">
           </div>
 
           <template slot="title">
@@ -101,18 +102,24 @@
       <i-col span="20">
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
-            <Col span="2" align="center">
+            <Col span="2" align="right">
             <Badge :count="count">
-              <span @click="routerChange('/common/messageLog','错误日志')" style="cursor:pointer;">
+              <span @click="routerChange('/common/messageLog','消息')" style="cursor:pointer;">
                 <Icon type="ios-bell-outline" size="26"></Icon>
               </span>
             </Badge>
+
             </Col>
-            <Col span="2" style="cursor:pointer">
+            <Col span="2" align="right" style="cursor: pointer">
+            <Icon type="home" style="font-size: 15px" @click="routerChange('/common/count')"></Icon>
+            <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 15px;"
+                  @click="routerChange('/common/count')">首页</span>
+            </Col>
+            <Col span="2" align="center" style="cursor: pointer">
             <Icon type="android-lock" @click="changePwd()"></Icon>
             <span class="layout-text" @click="changePwd()">重置密码</span>
             </Col>
-            <Col span="2" style="cursor:pointer">
+            <Col span="2" style="cursor: pointer">
             <Icon type="log-out" @click="logOut()"></Icon>
             <span class="layout-text" @click="logOut()">退出系统</span>
             </Col>
