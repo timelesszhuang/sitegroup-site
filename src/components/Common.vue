@@ -58,30 +58,42 @@
           <div class="layout-logo-left">
           </div>
 
-            <template slot="title">
-              <Icon type="ios-keypad"></Icon>
-              管理
-            </template>
-            <Menu-item name="SEO属性管理">
-              <Icon type="settings"></Icon>
-              <span class="layout-text" @click="routerChange('/common/tdk','SEO属性')">SEO属性</span>
-            </Menu-item>
-            <Menu-item name="文章">
-              <Icon type="ios-book-outline"></Icon>
-              <span class="layout-text" @click="routerChange('/common/article','文章')">文章</span>
-            </Menu-item>
-            <Menu-item name="搜索引擎占比">
-              <Icon type="monitor"></Icon>
-              <span class="layout-text" @click="routerChange('/common/flow','流量')">流量</span>
-            </Menu-item>
-            <Menu-item name="关键词占比">
-              <Icon type="bug"></Icon>
-              <span class="layout-text" @click="routerChange('/common/keyword','关键词占比')">关键词占比</span>
-            </Menu-item>
-            <Menu-item name="静态化">
-              <Icon type="ios-cog"></Icon>
-              <span class="layout-text" @click="operation()">静态化</span>
-            </Menu-item>
+          <template slot="title">
+            <Icon type="ios-keypad"></Icon>
+            管理
+          </template>
+          <Menu-item name="SEO属性管理">
+            <Icon type="settings"></Icon>
+            <span class="layout-text" @click="routerChange('/common/tdk','SEO属性')">SEO属性</span>
+          </Menu-item>
+          <Menu-item name="文章">
+            <Icon type="ios-book-outline"></Icon>
+            <span class="layout-text" @click="routerChange('/common/article','文章')">文章</span>
+          </Menu-item>
+          <Menu-item name="静态化">
+            <Icon type="ios-cog"></Icon>
+            <span class="layout-text" @click="operation()">静态化</span>
+          </Menu-item>
+          <Menu-item name="关键词占比">
+            <Icon type="android-cloud-circle"></Icon>
+            <span class="layout-text" @click="routerChange('/common/keyword','关键词占比')">关键词占比</span>
+          </Menu-item>
+          <Menu-item name="浏览量统计">
+            <Icon type="settings"></Icon>
+            <span class="layout-text" @click="routerChange('/common/pv','浏览量统计')">浏览量统计</span>
+          </Menu-item>
+          <Menu-item name="浏览量展示">
+            <Icon type="android-cloud-circle"></Icon>
+            <span class="layout-text" @click="routerChange('/common/show','浏览量展示')">浏览量展示</span>
+          </Menu-item>
+          <Menu-item name="爬虫统计">
+            <Icon type="ios-book-outline"></Icon>
+            <span class="layout-text" @click="routerChange('/common/crawler','爬虫统计')">爬虫统计</span>
+          </Menu-item>
+          <Menu-item name="搜索引擎占比">
+            <Icon type="monitor"></Icon>
+            <span class="layout-text" @click="routerChange('/common/flow','搜索引擎占比')">搜索引擎占比</span>
+          </Menu-item>
           <Menu-item name="重置密码">
           </Menu-item>
         </Menu>
@@ -89,16 +101,16 @@
       <i-col span="20">
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
-            <Col span="2" align="center" >
-            <Badge  :count="count" >
+            <Col span="2" align="center">
+            <Badge :count="count">
               <span @click="routerChange('/common/messageLog','错误日志')" style="cursor:pointer;">
-                <Icon type="ios-bell-outline" size="26" ></Icon>
+                <Icon type="ios-bell-outline" size="26"></Icon>
               </span>
             </Badge>
             </Col>
             <Col span="2" style="cursor:pointer">
-            <Icon  type="android-lock" @click="changePwd()"></Icon>
-            <span  class="layout-text" @click="changePwd()">重置密码</span>
+            <Icon type="android-lock" @click="changePwd()"></Icon>
+            <span class="layout-text" @click="changePwd()">重置密码</span>
             </Col>
             <Col span="2" style="cursor:pointer">
             <Icon type="log-out" @click="logOut()"></Icon>
@@ -123,7 +135,7 @@
     </Row>
     <logout ref="logout"></logout>
     <changepwd ref="changePwd"></changepwd>
-    <operation ref="operation"> </operation>
+    <operation ref="operation"></operation>
   </div>
 </template>
 <script>
@@ -134,8 +146,8 @@
   export default {
     data(){
       return {
-          activeName: '',
-          count:'无'
+        activeName: '',
+        count: '无'
       }
     },
     components: {
@@ -147,7 +159,7 @@
       checkAlert() {
         this.apiGet('user/getErrorStatus').then((res) => {
           this.handelResponse(res, (data, msg) => {
-            this.count=data;
+            this.count = data;
             console.log(data)
           }, (data, msg) => {
             this.$Message.error(msg);
@@ -190,9 +202,9 @@
         return
       }
       let _this = this;
-      setInterval(function(){
+      setInterval(function () {
         _this.checkAlert();
-      },120000);
+      }, 120000);
     },
     mixins: [http]
   }
