@@ -94,7 +94,7 @@ const ajaxMethods = {
       }
 
       else {
-         routerUrl = '/admin/count';
+         routerUrl = '/admin';
 
       }
       setTimeout(() => {

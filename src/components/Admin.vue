@@ -73,7 +73,7 @@
         Lockr.set('currentSiteId',data.site_id);
         this.apiPost('user/siteInfo',data).then((res) => {
               this.handelResponse(res, (data, msg) => {
-                let routerUrl = '/common/';
+                let routerUrl = '/common/count';
                 setTimeout(() => {
                   let path = this.$router.path
                   if (routerUrl != path) {
