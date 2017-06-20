@@ -110,7 +110,7 @@
       },
       getArticle(index){
         let editid = this.datas[index].id
-        this.apiGet('article/' + editid).then((res) => {
+        this.apiGet('user/article/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
             this.editinfo = data
           }, (data, msg) => {
