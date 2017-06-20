@@ -191,7 +191,7 @@
 
               render (row, column, index) {
                 return `
-<i-button type="info" size="small" @click="show(${index})">预览</i-button><i-button type="primary" size="small" @click="edit(${index})">修改</i-button> <i-button type="error" size="small" @click="remove(${index})">删除</i-button>&nbsp;`;
+<i-button type="info" size="small" @click="show(${index})">预览</i-button>&nbsp;<i-button type="primary" size="small" @click="edit(${index})">修改</i-button> <i-button type="error" size="small" @click="remove(${index})">删除</i-button>&nbsp;`;
               }
 
           }

@@ -55,10 +55,9 @@
     <Row type="flex">
       <i-col span="4" class="layout-menu-left">
         <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
-          <div class="layout-logo-left"style="width: 150px;height: 58px;margin: 10px auto;">
+          <div class="layout-logo-left" style="width: 150px;height: 58px;margin: 10px auto;">
             <img style="" src="../../src/assets/logo.png" alt="">
           </div>
-
           <template slot="title">
             <Icon type="ios-keypad"></Icon>
             管理
