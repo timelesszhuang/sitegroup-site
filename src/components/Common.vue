@@ -70,9 +70,9 @@
             <Icon type="ios-book-outline"></Icon>
             <span class="layout-text" @click="routerChange('/common/article','文章')">文章</span>
           </Menu-item>
-          <Menu-item name="文章">
+          <Menu-item name="文章a链接">
             <Icon type="ios-book-outline"></Icon>
-            <span class="layout-text" @click="routerChange('/common/href','文章')">文章</span>
+            <span class="layout-text" @click="routerChange('/common/href','文章a链接')">文章a链接</span>
           </Menu-item>
           <Menu-item name="静态化">
             <Icon type="ios-cog"></Icon>
