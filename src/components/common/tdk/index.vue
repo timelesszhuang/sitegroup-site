@@ -121,6 +121,17 @@
           key: 'description',
           sortable: true
         });
+
+        columns.push({
+          title: '页面类型',
+          key: 'page_type',
+          sortable: true
+        });
+        columns.push({
+          title: '页面名字',
+          key: 'page_name',
+          sortable: true
+        });
         columns.push({
           title: '关键词',
           key: 'keyword',
