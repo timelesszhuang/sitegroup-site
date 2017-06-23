@@ -74,6 +74,10 @@
             <Icon type="ios-book-outline"></Icon>
             <span class="layout-text" @click="routerChange('/common/href','文章a链接')">文章a链接</span>
           </Menu-item>
+          <Menu-item name="关键词替换">
+            <Icon type="ios-book-outline"></Icon>
+            <span class="layout-text" @click="routerChange('/common/substitution','关键词替换')">关键词替换</span>
+          </Menu-item>
           <Menu-item name="静态化">
             <Icon type="ios-cog"></Icon>
             <span class="layout-text" @click="operation()">静态化</span>
