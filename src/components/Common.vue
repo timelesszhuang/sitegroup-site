@@ -202,12 +202,12 @@
 
     },
     created () {
-
-      let rememberKey = Lockr.get('site_rememberKey')
+//
+//      let rememberKey = Lockr.get('site_rememberKey')
 //      console.log(rememberKey)
-      let site_id = Lockr.get('site_id')
-      console.log(site_id)
-      if (!rememberKey) {
+//      let site_id = Lockr.get('site_id')
+//      console.log(site_id)
+      if (!Lockr.get('userInfo')) {
         //表示没有登陆
         this.$Message.error("请先登录");
         setTimeout(() => {

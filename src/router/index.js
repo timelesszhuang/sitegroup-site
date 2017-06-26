@@ -17,6 +17,7 @@ import Crawler from '../components/common/crawler/crawler.vue';
 import Count from '../components/common/count/index.vue';
 import Href from '../components/common/href/index.vue'
 import Substitution from '../components/common/substitution/index.vue'
+import Staticconfig from '../components/common/staticconfig/index.vue'
 
 
 
@@ -47,6 +48,7 @@ export default new Router({
         {path: 'count',component:Count,name: 'count'},
         {path: 'href',component:Href,name: 'href'},
         {path: 'substitution',component:Substitution,name: 'substitution'},
+        {path: 'staticconfig',component:Staticconfig,name: 'staticconfig'},
       ]
     },
     {
