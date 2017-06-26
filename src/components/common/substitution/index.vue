@@ -2,7 +2,7 @@
   <div>
     <div class="top">
       标题:
-      <Input v-model="href" placeholder="请输入要替换的关键词" style="width:300px;"></Input>
+      <Input v-model="front_substitution" placeholder="请输入要替换的关键词" style="width:300px;"></Input>
       <Button type="primary" @click="queryData">查询</Button>
       <Button type="success" @click="add">添加</Button>
     </div>

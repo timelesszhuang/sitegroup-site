@@ -7,7 +7,7 @@
           <span>修改</span>
         </p>
         <div>
-          <Form ref="substitutionadd" :model="form" :label-width="90" :rules="AddRule" class="node-add-form">
+          <Form ref="substitutionsave" :model="form" :label-width="90" :rules="AddRule" class="node-add-form">
             <Form-item label="要替换的关键词" prop="front_substitution">
               <Input type="text" v-model="form.front_substitution" placeholder="请输入替换前的关键词"></Input>
             </Form-item>
@@ -55,7 +55,7 @@
                     this.$parent.getData();
                     this.$Message.success(msg);
                     this.modal_loading = false;
-                    this.$refs.hrefsave.resetFields();
+                    this.$refs.substitutionsave.resetFields();
                   }, (data, msg) => {
                     this.modal_loading = false;
                     this.$Message.error(msg);
