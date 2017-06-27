@@ -202,7 +202,8 @@
 
     },
     created () {
-//
+  document.title = Lockr.get('currentSiteName');
+//  console.log(document.title);
 //      let rememberKey = Lockr.get('site_rememberKey')
 //      console.log(rememberKey)
 //      let site_id = Lockr.get('site_id')

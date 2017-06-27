@@ -47,8 +47,9 @@
         }, 1500)
         return
       }
-      this.getdata(), this.name = Lockr.get('userInfo').name
-      document.title = this.name
+      this.getdata(),
+         this.name = Lockr.get('userInfo').name
+//      document.title = this.name
 
     },
 
@@ -71,6 +72,7 @@
               site_name:site_name
           }
         Lockr.set('currentSiteId',data.site_id);
+        Lockr.set('currentSiteName',data.site_name);
         this.apiPost('user/siteInfo',data).then((res) => {
               this.handelResponse(res, (data, msg) => {
                 let routerUrl = '/common/count';
