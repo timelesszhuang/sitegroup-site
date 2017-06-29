@@ -12,10 +12,10 @@
         <span>页面静态化</span>
       </p>
       <div style="text-align:center">
-        <Button type="info" @click="homepage()">生成首页</Button>
-        <Button type="success" @click="article()">文章同步</Button>
-        <Button type="warning" @click="menu()">更新栏目</Button>
-        <Button type="error" @click="generate()">一键生成</Button>
+        <Button type="info" @click="generatIndex()">生成首页</Button>
+        <Button type="success" @click="generatArticle()">文章同步</Button>
+        <Button type="warning" @click="generatMenu()">更新栏目</Button>
+        <Button type="error" @click="aKeyGeneration()">一键生成</Button>
       </div>
       <div slot="footer">
       </div>
@@ -32,26 +32,27 @@
       }
     },
     methods: {
-        generate(){
-        let _this = this
-          let id =  Lockr.get("currentSiteId")
+      aKeyGeneration() {
         this.$Modal.confirm({
-          title: '确认',
-          content: '您确定一键生成?',
-          okText: '确认',
+          title: '一键生成',
+          content: '是否一键生成站点?',
+          okText: '更新',
           cancelText: '取消',
-          onOk: () => {
-            _this.apiGet('user/siteGetCurl/' + id + '/aKeyGeneration').then((res) => {
-              _this.handelResponse(res, (data, msg) => {
-                _this.getData()
-                _this.$Message.success(msg);
+          onOk: (index) => {
+            let id =  Lockr.get("currentSiteId")
+            this.apiGet('user/siteGetCurl/' + id + '/aKeyGeneration').then((res) => {
+              this.handelResponse(res, (data, msg) => {
+                this.modal = false;
+                this.modal_loading = false;
+                this.$Message.success(msg);
               }, (data, msg) => {
-                _this.modal_loading = false;
-                _this.$Message.error(msg, 5);
+                this.modal_loading = false;
+                this.$Message.error(msg, 5);
               })
             }, (res) => {
               //处理错误信息
-              _this.$Message.error('网络异常，请稍后重试');
+              this.modal_loading = false;
+              this.$Message.error('网络异常，请稍后重试。');
             })
           },
           onCancel: () => {
@@ -59,25 +60,27 @@
           }
         })
       },
-      article(){
-        let _this = this
-        let id =  Lockr.get("currentSiteId")
+      generatIndex() {
         this.$Modal.confirm({
-          title: '确认',
-          content: '您确定同步文章?',
-          okText: '确认',
+          title: '更新首页',
+          content: '是否更新首页?',
+          okText: '更新',
           cancelText: '取消',
-          onOk: () => {
-            _this.apiGet('user/siteGetCurl/' + id + '/generatArticle').then((res) => {
-              _this.handelResponse(res, (data, msg) => {
-                _this.getData()
-                _this.$Message.success(msg);
+          onOk: (index) => {
+            let id =  Lockr.get("currentSiteId")
+            this.apiGet('user/siteGetCurl/' + id + '/generatIndex').then((res) => {
+              this.handelResponse(res, (data, msg) => {
+                this.modal = false;
+                this.modal_loading = false;
+                this.$Message.success(msg);
               }, (data, msg) => {
-                _this.$Message.error(msg);
+                this.modal_loading = false;
+                this.$Message.error(msg, 5);
               })
             }, (res) => {
               //处理错误信息
-              _this.$Message.error('网络异常，请稍后重试');
+              this.modal_loading = false;
+              this.$Message.error('网络异常，请稍后重试。');
             })
           },
           onCancel: () => {
@@ -85,25 +88,27 @@
           }
         })
       },
-      menu(){
-        let _this = this
-        let id =  Lockr.get("currentSiteId")
+      generatArticle() {
         this.$Modal.confirm({
-          title: '确认',
-          content: '您确定更新栏目?',
-          okText: '确认',
+          title: '文章更新',
+          content: '是否更新文章?',
+          okText: '更新',
           cancelText: '取消',
-          onOk: () => {
-            _this.apiGet('user/siteGetCurl/' + id + '/generatMenu').then((res) => {
-              _this.handelResponse(res, (data, msg) => {
-                _this.getData()
-                _this.$Message.success(msg);
+          onOk: (index) => {
+            let id =  Lockr.get("currentSiteId")
+            this.apiGet('user/siteGetCurl/' + id + '/generatArticle').then((res) => {
+              this.handelResponse(res, (data, msg) => {
+                this.modal = false;
+                this.modal_loading = false;
+                this.$Message.success(msg);
               }, (data, msg) => {
-                _this.$Message.error(msg);
+                this.modal_loading = false;
+                this.$Message.error(msg, 5);
               })
             }, (res) => {
               //处理错误信息
-              _this.$Message.error('网络异常，请稍后重试');
+              this.modal_loading = false;
+              this.$Message.error('网络异常，请稍后重试。');
             })
           },
           onCancel: () => {
@@ -111,25 +116,27 @@
           }
         })
       },
-      homepage(){
-        let _this = this
-        let id =  Lockr.get("currentSiteId")
+      generatMenu() {
         this.$Modal.confirm({
-          title: '确认',
-          content: '您确定生成首页?',
-          okText: '确认',
+          title: '更新栏目',
+          content: '是否更新栏目?',
+          okText: '更新',
           cancelText: '取消',
-          onOk: () => {
-            _this.apiGet('user/siteGetCurl/' + id + '/generatIndex').then((res) => {
-              _this.handelResponse(res, (data, msg) => {
-                _this.getData()
-                _this.$Message.success(msg);
+          onOk: (index) => {
+            let id =  Lockr.get("currentSiteId")
+            this.apiGet('user/siteGetCurl/' + id + '/generatMenu').then((res) => {
+              this.handelResponse(res, (data, msg) => {
+                this.modal = false;
+                this.modal_loading = false;
+                this.$Message.success(msg);
               }, (data, msg) => {
-                _this.$Message.error(msg);
+                this.modal_loading = false;
+                this.$Message.error(msg, 5);
               })
             }, (res) => {
               //处理错误信息
-              _this.$Message.error('网络异常，请稍后重试');
+              this.modal_loading = false;
+              this.$Message.error('网络异常，请稍后重试。');
             })
           },
           onCancel: () => {
