@@ -141,19 +141,15 @@
             align: 'center'
           })
         }
+
         columns.push({
           title: '类型',
-          key: 'type',
+          key: 'type_name',
           sortable: true
         });
         columns.push({
-          title: '静态化生成时间',
-          key: 'starttime',
-          sortable: true
-        });
-        columns.push({
-          title: '静态化结束时间',
-          key: 'stoptime',
+          title: '静态化时间',
+          key: 'time',
           sortable: true
         });
         columns.push(

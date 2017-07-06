@@ -34,6 +34,7 @@
           router.replace('/');
 
           this.$Message.success('登出成功');
+
         }, 1000);
       }
     }

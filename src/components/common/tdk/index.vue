@@ -113,11 +113,13 @@
         }
         columns.push({
           title: '页面类型',
+          width: 110,
           key: 'page_type',
           sortable: true
         });
         columns.push({
           title: '页面名字',
+          width: 110,
           key: 'page_name',
           sortable: true
         });
