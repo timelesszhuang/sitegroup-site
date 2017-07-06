@@ -84,7 +84,7 @@
                   }
                 }, 1000)
               }, (data, msg) => {
-                this.$Message.error('没有获取到');
+                this.$Message.error(msg);
               })
             },
           (res) => {

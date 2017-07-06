@@ -127,6 +127,13 @@
           sortable: true
         }
         );
+        columns.push(
+          {
+            title: '错误时间',
+            key: 'create_time',
+            sortable: true
+          }
+        );
         return columns;
       }
     },

@@ -82,6 +82,10 @@
             <Icon type="ios-cog"></Icon>
             <span class="layout-text" @click="operation()">静态化</span>
           </Menu-item>
+          <Menu-item name="静态化配置">
+            <Icon type="android-cloud-circle"></Icon>
+            <span class="layout-text" @click="routerChange('/common/staticconfig','静态化配置')">静态化配置</span>
+          </Menu-item>
           <Menu-item name="关键词占比">
             <Icon type="android-cloud-circle"></Icon>
             <span class="layout-text" @click="routerChange('/common/keyword','关键词占比')">关键词占比</span>
