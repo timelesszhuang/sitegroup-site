@@ -72,15 +72,15 @@
           </Menu-item>
           <Menu-item name="文章a链接">
             <Icon type="ios-book-outline"></Icon>
-            <span class="layout-text" @click="routerChange('/common/href','文章a链接')">文章a链接</span>
+            <span class="layout-text" @click="routerChange('/common/href','文章插入链接')">文章插入链接</span>
           </Menu-item>
           <Menu-item name="关键词替换">
             <Icon type="ios-book-outline"></Icon>
-            <span class="layout-text" @click="routerChange('/common/substitution','关键词替换')">关键词替换</span>
+            <span class="layout-text" @click="routerChange('/common/substitution','文章关键词替换')">文章关键词替换</span>
           </Menu-item>
-          <Menu-item name="静态化">
+          <Menu-item name="页面生成">
             <Icon type="ios-cog"></Icon>
-            <span class="layout-text" @click="operation()">静态化</span>
+            <span class="layout-text" @click="operation()">页面生成</span>
           </Menu-item>
           <Menu-item name="静态化配置">
             <Icon type="android-cloud-circle"></Icon>
@@ -88,7 +88,7 @@
           </Menu-item>
           <Menu-item name="关键词占比">
             <Icon type="android-cloud-circle"></Icon>
-            <span class="layout-text" @click="routerChange('/common/keyword','关键词占比')">关键词占比</span>
+            <span class="layout-text" @click="routerChange('/common/keyword','关键词占比')">关键词占比统计</span>
           </Menu-item>
           <Menu-item name="浏览量统计">
             <Icon type="settings"></Icon>
