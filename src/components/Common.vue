@@ -67,11 +67,11 @@
             <span class="layout-text" @click="routerChange('/common/weixinarticle','微信文章管理')">微信文章管理</span>
           </Menu-item>
           <Menu-item name="163新闻类文章管理">
-            <Icon type="ios-navigate"></Icon>
+            <Icon type="ios-bookmarks"></Icon>
             <span class="layout-text" @click="routerChange('/common/newsarticle','163新闻类文章管理')">163新闻类文章管理</span>
           </Menu-item>
           <Menu-item name="腾讯新闻类文章管理">
-            <Icon type="ios-navigate"></Icon>
+            <Icon type="ios-copy"></Icon>
             <span class="layout-text" @click="routerChange('/common/qqarticle','腾讯新闻类文章管理')">腾讯新闻类文章管理</span>
           </Menu-item>
           <Menu-item name="SEO属性管理">
@@ -83,11 +83,11 @@
             <span class="layout-text" @click="routerChange('/common/article','文章')">文章</span>
           </Menu-item>
           <Menu-item name="文章a链接">
-            <Icon type="ios-book-outline"></Icon>
+            <Icon type="wrench"></Icon>
             <span class="layout-text" @click="routerChange('/common/href','文章插入链接')">文章插入链接</span>
           </Menu-item>
           <Menu-item name="关键词替换">
-            <Icon type="ios-book-outline"></Icon>
+            <Icon type="ios-gear"></Icon>
             <span class="layout-text" @click="routerChange('/common/substitution','文章关键词替换')">文章关键词替换</span>
           </Menu-item>
           <Menu-item name="页面生成">
