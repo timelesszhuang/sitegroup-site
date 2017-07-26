@@ -62,6 +62,18 @@
             <Icon type="ios-keypad"></Icon>
             管理
           </template>
+          <Menu-item name="微信文章管理">
+            <Icon type="settings"></Icon>
+            <span class="layout-text" @click="routerChange('/common/weixinarticle','微信文章管理')">微信文章管理</span>
+          </Menu-item>
+          <Menu-item name="163新闻类文章管理">
+            <Icon type="ios-navigate"></Icon>
+            <span class="layout-text" @click="routerChange('/common/newsarticle','163新闻类文章管理')">163新闻类文章管理</span>
+          </Menu-item>
+          <Menu-item name="腾讯新闻类文章管理">
+            <Icon type="ios-navigate"></Icon>
+            <span class="layout-text" @click="routerChange('/common/qqarticle','腾讯新闻类文章管理')">腾讯新闻类文章管理</span>
+          </Menu-item>
           <Menu-item name="SEO属性管理">
             <Icon type="settings"></Icon>
             <span class="layout-text" @click="routerChange('/common/tdk','SEO属性')">SEO属性</span>
