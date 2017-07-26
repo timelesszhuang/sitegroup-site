@@ -86,7 +86,7 @@
               posttime:this.form.createtime
             }
 //            let data = this.form;
-            this.apiPost('user/addArticle', data).then((res) => {
+            this.apiPost('user/wangyiAddArticle', data).then((res) => {
               this.handelResponse(res, (data, msg) => {
                 this.modal = false;
                 this.$parent.getData();
