@@ -25,9 +25,13 @@
                 {{ item.name }}
               </Option>
             </Select>
-          </Form-item>
-          <Form-item label="关键词" prop="title">
-            <span style="font-size: 15px">{{form.keyword}}</span>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            原分类:<span style="font-size: 15px">{{form.type_name}}</span>
           </Form-item>
           <Form-item label="内容" prop="content">
             <quill-editor ref="myTextEditoredit"
