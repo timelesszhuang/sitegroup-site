@@ -34,6 +34,7 @@
 
   .layout-menu-left {
     background: #464c5b;
+   height: 100%
   }
 
   .layout-header {
@@ -54,7 +55,7 @@
 
     <Row type="flex">
       <i-col span="4" class="layout-menu-left">
-        <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
+        <Menu active-name="activename" theme="dark" width="auto"  :open-names="['1']">
           <div class="layout-logo-left" style="width: 150px;height: 58px;margin: 10px auto;">
             <img style="" src="../../src/assets/logo.png" alt="">
           </div>
@@ -95,7 +96,7 @@
             <span class="layout-text" @click="operation()">页面生成</span>
           </Menu-item>
           <Menu-item name="静态化配置">
-            <Icon type="android-cloud-circle"></Icon>
+            <Icon type="android-options"></Icon>
             <span class="layout-text" @click="routerChange('/common/staticconfig','静态化配置')">静态化配置</span>
           </Menu-item>
           <Menu-item name="关键词占比">
@@ -107,7 +108,7 @@
             <span class="layout-text" @click="routerChange('/common/pv','浏览量统计')">浏览量统计</span>
           </Menu-item>
           <Menu-item name="浏览量展示">
-            <Icon type="android-cloud-circle"></Icon>
+            <Icon type="ios-monitor-outline"></Icon>
             <span class="layout-text" @click="routerChange('/common/show','浏览量展示')">浏览量展示</span>
           </Menu-item>
           <Menu-item name="爬虫统计">
@@ -122,7 +123,7 @@
           </Menu-item>
         </Menu>
       </i-col>
-      <i-col span="20">
+      <i-col style="position: relative" span="20">
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
             <Col span="2" align="right">

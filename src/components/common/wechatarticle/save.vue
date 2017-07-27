@@ -26,6 +26,9 @@
               </Option>
             </Select>
           </Form-item>
+          <Form-item label="关键词" prop="title">
+            <span style="font-size: 15px">{{form.keyword}}</span>
+          </Form-item>
           <Form-item label="内容" prop="content">
             <quill-editor ref="myTextEditoredit"
                           v-model="form.content"

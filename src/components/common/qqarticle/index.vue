@@ -62,7 +62,7 @@
       this.getData();
       this.getArticleType((data) => {
         this.articletypelist = data
-      });
+      })
       this.getKeyword((data) => {
         this.keywordtype = data
       });
