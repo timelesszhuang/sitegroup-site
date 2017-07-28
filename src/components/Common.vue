@@ -34,7 +34,7 @@
 
   .layout-menu-left {
     background: #464c5b;
-   height: 100%
+    height: 100%
   }
 
   .layout-header {
@@ -55,7 +55,7 @@
 
     <Row type="flex">
       <i-col span="4" class="layout-menu-left">
-        <Menu active-name="activename" theme="dark" width="auto"  :open-names="['1']">
+        <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
           <div class="layout-logo-left" style="width: 150px;height: 58px;margin: 10px auto;">
             <img style="" src="../../src/assets/logo.png" alt="">
           </div>
@@ -126,13 +126,16 @@
       <i-col style="position: relative" span="20">
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
+            <Col span="2" align="right" style="cursor: pointer">
+            <Icon type="paper-airplane"></Icon>
+            <a v-bind:href="url" target="_blank" style="font-size: 15px;">预览此网站</a>
+            </Col>
             <Col span="2" align="right">
             <Badge :count="count">
               <span @click="routerChange('/common/messageLog','消息')" style="cursor:pointer;">
                 <Icon type="ios-bell-outline" size="26"></Icon>
               </span>
             </Badge>
-
             </Col>
             <Col span="2" align="right" style="cursor: pointer">
             <Icon type="home" style="font-size: 15px" @click="routerChange('/common/count')"></Icon>
@@ -174,8 +177,9 @@
   import changepwd from './login/Changepwd.vue';
   import operation from './operation/operation.vue';
   import http from '../assets/js/http.js';
+
   export default {
-    data(){
+    data() {
       return {
         activeName: '',
         count: '无'
@@ -185,6 +189,12 @@
       changepwd,
       logout,
       operation,
+    },
+    computed: {
+      url: function () {
+        this.uuudomain = "http://" + Lockr.get('urldomain')
+        return this.uuudomain
+      }
     },
     methods: {
       checkAlert() {
@@ -200,26 +210,28 @@
           this.$Message.error('网络异常，请稍后重试。');
         })
       },
-      routerChange (path, activeName) {
+      routerChange(path, activeName) {
         this.activeName = activeName;
         router.push(path);
-      }, operation(){
+      }, operation() {
         this.$refs.operation.modal = true
       },
-      logOut(){
+      logOut() {
         this.$refs.logout.modal = true
       },
-      changePwd(){
+      changePwd() {
         this.$refs.changePwd.modal = true
       },
 
-      messageLog(){
+      messageLog() {
         router.replace('/common/messageLog');
       }
 
     },
-    created () {
-  document.title = Lockr.get('currentSiteName');
+    created() {
+      document.title = Lockr.get('currentSiteName');
+//  console.log(Lockr.get('userInfo'))
+//      console.log(Lockr.get('urldomain'))
 //  console.log(document.title);
 //      let rememberKey = Lockr.get('site_rememberKey')
 //      console.log(rememberKey)
