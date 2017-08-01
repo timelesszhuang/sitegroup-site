@@ -63,31 +63,31 @@
             <Icon type="ios-keypad"></Icon>
             管理
           </template>
-          <Menu-item name="微信文章管理">
+          <Menu-item name="微信公众号文章管理">
             <Icon type="settings"></Icon>
-            <span class="layout-text" @click="routerChange('/common/weixinarticle','微信文章管理')">微信文章管理</span>
+            <span class="layout-text" @click="routerChange('/common/weixinarticle','微信公众号文章管理')">微信公众号文章管理</span>
           </Menu-item>
-          <Menu-item name="163新闻类文章管理">
+          <Menu-item name="网易新闻文章管理">
             <Icon type="ios-bookmarks"></Icon>
-            <span class="layout-text" @click="routerChange('/common/newsarticle','163新闻类文章管理')">163新闻类文章管理</span>
+            <span class="layout-text" @click="routerChange('/common/newsarticle','网易新闻文章管理')">网易新闻文章管理</span>
           </Menu-item>
-          <Menu-item name="腾讯新闻类文章管理">
+          <Menu-item name="腾讯新闻文章管理">
             <Icon type="ios-copy"></Icon>
-            <span class="layout-text" @click="routerChange('/common/qqarticle','腾讯新闻类文章管理')">腾讯新闻类文章管理</span>
+            <span class="layout-text" @click="routerChange('/common/qqarticle','腾讯新闻文章管理')">腾讯新闻文章管理</span>
           </Menu-item>
-          <Menu-item name="SEO属性管理">
+          <Menu-item name="搜索引擎优化管理">
             <Icon type="settings"></Icon>
-            <span class="layout-text" @click="routerChange('/common/tdk','SEO属性')">SEO属性</span>
+            <span class="layout-text" @click="routerChange('/common/tdk','搜索引擎优化管理')">搜索引擎优化管理</span>
           </Menu-item>
-          <Menu-item name="文章">
+          <Menu-item name="私有文章库">
             <Icon type="ios-book-outline"></Icon>
-            <span class="layout-text" @click="routerChange('/common/article','文章')">文章</span>
+            <span class="layout-text" @click="routerChange('/common/article','私有文章库')">私有文章库</span>
           </Menu-item>
           <Menu-item name="文章a链接">
             <Icon type="wrench"></Icon>
             <span class="layout-text" @click="routerChange('/common/href','文章插入链接')">文章插入链接</span>
           </Menu-item>
-          <Menu-item name="关键词替换">
+          <Menu-item name="文章关键词替换">
             <Icon type="ios-gear"></Icon>
             <span class="layout-text" @click="routerChange('/common/substitution','文章关键词替换')">文章关键词替换</span>
           </Menu-item>
@@ -163,7 +163,7 @@
           </div>
         </div>
         <div class="layout-copy">
-          2015-2017 &copy; 山东强比信息技术有限公司
+          2015-2017 &copy; 北京易至信科技有限公司
         </div>
       </i-col>
     </Row>
