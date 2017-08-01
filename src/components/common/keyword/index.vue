@@ -1,5 +1,12 @@
 <template>
+
   <div class="echarts">
+    <div>
+      <br>
+      <Alert type="success">
+        该模块为 文章关键词统计。<br>
+      </Alert>
+    </div>
     <div style="margin-left: 35%;padding-top:1%;padding-bottom:2%">
       <Row>
         <Col span="12">
@@ -7,11 +14,10 @@
         </Col>
         &nbsp;<Button type="primary" @click="queryData">查询</Button>
       </Row>
-
     </div>
     <IEcharts :option="bar" :loading="loading" @ready="onReady" @click="onClick"></IEcharts>
-    <!--<button @click="doRandom">Random</button>-->
   </div>
+
 </template>
 
 <script type="text/babel">

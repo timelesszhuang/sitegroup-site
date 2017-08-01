@@ -34,6 +34,7 @@
 
   .layout-menu-left {
     background: #464c5b;
+    height: 100%
   }
 
   .layout-header {
@@ -62,20 +63,32 @@
             <Icon type="ios-keypad"></Icon>
             管理
           </template>
-          <Menu-item name="SEO属性管理">
+          <Menu-item name="微信公众号文章管理">
             <Icon type="settings"></Icon>
-            <span class="layout-text" @click="routerChange('/common/tdk','SEO属性')">SEO属性</span>
+            <span class="layout-text" @click="routerChange('/common/weixinarticle','微信公众号文章管理')">微信公众号文章管理</span>
           </Menu-item>
-          <Menu-item name="文章">
+          <Menu-item name="网易新闻文章管理">
+            <Icon type="ios-bookmarks"></Icon>
+            <span class="layout-text" @click="routerChange('/common/newsarticle','网易新闻文章管理')">网易新闻文章管理</span>
+          </Menu-item>
+          <Menu-item name="腾讯新闻文章管理">
+            <Icon type="ios-copy"></Icon>
+            <span class="layout-text" @click="routerChange('/common/qqarticle','腾讯新闻文章管理')">腾讯新闻文章管理</span>
+          </Menu-item>
+          <Menu-item name="搜索引擎优化管理">
+            <Icon type="settings"></Icon>
+            <span class="layout-text" @click="routerChange('/common/tdk','搜索引擎优化管理')">搜索引擎优化管理</span>
+          </Menu-item>
+          <Menu-item name="私有文章库">
             <Icon type="ios-book-outline"></Icon>
-            <span class="layout-text" @click="routerChange('/common/article','文章')">文章</span>
+            <span class="layout-text" @click="routerChange('/common/article','私有文章库')">私有文章库</span>
           </Menu-item>
           <Menu-item name="文章a链接">
-            <Icon type="ios-book-outline"></Icon>
+            <Icon type="wrench"></Icon>
             <span class="layout-text" @click="routerChange('/common/href','文章插入链接')">文章插入链接</span>
           </Menu-item>
-          <Menu-item name="关键词替换">
-            <Icon type="ios-book-outline"></Icon>
+          <Menu-item name="文章关键词替换">
+            <Icon type="ios-gear"></Icon>
             <span class="layout-text" @click="routerChange('/common/substitution','文章关键词替换')">文章关键词替换</span>
           </Menu-item>
           <Menu-item name="页面生成">
@@ -83,7 +96,7 @@
             <span class="layout-text" @click="operation()">页面生成</span>
           </Menu-item>
           <Menu-item name="静态化配置">
-            <Icon type="android-cloud-circle"></Icon>
+            <Icon type="android-options"></Icon>
             <span class="layout-text" @click="routerChange('/common/staticconfig','静态化配置')">静态化配置</span>
           </Menu-item>
           <Menu-item name="关键词占比">
@@ -95,7 +108,7 @@
             <span class="layout-text" @click="routerChange('/common/pv','浏览量统计')">浏览量统计</span>
           </Menu-item>
           <Menu-item name="浏览量展示">
-            <Icon type="android-cloud-circle"></Icon>
+            <Icon type="ios-monitor-outline"></Icon>
             <span class="layout-text" @click="routerChange('/common/show','浏览量展示')">浏览量展示</span>
           </Menu-item>
           <Menu-item name="爬虫统计">
@@ -110,16 +123,19 @@
           </Menu-item>
         </Menu>
       </i-col>
-      <i-col span="20">
+      <i-col style="position: relative" span="20">
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
+            <Col span="4" align="right" style="cursor: pointer">
+            <Icon type="paper-airplane"></Icon>
+            <a v-bind:href="url" target="_blank" title="点此预览此网站" style="font-size: 15px;">{{SiteName}}</a>
+            </Col>
             <Col span="2" align="right">
             <Badge :count="count">
               <span @click="routerChange('/common/messageLog','消息')" style="cursor:pointer;">
                 <Icon type="ios-bell-outline" size="26"></Icon>
               </span>
             </Badge>
-
             </Col>
             <Col span="2" align="right" style="cursor: pointer">
             <Icon type="home" style="font-size: 15px" @click="routerChange('/common/count')"></Icon>
@@ -147,7 +163,7 @@
           </div>
         </div>
         <div class="layout-copy">
-          2015-2017 &copy; 山东强比信息技术有限公司
+          2015-2017 &copy; 北京易至信科技有限公司
         </div>
       </i-col>
     </Row>
@@ -161,11 +177,13 @@
   import changepwd from './login/Changepwd.vue';
   import operation from './operation/operation.vue';
   import http from '../assets/js/http.js';
+
   export default {
-    data(){
+    data() {
       return {
         activeName: '',
-        count: '无'
+        count: '无',
+        SiteName:''
       }
     },
     components: {
@@ -173,12 +191,18 @@
       logout,
       operation,
     },
+    computed: {
+      url: function () {
+        this.uuudomain = "http://" + Lockr.get('urldomain')
+        return this.uuudomain
+      }
+    },
     methods: {
       checkAlert() {
         this.apiGet('user/getErrorStatus').then((res) => {
           this.handelResponse(res, (data, msg) => {
             this.count = data;
-            console.log(data)
+//            console.log(data)
           }, (data, msg) => {
             this.$Message.error(msg);
           })
@@ -187,26 +211,30 @@
           this.$Message.error('网络异常，请稍后重试。');
         })
       },
-      routerChange (path, activeName) {
+      routerChange(path, activeName) {
         this.activeName = activeName;
         router.push(path);
-      }, operation(){
+      }, operation() {
         this.$refs.operation.modal = true
       },
-      logOut(){
+      logOut() {
         this.$refs.logout.modal = true
       },
-      changePwd(){
+      changePwd() {
         this.$refs.changePwd.modal = true
       },
 
-      messageLog(){
+      messageLog() {
         router.replace('/common/messageLog');
       }
 
     },
-    created () {
-  document.title = Lockr.get('currentSiteName');
+    created() {
+      document.title = Lockr.get('currentSiteName');
+      let SiteName = Lockr.get('currentSiteName');
+      this.SiteName = SiteName;
+//  console.log(Lockr.get('userInfo'))
+//      console.log(Lockr.get('urldomain'))
 //  console.log(document.title);
 //      let rememberKey = Lockr.get('site_rememberKey')
 //      console.log(rememberKey)

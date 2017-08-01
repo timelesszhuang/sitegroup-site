@@ -18,8 +18,9 @@ import Count from '../components/common/count/index.vue';
 import Href from '../components/common/href/index.vue'
 import Substitution from '../components/common/substitution/index.vue'
 import Staticconfig from '../components/common/staticconfig/index.vue'
-
-
+import Weixinarticle from '../components/common/wechatarticle/index.vue'
+import Newsarticle from '../components/common/163article/index.vue'
+import Qqarticle from '../components/common/qqarticle/index.vue'
 
 Vue.use(Router)
 Vue.use(ElementUI)
@@ -49,6 +50,9 @@ export default new Router({
         {path: 'href',component:Href,name: 'href'},
         {path: 'substitution',component:Substitution,name: 'substitution'},
         {path: 'staticconfig',component:Staticconfig,name: 'staticconfig'},
+        {path: 'weixinarticle',component:Weixinarticle,name: 'weixinarticle'},
+        {path: 'newsarticle',component:Newsarticle,name: 'newsarticle'},
+        {path: 'qqarticle',component:Qqarticle,name: 'qqarticle'},
       ]
     },
     {

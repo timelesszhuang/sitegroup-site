@@ -1,10 +1,18 @@
 <template>
   <div>
     <div class="top">
-      标题:
+      链接:
       <Input v-model="href" placeholder="请输入链接" style="width:300px;"></Input>
       <Button type="primary" @click="queryData">查询</Button>
       <Button type="success" @click="add">添加</Button>
+    </div>
+    <div>
+      <br>
+      <Alert type="success">
+          1、以下链接会 随机插入到 文章中。<br>
+          2、至少添加三条记录，才会在文章中随机插入。<br>
+          3、超过三条记录，会随机获取三条数据。<br>
+      </Alert>
     </div>
     <div class="content" style="margin-top:10px;">
       <Table :context="self" :border="border" :stripe="stripe" :show-header="showheader"
@@ -27,8 +35,9 @@
   import http from '../../../assets/js/http.js';
   import hrefsave from './save.vue';
   import hrefadd from './add.vue';
+
   export default {
-    data () {
+    data() {
       return {
         self: this,
         border: true,
@@ -42,11 +51,11 @@
         rows: 10,
         datas: [],
         editinfo: {},
-        href:''
+        href: ''
       }
     },
-    components: {hrefadd,hrefsave},
-    created () {
+    components: {hrefadd, hrefsave},
+    created() {
       this.getData();
     },
     methods: {
@@ -55,7 +64,7 @@
           params: {
             page: this.page,
             rows: this.rows,
-            href:this.href,
+            href: this.href,
           }
         }
         this.apiGet('user/ArticleInsertA', data).then((data) => {
@@ -69,21 +78,21 @@
           this.$Message.error('网络异常，请稍后重试');
         })
       },
-      changePage(page){
+      changePage(page) {
         this.page = page;
         this.getData();
       },
-      changePageSize(pagesize){
+      changePageSize(pagesize) {
         this.rows = pagesize;
         this.getData();
       },
-      queryData(){
+      queryData() {
         this.getData();
       },
-      add(){
+      add() {
         this.$refs.add.modal = true
       },
-      edit(index){
+      edit(index) {
         let editid = this.datas[index].id
         this.apiGet('user/ArticleInsertA/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
@@ -98,7 +107,7 @@
           this.$Message.error('网络异常，请稍后重试。');
         })
       },
-      remove(index){
+      remove(index) {
         //需要删除确认
         let id = this.datas[index].id
         let _this = this
@@ -127,8 +136,7 @@
       },
     },
     computed: {
-      tableColumns()
-      {
+      tableColumns() {
         let columns = [];
         if (this.showCheckbox) {
           columns.push({
@@ -166,7 +174,7 @@
             width: 150,
             align: 'center',
             fixed: 'right',
-            render (row, column, index) {
+            render(row, column, index) {
               return `<i-button type="primary" size="small" @click="edit(${index})">修改</i-button>&nbsp;
 <i-button type="error" size="small" @click="remove(${index})">删除</i-button>`;
             }

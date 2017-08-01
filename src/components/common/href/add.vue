@@ -4,7 +4,7 @@
       <Modal
         v-model="modal" width="900">
         <p slot="header">
-          <span>添加代码</span>
+          <span>添加</span>
         </p>
         <div>
           <Form ref="href" :model="form" :label-width="90" :rules="AddRule" class="node-add-form">
@@ -30,15 +30,25 @@
 
 <script type="text/ecmascript-6">
   import http from '../../../assets/js/http.js';
+
   export default {
+
     data() {
+      const checkhref = (rule, value, callback) => {
+        let url = value
+        if (url.indexOf("http://") != -1) {
+          callback();
+        } else {
+          callback(new Error('请填写http://'));
+        }
+      };
       return {
         modal: false,
         modal_loading: false,
         form: {
           content: "",
           title: "",
-          href:""
+          href: ""
 
         },
         AddRule: {
@@ -49,37 +59,37 @@
             {required: true, message: '请填写title', trigger: 'blur'},
           ],
           href: [
-            {required: true, message: '请填写链接', trigger: 'blur'},
+            {required: true, validator: checkhref, trigger: 'blur'}
           ]
 
         }
       }
     },
     methods: {
-        add() {
-          this.$refs.href.validate((valid) => {
-              if(valid){
-                this.modal_loading = true;
-                let data = this.form;
-                this.apiPost('/user/ArticleInsertA', data).then((res) => {
-                  this.handelResponse(res, (data, msg) => {
-                    this.modal = false;
-                    this.$parent.getData();
-                    this.$Message.success(msg);
-                    this.modal_loading = false;
-                    this.$refs.href.resetFields();
-                  }, (data, msg) => {
-                    this.modal_loading = false;
-                    this.$Message.error(msg);
-                  })
-                }, (res) => {
-                  //处理错误信息
-                  this.modal_loading = false;
-                  this.$Message.error('网络异常，请稍后重试。');
-                })
-              }
-          })
-        }
+      add() {
+        this.$refs.href.validate((valid) => {
+          if (valid) {
+            this.modal_loading = true;
+            let data = this.form;
+            this.apiPost('/user/ArticleInsertA', data).then((res) => {
+              this.handelResponse(res, (data, msg) => {
+                this.modal = false;
+                this.$parent.getData();
+                this.$Message.success(msg);
+                this.modal_loading = false;
+                this.$refs.href.resetFields();
+              }, (data, msg) => {
+                this.modal_loading = false;
+                this.$Message.error(msg);
+              })
+            }, (res) => {
+              //处理错误信息
+              this.modal_loading = false;
+              this.$Message.error('网络异常，请稍后重试。');
+            })
+          }
+        })
+      }
     },
     mixins: [http]
   }

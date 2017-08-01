@@ -2,15 +2,14 @@
   <div>
     <div class="top">
       标题:
-      <Input v-model="front_substitution" placeholder="请输入要替换的关键词" style="width:300px;"></Input>
+      <Input v-model="title" placeholder="请输入文章标题" style="width:300px;"></Input>
+      文章分类:
+      <Select v-model="keyword_type" style="width: 200px;" label-in-value filterable clearable>
+        <Option v-for="item in keywordtype" :value="item.id" :label="item.text" :key="item">
+          {{ item.text }}
+        </Option>
+      </Select>
       <Button type="primary" @click="queryData">查询</Button>
-      <Button type="success" @click="add">添加</Button>
-    </div>
-    <div>
-      <br>
-      <Alert type="success">
-        文章中某些 <bold>关键词</bold> 替换为 您需要的 词语。
-      </Alert>
     </div>
     <div class="content" style="margin-top:10px;">
       <Table :context="self" :border="border" :stripe="stripe" :show-header="showheader"
@@ -18,42 +17,55 @@
       </Table>
       <div style="margin: 10px;overflow: hidden">
         <div style="float: right;">
-          <Page :total="total" :current="current" @on-change="changePage" @on-page-size-change="changePageSize"
+          <Page v-show="page_show" :total="total" :current="current" :page-size="pageSize" @on-change="changePage"
+                @on-page-size-change="changePageSize"
                 show-total
-                show-ele vator show-sizer></Page>
+                show-elevator show-sizer></Page>
         </div>
       </div>
     </div>
-    <substitutionadd ref="add"></substitutionadd>
-    <substitutionsave ref="save" :form="editinfo"></substitutionsave>
+    <qqarticlesave ref="save" :articletype="articletypelist" :form="editinfo" ></qqarticlesave>
   </div>
+
 </template>
 
 <script type="text/ecmascript-6">
-  import http from '../../../assets/js/http.js';
-  import substitutionsave from './save.vue';
-  import substitutionadd from './add.vue';
+  import http from '../../../assets/js/http.js'
+  import common from '../../../assets/js/common.js'
+  import qqarticlesave from './save.vue'
   export default {
     data () {
       return {
+        page_show: true,
         self: this,
         border: true,
         stripe: true,
+        current: 1,
         showheader: true,
         showIndex: true,
         size: 'small',
-        current: 1,
         total: 0,
         page: 1,
         rows: 10,
+        pageSize: 10,
+        title: '',
+        article_type: 0,
+        keyword_type:0,
         datas: [],
         editinfo: {},
-        front_substitution:''
+        articletypelist: [],
+        keywordtype:[]
       }
     },
-    components: {substitutionadd,substitutionsave},
+    components: {qqarticlesave},
     created () {
       this.getData();
+      this.getArticleType((data) => {
+        this.articletypelist = data
+      })
+      this.getKeyword((data) => {
+        this.keywordtype = data
+      });
     },
     methods: {
       getData() {
@@ -61,13 +73,15 @@
           params: {
             page: this.page,
             rows: this.rows,
-            front_substitution:this.front_substitution,
+            title: this.title,
+            type_id: this.keyword_type
           }
         }
-        this.apiGet('user/Substitution', data).then((data) => {
+        this.apiGet('user/qqArticle', data).then((data) => {
           this.handelResponse(data, (data, msg) => {
             this.datas = data.rows
             this.total = data.total;
+            this.pageSize = 10
           }, (data, msg) => {
             this.$Message.error(msg);
           })
@@ -84,51 +98,39 @@
         this.getData();
       },
       queryData(){
+        this.page = 1
+        this.page_show = false
         this.getData();
-      },
-      add(){
-        this.$refs.add.modal = true
+        this.page_show = true
       },
       edit(index){
-        let editid = this.datas[index].id
-        this.apiGet('user/Substitution/' + editid).then((res) => {
+        this.getArticle(index);
+        this.$refs.save.modal = true
+      },
+      getKeyword(func) {
+        this.apiGet('user/articleAllType').then((res) => {
           this.handelResponse(res, (data, msg) => {
-            this.editinfo = data
-            this.modal = false;
-            this.$refs.save.modal = true
+            func(data)
           }, (data, msg) => {
             this.$Message.error(msg);
           })
         }, (res) => {
           //处理错误信息
           this.$Message.error('网络异常，请稍后重试。');
-        })
+        });
       },
-      remove(index){
-        //需要删除确认
-        let id = this.datas[index].id
-        let _this = this
-        this.$Modal.confirm({
-          title: '确认删除',
-          content: '您确定删除该记录?',
-          okText: '删除',
-          cancelText: '取消',
-          onOk: (index) => {
-            _this.apiDelete('user/Substitution/', id).then((res) => {
-              _this.handelResponse(res, (data, msg) => {
-                _this.getData()
-                _this.$Message.success(msg);
-              }, (data, msg) => {
-                _this.$Message.error(msg);
-              })
-            }, (res) => {
-              //处理错误信息
-              _this.$Message.error('网络异常，请稍后重试');
-            })
-          },
-          onCancel: () => {
-            return false
-          }
+      getArticle(index){
+        let editid = this.datas[index].id
+        this.apiGet('user/QQOneArticle/' + editid).then((res) => {
+          this.handelResponse(res, (data, msg) => {
+            this.editinfo = data
+//            console.log(data.url)
+          }, (data, msg) => {
+            this.$Message.error(msg);
+          })
+        }, (res) => {
+          //处理错误信息
+          this.$Message.error('网络异常，请稍后重试。');
         })
       },
     },
@@ -151,33 +153,44 @@
           })
         }
         columns.push({
-          title: '要替换的关键词',
-          key: 'front_substitution',
+          title: '标题',
+          key: 'title',
           sortable: true
         });
         columns.push({
-          title: '替换成的关键词',
-          key: 'substitution',
+          title: '分类',
+          key: 'type_name',
           sortable: true
         });
-
-
+        columns.push({
+          title: '来源',
+          key: 'source',
+          sortable: true
+        });
+        columns.push({
+          title: '发布时间',
+          key: 'create_time',
+          sortable: true
+        });
         columns.push(
           {
             title: '操作',
             key: 'action',
-            width: 150,
             align: 'center',
             fixed: 'right',
             render (row, column, index) {
-              return `<i-button type="primary" size="small" @click="edit(${index})">修改</i-button>&nbsp;
-<i-button type="error" size="small" @click="remove(${index})">删除</i-button>`;
+              return `<i-button type="success" size="small" @click="edit(${index})">添加到文章库</i-button>`;
             }
           }
         );
         return columns;
       }
     },
-    mixins: [http]
+    mixins: [http, common]
   }
+
 </script>
+<style>
+
+
+</style>

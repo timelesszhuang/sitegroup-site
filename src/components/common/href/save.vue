@@ -30,8 +30,17 @@
 
 <script type="text/ecmascript-6">
   import http from '../../../assets/js/http.js';
+
   export default {
     data() {
+      const checkhref = (rule, value, callback) => {
+        let url = value
+        if (url.indexOf("http://") != -1) {
+          callback();
+        } else {
+          callback(new Error('请填写http://'));
+        }
+      };
       return {
         modal: false,
         modal_loading: false,
@@ -41,43 +50,46 @@
           ],
           code: [
             {required: true, message: '请填写代码', trigger: 'blur'},
+          ],
+          href: [
+            {required: true, validator: checkhref, trigger: 'blur'}
           ]
         }
       }
     },
     methods: {
-        add() {
-          this.$refs.hrefsave.validate((valid) => {
-              if(valid){
-                this.modal_loading = true;
-                let data = this.form;
-                let id = data.id;
-                this.apiPut('user/ArticleInsertA/'+ id, data).then((res) => {
-                  this.handelResponse(res, (data, msg) => {
-                    this.modal = false;
-                    this.$parent.getData();
-                    this.$Message.success(msg);
-                    this.modal_loading = false;
-                    this.$refs.hrefsave.resetFields();
-                  }, (data, msg) => {
-                    this.modal_loading = false;
-                    this.$Message.error(msg);
-                  })
-                }, (res) => {
-                  //处理错误信息
-                  this.modal_loading = false;
-                  this.$Message.error('网络异常，请稍后重试。');
-                })
-              }
-          })
-        }
+      add() {
+        this.$refs.hrefsave.validate((valid) => {
+          if (valid) {
+            this.modal_loading = true;
+            let data = this.form;
+            let id = data.id;
+            this.apiPut('user/ArticleInsertA/' + id, data).then((res) => {
+              this.handelResponse(res, (data, msg) => {
+                this.modal = false;
+                this.$parent.getData();
+                this.$Message.success(msg);
+                this.modal_loading = false;
+                this.$refs.hrefsave.resetFields();
+              }, (data, msg) => {
+                this.modal_loading = false;
+                this.$Message.error(msg);
+              })
+            }, (res) => {
+              //处理错误信息
+              this.modal_loading = false;
+              this.$Message.error('网络异常，请稍后重试。');
+            })
+          }
+        })
+      }
     },
     props: {
       form: {
         default: {
           content: "",
           title: "",
-          href:""
+          href: ""
         }
       }
     },
