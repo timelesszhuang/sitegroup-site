@@ -4,7 +4,7 @@
       v-model="modal" width="900">
       <p slot="header">
 
-        <span>修改文章</span>
+        <span>添加到文章库</span>
       </p>
       <div>
 

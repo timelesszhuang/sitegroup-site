@@ -126,9 +126,9 @@
       <i-col style="position: relative" span="20">
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
-            <Col span="2" align="right" style="cursor: pointer">
+            <Col span="4" align="right" style="cursor: pointer">
             <Icon type="paper-airplane"></Icon>
-            <a v-bind:href="url" target="_blank" style="font-size: 15px;">预览此网站</a>
+            <a v-bind:href="url" target="_blank" title="点此预览此网站" style="font-size: 15px;">{{SiteName}}</a>
             </Col>
             <Col span="2" align="right">
             <Badge :count="count">
@@ -182,7 +182,8 @@
     data() {
       return {
         activeName: '',
-        count: '无'
+        count: '无',
+        SiteName:''
       }
     },
     components: {
@@ -201,7 +202,7 @@
         this.apiGet('user/getErrorStatus').then((res) => {
           this.handelResponse(res, (data, msg) => {
             this.count = data;
-            console.log(data)
+//            console.log(data)
           }, (data, msg) => {
             this.$Message.error(msg);
           })
@@ -230,6 +231,8 @@
     },
     created() {
       document.title = Lockr.get('currentSiteName');
+      let SiteName = Lockr.get('currentSiteName');
+      this.SiteName = SiteName;
 //  console.log(Lockr.get('userInfo'))
 //      console.log(Lockr.get('urldomain'))
 //  console.log(document.title);

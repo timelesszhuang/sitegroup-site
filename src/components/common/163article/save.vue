@@ -4,7 +4,7 @@
       v-model="modal" width="900">
       <p slot="header">
 
-        <span>修改文章</span>
+        <span>添加到文章库</span>
       </p>
       <div>
 
@@ -50,6 +50,7 @@
 
 <script type="text/ecmascript-6">
   import http from '../../../assets/js/http.js';
+
   export default {
     data() {
       return {
@@ -65,7 +66,7 @@
     },
     computed: {
       url: function () {
-        return  this.form.url;
+        return this.form.url;
       }
     },
     methods: {
@@ -83,14 +84,14 @@
           if (valid) {
             this.modal_loading = true;
             let data = {
-              articletype_id:this.form.articletype_id,
-              articletype_name:this.form.articletype_name,
-              auther:this.form.auther,
-              summary:this.form.digest,
-              title:this.form.title,
-              content:this.form.content,
-              come_from:this.form.source,
-              posttime:this.form.createtime
+              articletype_id: this.form.articletype_id,
+              articletype_name: this.form.articletype_name,
+              auther: this.form.auther,
+              summary: this.form.digest,
+              title: this.form.title,
+              content: this.form.content,
+              come_from: this.form.source,
+              posttime: this.form.createtime
             }
 //            let data = this.form;
             this.apiPost('user/wangyiAddArticle', data).then((res) => {

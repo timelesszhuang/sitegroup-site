@@ -4,7 +4,7 @@
       v-model="modal" width="900">
       <p slot="header">
 
-        <span>修改文章</span>
+        <span>添加到文章库</span>
       </p>/
       <div>
         <Form ref="save" :model="form" :label-width="90" :rules="AddRule" class="node-add-form">
@@ -29,8 +29,7 @@
             &nbsp;
             &nbsp;
             &nbsp;
-            &nbsp;
-            原分类:<span style="font-size: 15px">{{form.type_name}}</span>
+            原分类:<span style="font-size: 15px">{{form.keyword}}</span>
           </Form-item>
           <Form-item label="内容" prop="content">
             <quill-editor ref="myTextEditoredit"
