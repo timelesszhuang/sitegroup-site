@@ -7,7 +7,6 @@
         <Col span="9">
         <Date-picker type="daterange" v-model="time" placement="bottom-end" placeholder="选择日期查询" ></Date-picker>
         </Col>
-        &nbsp;
         <Button type="primary" @click="queryData">查询</Button>
       </Row>
 

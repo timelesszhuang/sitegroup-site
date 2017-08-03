@@ -6,6 +6,12 @@
       <Button type="primary" @click="queryData">查询</Button>
       <Button type="success" @click="add">添加</Button>
     </div>
+    <div>
+      <br>
+      <Alert type="success">
+        文章中某些 <bold>关键词</bold> 替换为 您需要的 词语。
+      </Alert>
+    </div>
     <div class="content" style="margin-top:10px;">
       <Table :context="self" :border="border" :stripe="stripe" :show-header="showheader"
              :size="size" :data="datas" :columns="tableColumns" style="width: 100%">

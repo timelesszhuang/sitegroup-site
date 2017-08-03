@@ -1,8 +1,14 @@
 <template>
   <div>
     <div class="top">
-      站点静态化配置:
       <Button type="success" @click="add">添加</Button>
+    </div>
+    <div>
+      <br>
+      <Alert type="success">
+        1、配置 指定时间段内生成指定数量文章。<br>
+        2、没有该项配置 默认每个栏目 <b>每天生成五篇文章</b>。<br>
+      </Alert>
     </div>
     <div class="content" style="margin-top:10px;">
       <Table :context="self" :border="border" :stripe="stripe" :show-header="showheader"
