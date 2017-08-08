@@ -63,7 +63,7 @@
             label: '问答'
           },
           {
-            value: 'scatteredartile',
+            value: 'scatteredarticle',
             label: '零散文章'
           }
         ],
