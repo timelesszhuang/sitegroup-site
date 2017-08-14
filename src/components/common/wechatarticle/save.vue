@@ -21,7 +21,7 @@
             <Select v-model="form.articletype_id" style="position:relative;z-index:10000;text-align: left;width:200px;"
                     label-in-value 　@on-change="changeArticletype">
               <Option v-for="item in articletype" :value="item.id" :label="item.name" :key="item">
-                {{ item.name }}
+                {{ item.text }}
               </Option>
             </Select>
             &nbsp;
