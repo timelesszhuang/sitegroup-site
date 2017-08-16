@@ -21,6 +21,7 @@
     },
     props: {},
     data: () => ({
+      time:[],
       loading: false,
       data: [],
       bar: {

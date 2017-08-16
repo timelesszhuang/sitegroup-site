@@ -142,7 +142,7 @@
           key: 'base64img',
           sortable: true,
           render(row, index) {
-            var type = '<div class="img">' + row.base64img + '</div>';
+            var type = '<div class="imggg">' + row.base64img + '</div>';
             return type;
           },
         });
@@ -183,10 +183,10 @@
   }
 
 </script>
-<style>
-.img img{
+<style >
+.imggg img{
   width:150px;
-  /*height: 50px;*/
+  height: 100px;
 }
 
 </style>

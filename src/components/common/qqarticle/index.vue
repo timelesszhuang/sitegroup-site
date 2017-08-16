@@ -37,6 +37,7 @@
     data () {
       return {
         page_show: true,
+        page_show: true,
         self: this,
         border: true,
         stripe: true,

@@ -59,7 +59,7 @@
                     this.$parent.getData();
                     this.$Message.success(msg);
                     this.modal_loading = false;
-                    this.$refs.href.resetFields();
+                    this.$refs.substitutionadd.resetFields();
                   }, (data, msg) => {
                     this.modal_loading = false;
                     this.$Message.error(msg);
