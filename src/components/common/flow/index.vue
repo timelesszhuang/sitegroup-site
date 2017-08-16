@@ -27,6 +27,7 @@
     props: {
     },
     data: () => ({
+      time:[],
       loading: false,
       bar: {
         color:["#20a0ff","#13CE66","#F7BA2A","#FF4949","#61a0a8"],

@@ -17,22 +17,16 @@
             <Input type="text" v-model="form.auther" placeholder="请输入作者" style="width: 200px;"></Input>
           </Form-item>
           <Form-item label="文章分类" prop="articletype_id">
-            <Select v-model="form.articletype_id" style="text-align: left;width:200px;"
+            <Select v-model="form.articletype_id" ref="select" :clearable="selects" style="position:relative;z-index:10000;text-align: left;width:200px;"
                     label-in-value filterable　@on-change="changeArticletype">
-              <Option disabled><span style="font-size: 15px;font-weight: bold">分类名—标签</span></Option>
+              <Option disabled :value="0">分类名—标签</Option>
               <Option v-for="item in articletype" :value="item.id" :label="item.name" :key="item">
-                {{ item.name }}—{{item.tag}}
+                {{ item.text }}
               </Option>
             </Select>
           </Form-item>
           <Form-item label="内容" prop="content" style="height:100%;">
-            <quill-editor ref="myTextEditoradd"
-                          v-model="form.content"
-                          :config="editorOption"
-                          @blur="onEditorBlur($event)"
-                          @focus="onEditorFocus($event)"
-                          @ready="onEditorReady($event)">
-            </quill-editor>
+            <editor @change="updateData" :content="form.content"  :height="500"></editor>
           </Form-item>
         </Form>
       </div>
@@ -68,6 +62,7 @@
           articletype_name: '',
           content: ''
         },
+        selects:true,
         AddRule: {
           title: [
             {required: true, message: '请填写文章标题', trigger: 'blur'},
@@ -87,19 +82,8 @@
     created() {
     },
     methods: {
-      computed: {
-        editor() {
-          return this.$refs.myTextEditoradd.quillEditor
-        }
-      },
-      onEditorBlur(editor) {
-//        console.log('editor blur!', editor)
-      },
-      onEditorFocus(editor) {
-//        console.log('editor focus!', editor)
-      },
-      onEditorReady(editor) {
-//        console.log('editor ready!', editor)
+      updateData(data) {
+        this.form.content = data
       },
       changeArticletype(value) {
         this.form.articletype_name = value.label
@@ -117,6 +101,7 @@
                 this.$Message.success(msg);
                 this.modal_loading = false;
                 this.$refs.add.resetFields();
+                this.$refs.select.clearSingleSelect()
               }, (data, msg) => {
                 this.modal_loading = false;
                 this.$Message.error(msg);

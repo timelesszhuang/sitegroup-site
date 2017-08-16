@@ -4,10 +4,10 @@
       标题:
       <Input v-model="title" placeholder="请输入文章标题" style="width:300px;"></Input>
       文章分类:
-      <Select v-model="article_type" style="width: 200px;" label-in-value filterable clearable>
-        <Option disabled><span style="font-size: 15px;font-weight: bold">分类名—标签</span></Option>
+      <Select v-model="article_type" style="width: 300px;" label-in-value filterable clearable>
+        <Option disabled :value="0">分类名—标签</Option>
         <Option v-for="item in articletypelist" :value="item.id" :label="item.name" :key="item">
-          {{ item.name }}—{{item.tag}}
+          {{ item.text }}
         </Option>
       </Select>
       <Button type="primary" @click="queryData">查询</Button>

@@ -27,6 +27,7 @@
 
 <script type="text/ecmascript-6">
   import http from '../../../assets/js/http.js';
+
   export default {
     data() {
       return {
@@ -43,31 +44,31 @@
       }
     },
     methods: {
-        add() {
-          this.$refs.substitutionsave.validate((valid) => {
-              if(valid){
-                this.modal_loading = true;
-                let data = this.form;
-                let id = data.id;
-                this.apiPut('user/Substitution/'+ id, data).then((res) => {
-                  this.handelResponse(res, (data, msg) => {
-                    this.modal = false;
-                    this.$parent.getData();
-                    this.$Message.success(msg);
-                    this.modal_loading = false;
-                    this.$refs.substitutionsave.resetFields();
-                  }, (data, msg) => {
-                    this.modal_loading = false;
-                    this.$Message.error(msg);
-                  })
-                }, (res) => {
-                  //处理错误信息
-                  this.modal_loading = false;
-                  this.$Message.error('网络异常，请稍后重试。');
-                })
-              }
-          })
-        }
+      add() {
+        this.$refs.substitutionsave.validate((valid) => {
+          if (valid) {
+            this.modal_loading = true;
+            let data = this.form;
+            let id = data.id;
+            this.apiPut('user/Substitution/' + id, data).then((res) => {
+              this.handelResponse(res, (data, msg) => {
+                this.modal = false;
+                this.$parent.getData();
+                this.$Message.success(msg);
+                this.modal_loading = false;
+                this.$refs.substitutionsave.resetFields();
+              }, (data, msg) => {
+                this.modal_loading = false;
+                this.$Message.error(msg);
+              })
+            }, (res) => {
+              //处理错误信息
+              this.modal_loading = false;
+              this.$Message.error('网络异常，请稍后重试。');
+            })
+          }
+        })
+      }
     },
     props: {
       form: {

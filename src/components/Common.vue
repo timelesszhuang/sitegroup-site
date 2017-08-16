@@ -67,17 +67,9 @@
             <Icon type="settings"></Icon>
             <span class="layout-text" @click="routerChange('/common/weixinarticle','微信公众号文章管理')">微信公众号文章管理</span>
           </Menu-item>
-          <Menu-item name="网易新闻文章管理">
+          <Menu-item name="新闻文章管理">
             <Icon type="ios-bookmarks"></Icon>
-            <span class="layout-text" @click="routerChange('/common/newsarticle','网易新闻文章管理')">网易新闻文章管理</span>
-          </Menu-item>
-          <Menu-item name="腾讯新闻文章管理">
-            <Icon type="ios-copy"></Icon>
-            <span class="layout-text" @click="routerChange('/common/qqarticle','腾讯新闻文章管理')">腾讯新闻文章管理</span>
-          </Menu-item>
-          <Menu-item name="搜索引擎优化管理">
-            <Icon type="settings"></Icon>
-            <span class="layout-text" @click="routerChange('/common/tdk','搜索引擎优化管理')">搜索引擎优化管理</span>
+            <span class="layout-text" @click="routerChange('/common/news','新闻文章管理')">新闻文章管理</span>
           </Menu-item>
           <Menu-item name="私有文章库">
             <Icon type="ios-book-outline"></Icon>
@@ -123,7 +115,7 @@
           </Menu-item>
         </Menu>
       </i-col>
-      <i-col style="position: relative" span="20">
+      <i-col style="position: relative;overflow: auto" span="20" >
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
             <Col span="4" align="right" style="cursor: pointer">
