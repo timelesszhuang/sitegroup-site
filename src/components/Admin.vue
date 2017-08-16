@@ -97,7 +97,6 @@
       },
     },
     mixins: [http]
-
   }
 
 </script>

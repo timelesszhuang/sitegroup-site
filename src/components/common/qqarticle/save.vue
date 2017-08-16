@@ -25,15 +25,8 @@
                 {{ item.name }}
               </Option>
             </Select>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
             原分类:<span style="font-size: 15px">{{form.type_name}}</span>
           </Form-item>
-
           <Form-item label="内容" prop="content">
             <quill-editor ref="myTextEditoredit"
                           v-model="form.content"
@@ -54,7 +47,25 @@
   export default {
     data() {
       return {
-        editorOption: {},
+        editorOption: {
+          modules: {
+            toolbar: [
+              [{ 'size': ['small', false, 'large'] }],
+              ['bold', 'italic'],
+              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+              ['link', 'image']
+            ],
+            history: {
+              delay: 1000,
+              maxStack: 50,
+              userOnly: false
+            },
+            imageImport: true,
+            imageResize: {
+              displaySize: true
+            }
+          }
+        },
         modal: false,
         modal_loading: false,
         AddRule: {
