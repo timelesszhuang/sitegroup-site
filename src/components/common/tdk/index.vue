@@ -16,12 +16,14 @@
       </div>
     </div>
     <tdksave ref="save" :form="editinfo"></tdksave>
+    <savemain ref="mainsave" :siteid="menuid" :keys="keyArr"></savemain>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import http from '../../../assets/js/http.js';
   import tdksave from './save.vue';
+  import savemain from './savemain.vue';
   export default {
     data () {
       return {
@@ -36,10 +38,12 @@
         page: 1,
         rows: 10,
         datas: [],
-        editinfo: {}
+        editinfo: {},
+        keyArr:{},
+        menuid:0
       }
     },
-    components: {tdksave},
+    components: {tdksave,savemain},
     created () {
       this.getData();
     },
@@ -91,7 +95,20 @@
           this.$Message.error('网络异常，请稍后重试。');
         })
       },
-
+      editMain(id){
+        this.menuid =id;
+        this.$refs.mainsave.modal = true
+        this.apiGet('user/getAkeyword').then((res) => {
+          this.handelResponse(res, (data, msg) => {
+            this.keyArr = data
+          }, (data, msg) => {
+            this.$Message.error(msg);
+          })
+        }, (res) => {
+          //处理错误信息
+          this.$Message.error('网络异常，请稍后重试。');
+        });
+      }
     },
     computed: {
       tableColumns()
@@ -147,7 +164,11 @@
             align: 'center',
             fixed: 'right',
             render (row, column, index) {
-              return `<i-button type="primary" size="small" @click="edit(${index})">修改</i-button>`;
+              if(row.akeyword_id!=0) {
+                return `<i-button type="success" size="small" @click="edit(${index})">修改</i-button>&nbsp;<i-button type="primary" size="small" @click="editMain(${index})">修改主关键词</i-button>`;
+              }else{
+                return `<i-button type="success" size="small" @click="edit(${index})">修改</i-button>`
+              }
             }
           }
         );
