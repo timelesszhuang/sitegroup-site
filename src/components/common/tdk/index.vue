@@ -96,7 +96,7 @@
         })
       },
       editMain(id){
-        this.menuid =id;
+        this.menuid =this.datas[id].id;
         this.$refs.mainsave.modal = true
         this.apiGet('user/getAkeyword').then((res) => {
           this.handelResponse(res, (data, msg) => {
