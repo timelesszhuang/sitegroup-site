@@ -6,7 +6,7 @@
           <span>选择主关键词</span>
         </p>
         <div>
-          <Select v-model="keyid" style="width:300px" label-in-value filterable clearable>
+          <Select v-model="oldKey" style="width:200px" label-in-value filterable clearable>
             <Option v-for="item in keys" :value="item.id" :label="item.text" :key="item">{{ item.text }}</Option>
           </Select>
         </div>
@@ -30,13 +30,13 @@
       },
       methods: {
         add() {
-           if(!this.keyid){
+           if(!this.oldKey){
              this.$Message.error("请选择关键词");
              return
            }
            let data={
              id:this.siteid,
-             akeyword_id:this.keyid
+             akeyword_id:this.oldKey
            }
           this.apiPost('user/editpageinfo',data).then((data) => {
             this.handelResponse(data, (data, msg) => {
@@ -51,6 +51,7 @@
         }
       },
       props:{
+        oldKey:'',
         siteid:'',
         keys:{
 

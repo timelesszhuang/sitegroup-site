@@ -16,7 +16,7 @@
       </div>
     </div>
     <tdksave ref="save" :form="editinfo"></tdksave>
-    <savemain ref="mainsave" :siteid="menuid" :keys="keyArr"></savemain>
+    <savemain ref="mainsave" :siteid="menuid" :keys="keyArr" :oldKey="oldKeyId"></savemain>
   </div>
 </template>
 
@@ -40,7 +40,8 @@
         datas: [],
         editinfo: {},
         keyArr:{},
-        menuid:0
+        menuid:0,
+        oldKeyId:''
       }
     },
     components: {tdksave,savemain},
@@ -97,6 +98,7 @@
       },
       editMain(id){
         this.menuid =this.datas[id].id;
+        this.oldKeyId=this.datas[id].akeyword_id;
         this.$refs.mainsave.modal = true
         this.apiGet('user/getAkeyword').then((res) => {
           this.handelResponse(res, (data, msg) => {
