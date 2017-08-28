@@ -88,7 +88,7 @@
       },
       edit(index){
         let editid = this.datas[index].id
-        this.apiGet('Staticconfig/' + editid).then((res) => {
+        this.apiGet('/user/Staticconfig/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
             this.editinfo = data
             this.modal = false;
