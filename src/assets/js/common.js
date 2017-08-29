@@ -13,6 +13,7 @@ const commonMethods = {
           func(data);
         }, (data, msg) => {
           this.$Message.error(msg);
+
         })
       }, (res) => {
         //处理错误信息

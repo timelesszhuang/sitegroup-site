@@ -47,7 +47,12 @@ const ajaxMethods = {
     handelResponse(res, cb, errCb) {
       if (res.status == 'success') {
         cb(res.data, res.msg)
-      } else {
+      }else if(res.status == 'loginout'){
+        errCb(res.data, res.msg)
+        setTimeout(() => {
+          router.replace('/');
+        }, 1000);
+      }else  {
         if (typeof errCb == 'function') {
           errCb(res.data, res.msg)
         }
