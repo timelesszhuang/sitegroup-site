@@ -79,6 +79,10 @@
             <Icon type="wrench"></Icon>
             <span class="layout-text" @click="routerChange('/common/href','文章插入链接')">文章插入链接</span>
           </Menu-item>
+          <Menu-item name="关键词链接替换">
+            <Icon type="wrench"></Icon>
+            <span class="layout-text" @click="routerChange('/common/hrefreplace','关键词链接替换')">关键词链接替换</span>
+          </Menu-item>
           <Menu-item name="文章关键词替换">
             <Icon type="ios-gear"></Icon>
             <span class="layout-text" @click="routerChange('/common/substitution','文章关键词替换')">文章关键词替换</span>
