@@ -148,12 +148,13 @@
         columns.push({
           title: '标题',
           key: 'title',
-          width: 240,
+          width: '220',
           sortable: true
         });
+
         columns.push({
           title: '简介',
-          width:'600',
+          width:'220',
           key: 'summary',
           sortable: true
         });
