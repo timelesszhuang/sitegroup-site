@@ -60,7 +60,6 @@
     },
     components: {qqarticlesave},
     created () {
-      this.getData();
       this.getArticleType((data) => {
         this.articletypelist = data
       })
