@@ -93,8 +93,12 @@
           </Menu-item>
           <Menu-item name="搜索引擎优化管理">
             <Icon type="settings"></Icon>
-            <span class="layout-text" @click="routerChange('/common/tdk','搜索引擎优化管理')">搜索引擎优化管理</span>
+            <span class="layout-text" @click="routerChange('/common/tdkall','搜索引擎优化管理')">搜索引擎优化管理</span>
           </Menu-item>
+          <!--<Menu-item name="tdk">-->
+            <!--<Icon type="settings"></Icon>-->
+            <!--<span class="layout-text" @click="routerChange('/common/articletdk','tdk')">tdk</span>-->
+          <!--</Menu-item>-->
           <Menu-item name="静态化配置">
             <Icon type="android-options"></Icon>
             <span class="layout-text" @click="routerChange('/common/staticconfig','静态化配置')">静态化配置</span>
