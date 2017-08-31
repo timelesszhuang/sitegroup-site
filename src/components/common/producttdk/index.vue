@@ -23,8 +23,9 @@
 <script type="text/ecmascript-6">
   import http from '../../../assets/js/http.js';
   import tdksave from './save.vue';
+
   export default {
-    data () {
+    data() {
       return {
         self: this,
         border: true,
@@ -38,15 +39,15 @@
         rows: 10,
         datas: [],
         editinfo: '',
-        keyArr:{},
-        menuid:0,
-        oldKeyId:'',
+        keyArr: {},
+        menuid: 0,
+        oldKeyId: '',
         filename: '',
-        name:''
+        name: ''
       }
     },
     components: {tdksave},
-    created () {
+    created() {
 //      console.log(this.editinfo);
 //      this.getData();
     },
@@ -56,7 +57,7 @@
           params: {
             page: this.page,
             rows: this.rows,
-            name:this.name
+            name: this.name
           }
         }
         this.apiGet('user/producttdk', data).then((data) => {
@@ -70,27 +71,27 @@
           this.$Message.error('网络异常，请稍后重试');
         })
       },
-      changePage(page){
+      changePage(page) {
         this.page = page;
         this.getData();
       },
-      changePageSize(pagesize){
+      changePageSize(pagesize) {
         this.rows = pagesize;
         this.getData();
       },
-      queryData(){
+      queryData() {
         this.getData();
       },
-      add(){
+      add() {
         this.$refs.add.modal = true
       },
       edit(index) {
         let data = {
           params: {
-            edit: "product"+this.datas[index].id
+            edit: "product" + this.datas[index].id
           }
         }
-        this.filename = "product"+this.datas[index].id
+        this.filename = "product" + this.datas[index].id
         this.apiGet('user/producttdksave', data).then((data) => {
           this.handelResponse(data, (data, msg) => {
             this.editinfo = data
@@ -105,8 +106,7 @@
       },
     },
     computed: {
-      tableColumns()
-      {
+      tableColumns() {
         let columns = [];
         if (this.showCheckbox) {
           columns.push({
@@ -117,9 +117,10 @@
         }
         if (this.showIndex) {
           columns.push({
-            type: 'index',
-            width: 60,
-            align: 'center'
+            title: 'ID',
+            width: 110,
+            key: 'id',
+            sortable: true
           })
         }
         columns.push({
@@ -140,8 +141,8 @@
             width: 150,
             align: 'center',
             fixed: 'right',
-            render (row, column, index) {
-            return `<i-button type="success" size="small" @click="edit(${index})">修改</i-button>`
+            render(row, column, index) {
+              return `<i-button type="success" size="small" @click="edit(${index})">修改</i-button>`
 
             }
           }

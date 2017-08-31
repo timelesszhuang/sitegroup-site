@@ -117,9 +117,10 @@
         }
         if (this.showIndex) {
           columns.push({
-            type: 'index',
-            width: 60,
-            align: 'center'
+            title: 'ID',
+            width: 110,
+            key: 'id',
+            sortable: true
           })
         }
         columns.push({
