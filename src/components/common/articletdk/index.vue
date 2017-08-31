@@ -85,20 +85,22 @@
         this.$refs.add.modal = true
       },
       edit(index) {
+        let Base64 = require('js-base64').Base64;
         let data = {
           params: {
             edit: "article"+this.datas[index].id
           }
         }
-        this.filename =  this.datas[index].name
+        this.filename =  "article"+this.datas[index].id
         this.apiGet('user/articletdksave', data).then((data) => {
           this.handelResponse(data, (data, msg) => {
-            this.editinfo = data
+            this.editinfo = Base64.decode(data)
             this.modal = false;
             this.$refs.save.modal = true
           }, (data, msg) => {
             this.$Message.error(msg);
           })
+
         }, (data) => {
           this.$Message.error('网络异常，请稍后重试');
         })

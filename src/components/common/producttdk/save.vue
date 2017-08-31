@@ -8,8 +8,8 @@
         </p>
         <div>
           <Form ref="tdksave" :label-width="90" :rules="AddRule" class="node-add-form">
-            <Form-item label="title" prop="title">
-              <Input type="textarea" :rows="30" v-model="form" placeholder="请输入title"></Input>
+            <Form-item label="tdk" prop="tdk">
+              <Input type="textarea" :rows="30" v-model="form" placeholder="tdk"></Input>
             </Form-item>
           </Form>
 
