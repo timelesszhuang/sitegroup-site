@@ -7,7 +7,8 @@ import Admin from '../components/Admin.vue'
 import Common from '../components/Common.vue'
 import Article from '../components/common/article/index.vue'
 import Messagelog from '../components/common/messageLog/messageLog.vue'
-import Tdk from '../components/common/tdk/index.vue'
+import Tdkall from '../components/common/tdkall/tab.vue'
+import Articletdk from '../components/common/articletdk/index.vue'
 import VueQuillEditor from 'vue-quill-editor'
 import Flow from '../components/common/flow/index.vue';
 import Keyword from '../components/common/keyword/index.vue';
@@ -41,7 +42,8 @@ export default new Router({
       children: [
         {path: 'article', component: Article, name: 'article'},
         {path: 'messagelog', component: Messagelog, name: 'messagelog'},
-        {path: 'tdk', component: Tdk, name: 'tdk'},
+        {path: 'tdkall', component: Tdkall, name: 'tdkall'},
+        {path: 'articletdk', component: Articletdk, name: 'articletdk'},
         {path: 'flow', component: Flow, name: 'flow'},
         {path: 'keyword', component: Keyword, name: 'keyword'},
         {path: 'pv', component: Pv, name: 'pv'},
