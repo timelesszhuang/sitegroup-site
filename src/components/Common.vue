@@ -6,57 +6,112 @@
     height: 100%;
   }
 
+  .layout-logo-left {
+    width: 100%;
+    background-color: #ffffff;
+    height: 60px;
+  }
+
   .layout-breadcrumb {
     padding: 10px 15px 0;
   }
 
   .layout-content {
-    min-height: 63%;
+    min-height: 60%;
     height: auto;
     margin: 15px;
     background: #fff;
     border-radius: 4px;
+    flex: 1;
   }
 
   .layout-content-main {
     padding: 10px;
   }
 
+  .ivu-menu-dark {
+    background: #16b8be;
+    color: #ffffff;
+  }
+
   .ivu-row-flex {
     height: 100%;
   }
 
-  .layout-copy {
-    text-align: center;
-    padding: 10px 0 20px;
-    color: #9ea7b4;
+  /**图标颜色改为 白色*/
+  .ivu-menu .ivu-icon {
+    color: #ffffff;
   }
 
-  .layout-menu-left {
-    background: #464c5b;
-    height: 100%
+  .ivu-menu-vertical .ivu-menu-submenu-title-icon {
+    color: #ffffff;
   }
+
+  /** 左侧全部都是空*/
+  .layout-menu-left {
+    background:  #f5f7f9;
+  }
+
+  /*字体改为白色*/
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title {
+    color: #ffffff;
+  }
+
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu {
+    background: #16b8be !important;
+  }
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover {
+    border-right: none;
+    color: #fff;
+    background-color:#009ca2  !important;
+  }
+   .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active{
+     color: #ffffff;
+   }
 
   .layout-header {
+    width:84%;
+    float:right;
+    z-index: 10000;
+    position:fixed;
+    top:0;
+    left:16.7%;
     height: 60px;
     background: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
   }
-
-  .layout-logo-left {
-    width: 90%;
-    height: 30px;
-    border-radius: 3px;
-    margin: 15px auto;
+  /**底部版权信息*/
+  .layout-copy {
+    text-align: center;
+    padding: 10px 0 10px;
+    /*color: #9ea7b4;*/
   }
+
+  .Site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin-top: 3%;
+  }
+
+  .layout-hide-text, .layout-text {
+    display: inline-block;
+    width: 70%;
+  }
+
+  .parent-menu-title {
+    color: #ffffff !important;
+  }
+
+
 </style>
 <template>
   <div class="layout">
 
     <Row type="flex">
-      <i-col span="4" class="layout-menu-left">
+      <i-col span="4" class="layout-menu-left" >
         <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
-          <div class="layout-logo-left" style="width: 150px;height: 58px;margin: 10px auto;">
+          <div class="layout-logo-left">
             <img style="" src="../../src/assets/logo.png" alt="">
           </div>
           <template slot="title">
@@ -126,25 +181,25 @@
           <Menu-item name="重置密码">
           </Menu-item>
         </Menu>
+
       </i-col>
       <i-col style="position: relative;overflow: auto" span="20" >
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
+            <Col span="12" align="left" style="cursor: pointer">
+            <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 15px;"
+                  @click="routerChange('/common/count')"> <Icon type="home" style="font-size: 15px" @click="routerChange('/common/count')"></Icon>首页</span>
+            </Col>
             <Col span="4" align="right" style="cursor: pointer">
             <Icon type="paper-airplane"></Icon>
             <a v-bind:href="url" target="_blank" title="点此预览此网站" style="font-size: 15px;">{{SiteName}}</a>
             </Col>
-            <Col span="2" align="right">
+            <Col span="3" align="center">
             <Badge :count="count">
               <span @click="routerChange('/common/messageLog','消息')" style="cursor:pointer;">
                 <Icon type="ios-bell-outline" size="26"></Icon>
               </span>
             </Badge>
-            </Col>
-            <Col span="2" align="right" style="cursor: pointer">
-            <Icon type="home" style="font-size: 15px" @click="routerChange('/common/count')"></Icon>
-            <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 15px;"
-                  @click="routerChange('/common/count')">首页</span>
             </Col>
             <Col span="2" align="center" style="cursor: pointer">
             <Icon type="android-lock" @click="changePwd()"></Icon>
@@ -161,13 +216,16 @@
             <Breadcrumb-item>{{activeName}}</Breadcrumb-item>
           </Breadcrumb>
         </div>
+        <div class="Site">
         <div class="layout-content">
           <div class="layout-content-main">
             <router-view></router-view>
           </div>
         </div>
-        <div class="layout-copy">
-          2015-2017 &copy; 北京易至信科技有限公司
+          <div class="layout-copy">
+            2015-2017 &copy; 北京易至信科技有限公司
+            <div>京ICP12019481号</div>
+          </div>
         </div>
       </i-col>
     </Row>
