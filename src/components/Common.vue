@@ -49,7 +49,8 @@
 
   /** 左侧全部都是空*/
   .layout-menu-left {
-    background:  #f5f7f9;
+    background:  #16b8be;
+    color: #ffffff;
   }
 
   /*字体改为白色*/
@@ -79,6 +80,9 @@
     height: 60px;
     background: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  }
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu), .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu){
+    color: white;
   }
   /**底部版权信息*/
   .layout-copy {
