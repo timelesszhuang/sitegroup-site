@@ -49,7 +49,7 @@
 
   /** 左侧全部都是空*/
   .layout-menu-left {
-    background:  #16b8be;
+    background: #16b8be;
     color: #ffffff;
   }
 
@@ -61,40 +61,46 @@
   .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu {
     background: #16b8be !important;
   }
+
   .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover {
     border-right: none;
     color: #fff;
-    background-color:#009ca2  !important;
+    background-color: #009ca2 !important;
   }
-   .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active{
-     color: #ffffff;
-   }
+
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active {
+    color: #ffffff;
+  }
 
   .layout-header {
-    width:84%;
-    float:right;
+    width: 84%;
+    float: right;
     z-index: 999;
-    position:fixed;
-    top:0;
-    left:16.7%;
+    position: fixed;
+    top: 0;
+    left: 16.7%;
     height: 60px;
     background: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
   }
-  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu), .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu){
+
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu), .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu) {
     color: white;
   }
+
   /**底部版权信息*/
   .layout-copy {
     text-align: center;
     padding: 10px 0 10px;
     /*color: #9ea7b4;*/
   }
+
   .ivu-breadcrumb {
     color: #999;
     font-size: 14px;
     padding-top: 3.5%;
   }
+
   .Site {
     display: flex;
     min-height: 100vh;
@@ -116,7 +122,7 @@
   <div class="layout">
 
     <Row type="flex">
-      <i-col span="4" class="layout-menu-left" >
+      <i-col span="4" class="layout-menu-left">
         <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
           <div class="layout-logo-left">
             <img style="" src="../../src/assets/logo.png" alt="">
@@ -158,8 +164,8 @@
             <span class="layout-text" @click="routerChange('/common/tdkall','搜索引擎优化管理')">搜索引擎优化管理</span>
           </Menu-item>
           <!--<Menu-item name="tdk">-->
-            <!--<Icon type="settings"></Icon>-->
-            <!--<span class="layout-text" @click="routerChange('/common/articletdk','tdk')">tdk</span>-->
+          <!--<Icon type="settings"></Icon>-->
+          <!--<span class="layout-text" @click="routerChange('/common/articletdk','tdk')">tdk</span>-->
           <!--</Menu-item>-->
           <Menu-item name="静态化配置">
             <Icon type="android-options"></Icon>
@@ -188,14 +194,14 @@
           <Menu-item name="重置密码">
           </Menu-item>
         </Menu>
-
       </i-col>
-      <i-col style="position: relative;overflow: auto" span="20" >
+      <i-col style="position: relative;overflow: auto" span="20">
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
             <Col span="12" align="left" style="cursor: pointer">
             <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 15px;"
-                  @click="routerChange('/common/count')"> <Icon type="home" style="font-size: 15px" @click="routerChange('/common/count')"></Icon>首页</span>
+                  @click="routerChange('/common/count')"> <Icon type="home" style="font-size: 15px"
+                                                                @click="routerChange('/common/count')"></Icon>首页</span>
             </Col>
             <Col span="4" align="right" style="cursor: pointer">
             <Icon type="paper-airplane"></Icon>
@@ -224,11 +230,11 @@
           </Breadcrumb>
         </div>
         <div class="Site">
-        <div class="layout-content">
-          <div class="layout-content-main">
-            <router-view></router-view>
+          <div class="layout-content">
+            <div class="layout-content-main">
+              <router-view></router-view>
+            </div>
           </div>
-        </div>
           <div class="layout-copy">
             2015-2017 &copy; 北京易至信科技有限公司
             <div>京ICP12019481号</div>
@@ -252,7 +258,7 @@
       return {
         activeName: '',
         count: '无',
-        SiteName:''
+        SiteName: ''
       }
     },
     components: {
