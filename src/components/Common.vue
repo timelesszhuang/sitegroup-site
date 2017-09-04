@@ -73,7 +73,7 @@
   .layout-header {
     width:84%;
     float:right;
-    z-index: 10000;
+    z-index: 999;
     position:fixed;
     top:0;
     left:16.7%;
@@ -90,12 +90,15 @@
     padding: 10px 0 10px;
     /*color: #9ea7b4;*/
   }
-
+  .ivu-breadcrumb {
+    color: #999;
+    font-size: 14px;
+    padding-top: 3.5%;
+  }
   .Site {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    margin-top: 3%;
   }
 
   .layout-hide-text, .layout-text {
