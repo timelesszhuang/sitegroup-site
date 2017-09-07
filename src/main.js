@@ -150,7 +150,8 @@ Vue.use(iView);
 window.Cookies = Cookies
 window.axios = axios
 
-let domain = 'api.mypc.com.cn'
+let domain = 'api.salesman.cc'
+
 var HOST = 'http://' + domain + '/index.php/'
 var ROOTHOST = 'http://' + domain + '/'
 

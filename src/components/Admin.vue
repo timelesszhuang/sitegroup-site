@@ -4,9 +4,8 @@
       <Col span="14" offset="5">
       <div class="alert-title">
         <Alert type="success" show-icon v-show="successShow">
-          <span slot="desc"> 正在进入站点&nbsp;&nbsp;&nbsp;<Icon v-show="successShow" type="load-c"
-                                                           class="demo-spin-icon-load"></Icon></span>
-
+          <span slot="desc"> 正在进入站点&nbsp;&nbsp;&nbsp;
+            <Icon v-show="successShow" type="load-c" class="demo-spin-icon-load"></Icon></span>
         </Alert>
       </div>
       </Col>
@@ -52,7 +51,6 @@
       this.getdata(),
         this.name = Lockr.get('userInfo').name
 //      document.title = this.name
-
     },
 
     methods: {
