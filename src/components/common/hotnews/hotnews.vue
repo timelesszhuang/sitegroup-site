@@ -154,7 +154,7 @@
 
         columns.push({
           title: '简介',
-          width:'220',
+          width:'300',
           key: 'summary',
           sortable: true
         });
