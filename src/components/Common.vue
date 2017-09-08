@@ -139,96 +139,122 @@
           <div class="layout-logo-left">
             <img class="logo" style="" src="../../src/assets/logo.png" alt="乐销易创意发布平台">
           </div>
-          <template slot="title">
-            <Icon type="ios-keypad"></Icon>
-            管理
-          </template>
-          <Menu-item name="微信公众号文章管理">
+          <Submenu name="1">
+            <template slot="title">
+              <Icon type="ios-navigate"></Icon>
+              <span class="parent-menu-title">资源聚合</span>
+            </template>
+            <Menu-item name="微信公众号文章管理">
             <span class="layout-text" @click="routerChange('/common/weixinarticle','微信公众号文章管理')">
               <Icon type="settings"></Icon>
               微信公众号文章管理
             </span>
-          </Menu-item>
-          <Menu-item name="新闻文章管理">
+            </Menu-item>
+            <Menu-item name="新闻文章管理">
             <span class="layout-text" @click="routerChange('/common/news','新闻文章管理')">
               <Icon type="ios-bookmarks"></Icon>
               新闻文章管理
             </span>
-          </Menu-item>
-          <Menu-item name="私有文章库">
-            <span class="layout-text" @click="routerChange('/common/article','私有文章库')">
+            </Menu-item>
+          </Submenu>
+          <Submenu name="2">
+            <template slot="title">
+              <Icon type="navicon-round"></Icon>
+              <span class="parent-menu-title">内容管理</span>
+            </template>
+            <Menu-item name="文章管理">
+            <span class="layout-text" @click="routerChange('/common/article','文章管理')">
             <Icon type="ios-book-outline"></Icon>
-              私有文章库
+              文章管理
             </span>
-          </Menu-item>
-          <Menu-item name="文章a链接">
+            </Menu-item>
+          </Submenu>
+          <Submenu name="3">
+            <template slot="title">
+              <Icon type="document-text"></Icon>
+              <span class="parent-menu-title">关键词操作</span>
+            </template>
+            <Menu-item name="文章a链接">
             <span class="layout-text" @click="routerChange('/common/href','文章插入链接')">
               <Icon type="wrench"></Icon>
               文章插入链接
             </span>
-          </Menu-item>
-          <Menu-item name="关键词链接替换">
+            </Menu-item>
+            <Menu-item name="关键词链接替换">
             <span class="layout-text" @click="routerChange('/common/hrefreplace','关键词链接替换')">
-            <Icon type="wrench"></Icon>
+            <Icon type="clipboard"></Icon>
               关键词链接替换
             </span>
-          </Menu-item>
-          <Menu-item name="文章关键词替换">
+            </Menu-item>
+            <Menu-item name="文章关键词替换">
             <span class="layout-text" @click="routerChange('/common/substitution','文章关键词替换')">
             <Icon type="ios-gear"></Icon>
               文章关键词替换
             </span>
-          </Menu-item>
-          <Menu-item name="页面生成">
+            </Menu-item>
+          </Submenu>
+          <Submenu name="4">
+            <template slot="title">
+              <Icon type="android-laptop"></Icon>
+              <span class="parent-menu-title">站点管理</span>
+            </template>
+            <Menu-item name="页面生成">
             <span class="layout-text" @click="operation()">
-              <Icon type="ios-cog"></Icon>
+              <Icon type="android-print"></Icon>
               页面生成
             </span>
-          </Menu-item>
-          <Menu-item name="搜索引擎优化管理">
+            </Menu-item>
+            <Menu-item name="搜索引擎优化管理">
             <span class="layout-text" @click="routerChange('/common/tdkall','搜索引擎优化管理')">
-              <Icon type="settings"></Icon>
+             <Icon type="android-locate"></Icon>
               搜索引擎优化管理
             </span>
-          </Menu-item>
-          <Menu-item name="静态化配置">
+            </Menu-item>
+            <Menu-item name="静态化配置">
             <span class="layout-text" @click="routerChange('/common/staticconfig','静态化配置')">
-              <Icon type="android-options"></Icon>
+              <Icon type="android-apps"></Icon>
               静态化配置
             </span>
-          </Menu-item>
-          <Menu-item name="关键词占比">
+            </Menu-item>
+          </Submenu>
+          <Submenu name="5">
+            <template slot="title">
+              <Icon type="ios-pie-outline"></Icon>
+              <span class="parent-menu-title">统计</span>
+            </template>
+            <Menu-item name="关键词占比">
             <span class="layout-text" @click="routerChange('/common/keyword','关键词占比')">
-              <Icon type="android-cloud-circle"></Icon>
+              <Icon type="ios-analytics"></Icon>
               关键词占比统计
             </span>
-          </Menu-item>
-          <Menu-item name="浏览量统计">
+            </Menu-item>
+            <Menu-item name="浏览量统计">
             <span class="layout-text" @click="routerChange('/common/pv','浏览量统计')">
-              <Icon type="ios-monitor-outline"></Icon>
+              <Icon type="ios-analytics-outline"></Icon>
               浏览量统计
             </span>
-          </Menu-item>
-          <Menu-item name="浏览量展示">
+            </Menu-item>
+            <Menu-item name="浏览量展示">
             <span class="layout-text" @click="routerChange('/common/show','浏览量展示')">
-              <Icon type="ios-monitor-outline"></Icon>
+              <Icon type="ios-pie"></Icon>
               浏览量展示
             </span>
-          </Menu-item>
-          <Menu-item name="爬虫统计">
+            </Menu-item>
+            <Menu-item name="爬虫统计">
             <span class="layout-text" @click="routerChange('/common/crawler','爬虫统计')">
-              <Icon type="ios-book-outline"></Icon>
+              <Icon type="ios-pulse"></Icon>
               爬虫统计
             </span>
-          </Menu-item>
-          <Menu-item name="搜索引擎占比">
+            </Menu-item>
+            <Menu-item name="搜索引擎占比">
             <span class="layout-text" @click="routerChange('/common/flow','搜索引擎占比')">
-              <Icon type="monitor"></Icon>
+              <Icon type="ios-pulse-strong"></Icon>
               搜索引擎占比
             </span>
-          </Menu-item>
-          <Menu-item name="重置密码">
-          </Menu-item>
+            </Menu-item>
+          </Submenu>
+          <!--<Menu-item name="重置密码">-->
+          <!--</Menu-item>-->
         </Menu>
       </i-col>
       <i-col style="overflow-y:scroll;padding-bottom: 50px" span="20">
