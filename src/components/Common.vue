@@ -135,7 +135,7 @@
   <div class="layout">
     <Row type="flex">
       <i-col span="4" class="layout-menu-left">
-        <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']">
+        <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']" accordion>
           <div class="layout-logo-left">
             <img class="logo" style="" src="../../src/assets/logo.png" alt="乐销易创意发布平台">
           </div>
