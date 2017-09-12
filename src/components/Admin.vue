@@ -18,7 +18,7 @@
           <li class="todo" v-for="todo in site">
             <Button class="btn" @click="change(todo.id,todo.site_name)">{{ todo.site_name }}
             </Button>
-            <a class="link" :href=formatter_str(todo.domain) target="_blank">{{todo.domain}}</a>
+            <a class="link" :href=todo.url target="_blank">{{todo.url}}</a>
           </li>
         </ul>
       </div>
@@ -54,9 +54,6 @@
     },
 
     methods: {
-      formatter_str(str) {
-        return "http://" + str;
-      },
       routerChange(path, activeName) {
         this.activeName = activeName;
         router.push(path);
