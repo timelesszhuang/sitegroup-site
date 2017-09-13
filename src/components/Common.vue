@@ -267,30 +267,30 @@
               首页
             </span>
             </Col>
-            <Col span="4" offset="8" align="right" style="cursor: pointer">
+            <Col span="4" offset="11" align="right" style="cursor: pointer">
             <Icon type="paper-airplane"></Icon>
             <a v-bind:href="url" target="_blank" title="点此预览此网站" style="font-size: 15px;">
               {{SiteName}}
             </a>
             </Col>
-            <Col span="3" align="center">
+            <Col span="2" align="center">
             <Badge :count="count">
               <span @click="routerChange('/common/messageLog','消息')" style="cursor:pointer;">
                 <Icon type="ios-bell-outline" size="26"></Icon>
               </span>
             </Badge>
             </Col>
-            <Col span="3"  align="center" style="cursor: pointer">
-            <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 15px;"
+            <Col span="2"  align="center" style="cursor: pointer">
+            <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 12px;"
                   @click="changePwd()">
-              <Icon type="android-lock" style="font-size: 12px" @click="changePwd()"></Icon>
+              <Icon type="android-lock"  @click="changePwd()"></Icon>
               重置密码
             </span>
             </Col>
-            <Col span="3"  align="center" style="cursor: pointer">
-            <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 15px;"
+            <Col span="2"  align="center" style="cursor: pointer">
+            <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 12px;"
                   @click="logOut()">
-              <Icon type="log-out" style="font-size: 12px" @click="logOut()"></Icon>
+              <Icon type="log-out"  @click="logOut()"></Icon>
               退出系统
             </span>
             </Col>
