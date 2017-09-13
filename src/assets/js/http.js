@@ -59,7 +59,6 @@ const ajaxMethods = {
       }
     },
     resetCommonData(data) {
-      console.log(data)
       //sal
       Lockr.set('salt', data.user_info.salt)            // 权限认证
       //记住我

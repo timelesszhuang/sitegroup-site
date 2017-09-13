@@ -40,7 +40,7 @@
     created() {
       let rememberKey = Lockr.get('site_rememberKey')
       let site_id = Lockr.get('site_id')
-      if (!rememberKey) {
+      if (!rememberKey || !site_id) {
         //表示没有登陆
         this.$Message.error("请先登录");
         setTimeout(() => {
@@ -76,7 +76,9 @@
 
         this.apiPost('user/siteInfo', data).then((res) => {
             this.handelResponse(res, (data, msg) => {
+              Lockr.set('siteNameForever',data.site_name)
               Lockr.set('urldomain', data.domain);
+
               let routerUrl = '/common/count';
               setTimeout(() => {
                 let path = this.$router.path
