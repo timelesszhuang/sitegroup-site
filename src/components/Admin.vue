@@ -54,12 +54,6 @@
     },
 
     methods: {
-<<<<<<< HEAD
-=======
-      formatter_str(str) {
-        return  str;
-      },
->>>>>>> 27f9b65a9d18bb8f0a192d4ce14b550ab58f896c
       routerChange(path, activeName) {
         this.activeName = activeName;
         router.push(path);
