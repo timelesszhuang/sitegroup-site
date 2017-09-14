@@ -28,7 +28,7 @@
             原分类:<span style="font-size: 15px">{{form.type_name}}</span>
           </Form-item>
           <Form-item label="内容" prop="content">
-            <editor @change="updateData" :content="form.content"  :height="500"></editor>
+            <editor @change="updateData" :content="form.content"  :height="500" :auto-height="false"></editor>
           </Form-item>
         </Form>
       </div>
