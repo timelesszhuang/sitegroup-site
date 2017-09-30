@@ -18,7 +18,7 @@
         color:["#20a0ff","#13CE66","#F7BA2A","#FF4949","#61a0a8","#BBFFFF","#FF1493","#FF34B3","#FF00FF",'#FFDAB9'],
         title: {
           text: '浏览量统计',
-          left: 'center',
+          left: "10%",
           top: 10
         },
         tooltip: {
@@ -30,9 +30,6 @@
           data:[]
         },
         grid: {
-          left: '20%',
-          right: '25%',
-          bottom: '20%',
           containLabel: true
         },
         xAxis: {
@@ -99,7 +96,7 @@
 <style scoped>
   .echarts {
     width: 100%;
-    height: 400px;
+    height: 320px;
     float: left;
     padding-bottom: 50px;
   }

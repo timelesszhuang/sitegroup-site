@@ -5,7 +5,7 @@
       <p slot="header">
 
         <span>添加到文章库</span>
-      </p>/
+      </p>
       <div>
         <Form ref="save" :model="form" :label-width="90" :rules="AddRule" class="node-add-form">
           <Form-item label="点击查看原文章">
