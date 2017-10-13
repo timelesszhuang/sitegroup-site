@@ -105,7 +105,7 @@
     },
     methods:{
       getpublictype() {
-        this.apiGet('admin/countDatas').then((res) => {
+        this.apiGet('user/getFour').then((res) => {
           this.handelResponse(res, (data, msg) => {
             this.article = data.article;
             this.pv = data.pv;
