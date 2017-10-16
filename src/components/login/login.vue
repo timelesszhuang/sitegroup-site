@@ -72,10 +72,13 @@
         <li><a href="http://mail.qiyvkf.com/" target="_blank">易至信</a></li>
         <li><a href="http://www.youdao.so/" target="_blank">有道云协作</a></li>
         <li><a href="http://www.qiangbi.cc/" target="_blank">网站建设</a></li>
-        <li class="no_border">客服专线：4006-360-163</li>
+        <li class="no_border">2015-{{copytime}} &copy; 北京易至信科技有限公司</li>
       </ul>
-      <span class="login_bq">COPYRIGHT©北京易至信科技有限公司</span>
+      <br/>
+      <div style="text-align: center;padding-top: 20px" >京ICP12019481号</div>
+      <!--<span class="login_bq">COPYRIGHT©北京易至信科技有限公司</span>-->
     </div>
+
   </div>
 
 
@@ -113,7 +116,8 @@
         warningMsg: '',
         warningShow: false,
         rememberMe: true,
-        modal1: false
+        modal1: false,
+        copytime:''
       }
     },
     methods: {
@@ -199,6 +203,8 @@
     },
 
     created(){
+      let date1 = new Date;
+      this.copytime =  date1.getFullYear()
       //第一次如果是记住密码的话  会到本地存储中取出相关数据 然后自动登录
       this.checkIsRememberPwd()
       //没有设置记住密码 的话 或者是第一次登陆的情况下 会到后台获取基本的配置数据
@@ -213,8 +219,9 @@
 <style scoped>
   .innr1 {
     max-width: 1250px;
-    margin: 30px auto;
+    margin: 0px auto;
     overflow: hidden;
+    padding-top: 30px;
   }
   .loginlogo {
     float: left;
@@ -299,7 +306,7 @@
     border-radius: 5px;
     -moz-border-radius: 5px;
     background-clip: padding-box;
-    margin-bottom: 20px;
+    margin-bottom: -55520px;
     background-color: #F9FAFC;
     margin: 120px auto;
     width: 400px;
