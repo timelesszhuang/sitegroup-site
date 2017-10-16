@@ -309,7 +309,7 @@
           </div>
         </div>
         <div class="layout-copy">
-          2015-2017 &copy; 北京易至信科技有限公司
+          2015-{{copytime}} &copy; 北京易至信科技有限公司
           <div>京ICP12019481号</div>
         </div>
       </i-col>
@@ -330,7 +330,8 @@
       return {
         activeName: '',
         count: '无',
-        SiteName: ''
+        SiteName: '',
+        copytime:''
       }
     },
     components: {
@@ -376,6 +377,8 @@
 
     },
     created() {
+      let date1 = new Date;
+      this.copytime = date1.getFullYear()
       document.title = Lockr.get('currentSiteName');
       let SiteName = Lockr.get('siteNameForever');
       this.SiteName = SiteName;

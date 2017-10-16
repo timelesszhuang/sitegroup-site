@@ -1,6 +1,6 @@
 <template>
   <div class="homemain">
-    <div style="margin-top:-10px;margin-left:15px;margin-bottom:10px;font-size: 18px">首页</div>
+    <!--<div style="margin-top:-10px;margin-left:15px;margin-bottom:10px;font-size: 18px">首页</div>-->
     <div>
       <Row style="background-color: white;margin:15px;margin-top:-10px;" :gutter="10" type="flex"
            justify="center" class="code-row-bg rowmain">
@@ -60,24 +60,24 @@
         </Col>
       </Row>
     </div>
-    <div>
 
-    <Row style="margin: 20px;background-color: white;margin-bottom: -20px">
-      <Col span="8" style="  height: 320px;padding: 10px"> <pv  style=" height: 320px;"ref="pv"></pv></Col>
-      <Col span="8" style="  height: 320px;padding: 10px"> <engine ref="engine" style=" height: 320px;"></engine></Col>
-      <Col span="8" style="  height: 320px;padding: 10px"> <div style="padding:30px;padding-top:10px;text-align: center">
-      <div style="padding: 15px"><h2>乐销易技术服务中心</h2></div>
-      <div style="padding:10px"><span style="font-size: 15px"><Icon type="paper-airplane"></Icon>&nbsp;&nbsp;北京易至信科技有限公司</span>
+    <div style="height: 315px;box-sizing: border-box;display:flex;justify-content: center;align-items: center;">
+       <pv  style="width:32%;margin-left:0px;margin-right:10px;height:315px;background-color:white;display: inline-block"ref="pv"></pv>
+       <engine ref="engine" style="width:32%;margin-right:10px;height: 315px;background-color:white;display: inline-block "></engine>
+        <div style="margin-right:0px;width:32%;height: 315px;background-color:white;display: inline-block">
+      <div style="padding: 10px;padding-left: 10%" ><h2>乐销易技术服务中心</h2></div>
+      <div style="padding: 10px;padding-left: 10%"><span style="font-size: 15px;text-align: left"><Icon type="paper-airplane"></Icon>&nbsp;&nbsp;北京易至信科技有限公司</span>
       </div>
-      <div style="padding: 10px"><span style="font-size: 15px"><Icon type="android-call"></Icon>&nbsp;&nbsp;0531-88554123</span>
+      <div style="padding: 10px;padding-left: 10%"><span style="font-size: 15px;text-align: left"><Icon type="android-call"></Icon>&nbsp;&nbsp;0531-88554123</span>
       </div>
-      <div style="padding: 10px"><span style="font-size: 15px"><Icon type="ios-telephone-outline"></Icon> &nbsp;&nbsp; 4006360163</span>
+      <div style="padding: 10px;padding-left: 10%"><span style="font-size: 15px;text-align: left"><Icon type="ios-telephone-outline"></Icon> &nbsp;&nbsp; 4006360163</span>
       </div>
-      <div style="padding: 10px"><span style="font-size: 15px"> <Icon type="ios-email-outline"></Icon>&nbsp;&nbsp;  jishu@cio.club</span>
+      <div style="padding: 10px;padding-left: 10%"><span style="font-size: 15px;text-align: left"> <Icon type="ios-email-outline"></Icon>&nbsp;&nbsp;  jishu@cio.club</span>
       </div>
-    </div></Col>
-    </Row>
+
     </div>
+    </div>
+
 
   </div>
 </template>

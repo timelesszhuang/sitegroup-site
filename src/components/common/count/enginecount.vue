@@ -99,10 +99,4 @@
   };
 </script>
 
-<style scoped>
-  .echarts {
-    width: 100%;
-    height: 320px;
-    padding-bottom: 50px;
-  }
-</style>
+
