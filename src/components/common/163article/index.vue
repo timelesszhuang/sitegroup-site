@@ -22,6 +22,7 @@
                 show-total
                 show-elevator show-sizer></Page>
         </div>
+
       </div>
     </div>
     <wechatarticlesave ref="save" :articletype="articletypelist" :form="editinfo" ></wechatarticlesave>
@@ -153,6 +154,17 @@
             align: 'center'
           })
         }
+        columns.push({
+          title: '缩略图',
+          width:'200',
+          key: 'imgsrc',
+          sortable: true,
+          render(row, index) {
+            var type = '<img style="width:200px" src="'+row.imgsrc+'">';
+            return type;
+
+          },
+        });
         columns.push({
           title: '标题',
           key: 'title',
