@@ -70,7 +70,6 @@
         }
         Lockr.set('currentSiteId', data.site_id);
         Lockr.set('currentSiteName', data.site_name);
-
         this.apiPost('user/siteInfo', data).then((res) => {
             this.handelResponse(res, (data, msg) => {
               Lockr.set('siteNameForever',data.site_name)

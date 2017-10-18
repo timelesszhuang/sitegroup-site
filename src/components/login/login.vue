@@ -11,9 +11,6 @@
     </div>
     <div id="container">
       <div>
-        <p ref="isBrowser" v-show="boswer_show" >
-          请使用chrome或火狐浏览器
-        </p>
         <Row>
           <!--<Col >-->
           <!--<div class="alert-title" style="margin-top:60px;width: 400px">-->
