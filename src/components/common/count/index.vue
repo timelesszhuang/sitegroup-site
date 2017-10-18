@@ -65,7 +65,7 @@
        <pv  style="width:32%;margin-left:0px;margin-right:10px;height:315px;background-color:white;display: inline-block"ref="pv"></pv>
        <engine ref="engine" style="width:32%;margin-right:10px;height: 315px;background-color:white;display: inline-block "></engine>
         <div style="margin-right:0px;width:32%;height: 315px;background-color:white;display: inline-block">
-      <div style="padding: 10px;padding-left: 10%" ><h2>乐销易技术服务中心</h2></div>
+      <div style="padding: 10px;padding-left: 10%;padding-top: 12%" ><h2>乐销易技术服务中心</h2></div>
       <div style="padding: 10px;padding-left: 10%"><span style="font-size: 15px;text-align: left"><Icon type="paper-airplane"></Icon>&nbsp;&nbsp;北京易至信科技有限公司</span>
       </div>
       <div style="padding: 10px;padding-left: 10%"><span style="font-size: 15px;text-align: left"><Icon type="android-call"></Icon>&nbsp;&nbsp;0531-88554123</span>
