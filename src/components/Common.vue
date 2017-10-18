@@ -341,7 +341,7 @@
     },
     computed: {
       url: function () {
-        this.uuudomain = "http://" + Lockr.get('urldomain')
+        this.uuudomain = Lockr.get('urlshow')
         return this.uuudomain
       }
     },

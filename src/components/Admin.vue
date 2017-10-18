@@ -75,7 +75,7 @@
             this.handelResponse(res, (data, msg) => {
               Lockr.set('siteNameForever',data.site_name)
               Lockr.set('urldomain', data.domain);
-
+              Lockr.set('urlshow', data.url);
               let routerUrl = '/common/count';
               setTimeout(() => {
                 let path = this.$router.path
