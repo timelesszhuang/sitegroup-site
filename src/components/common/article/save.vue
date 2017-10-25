@@ -26,19 +26,9 @@
             </Select>
           </Form-item>
           <Form-item label="内容" prop="content">
-            <quill-editor ref="myTextEditoredit"
-                          v-model="form.content"
-                          :config="editorOption">
-            </quill-editor>
+            <editor @change="updateData" :content="form.content"  :height="500" :auto-height="false"></editor>
           </Form-item>
         </Form>
-        <el-upload class="upload-demo" :action="content_image"
-                   :data="uploadData" :on-success='upScuccess'
-                   ref="upload" with-credentials style="display:none">
-          <el-button size="small" type="primary" id="imgInput_article_save" v-loading.fullscreen.lock="fullscreenLoading"
-                     element-loading-text="插入中,请稍候">点击上传
-          </el-button>
-        </el-upload>
       </div>
       <div slot="footer">
         <Button type="success" size="large" :loading="modal_loading" @click="save">保存</Button>
@@ -59,19 +49,6 @@
         }
       };
       return {
-        uploadData:{},
-        content_image:HOST + 'admin/uploadquestionimage',
-        editorOption: {
-          modules: {
-            history: {
-              delay: 1000,
-              maxStack: 50,
-              userOnly: false
-            }
-          }
-        },
-        fullscreenLoading: '',
-        editorOption: {},
         modal: false,
         modal_loading: false,
         AddRule: {
@@ -90,35 +67,9 @@
         }
       }
     },
-    mounted() {
-//      this.$refs.myQuillEditor.quill.getModule('toolbar').addHandler('image', this.imgHandler)
-    },
     methods: {
-      upScuccess(e, file, fileList) {
-        if (!e.status) {
-          this.$message.error("插入失败")
-        }
-        this.fullscreenLoading = false
-        let url = ''
-        if (this.uploadType === 'image') {    // 获得文件上传后的URL地址
-          url = e.url
-        }
-        if (url != null && url.length > 0) {  // 将文件上传后的URL地址插入到编辑器文本中
-          this.$refs.myQuillEditor.quill.insertEmbed(this.$refs.myQuillEditor.quill.getSelection(), "image", url);
-        }
-      },
-      // 点击图片ICON触发事件
-      imgHandler(state) {
-        if (state) {
-          let fileInput = document.getElementById('imgInput_article_save')
-          fileInput.click() // 加一个触发事件
-        }
-        this.uploadType = 'image'
-      },
-      computed: {
-        editor() {
-          return this.$refs.myTextEditoredit.quillEditor
-        }
+      updateData(data) {
+        this.form.content = data
       },
       changeArticletype(value) {
         this.form.articletype_name = value.label
