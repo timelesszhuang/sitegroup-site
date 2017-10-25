@@ -16,6 +16,8 @@
           <Form-item label="作者" prop="auther">
             <Input type="text" v-model="form.auther" placeholder="请输入作者" style="width: 200px;"></Input>
           </Form-item>
+          <Row>
+            <Col span="12">
           <Form-item label="文章分类" prop="articletype_id">
             <Select v-model="form.articletype_id" ref="select" :clearable="selects" style="position:relative;z-index:10000;text-align: left;width:300px;"
                     label-in-value filterable　@on-change="changeArticletype">
@@ -25,8 +27,40 @@
               </Option>
             </Select>
           </Form-item>
+            </Col>
+            <Col span="12">
+            <Form-item label="阅读次数" prop="readcount">
+              <InputNumber :min="1" v-model="form.readcount" placeholder="请输入作者"></InputNumber>
+            </Form-item>
+            </Col>
+          </Row>
+          <Row>
+            <Col span="12">
+            <Form-item label="缩略图上传">
+              <Upload
+                type="select"
+                ref="upImg"
+                with-credentials
+                name="file"
+                :format="['jpg','jpeg','png','gif']"
+                :on-success="getResponse"
+                :on-error="getErrorInfo"
+                :on-format-error="formatError"
+                :action="action">
+                <Button type="ghost" icon="ios-cloud-upload-outline">上传缩略图</Button>
+              </Upload>
+            </Form-item>
+            </Col>
+            <Col span="12">
+            <div v-if="imgshow" style="margin:0 auto;max-width: 200px;margin-right: 300px">
+              <img style="max-width: 200px;max-height: 200px;" :src=imgpath() alt=""></div>
+            </Col>
+          </Row>
           <Form-item label="内容" prop="content" style="height:100%;">
             <editor @change="updateData" :content="form.content"  :height="500" :auto-height="false"></editor>
+          </Form-item>
+          <Form-item label="关键词" prop="keywords">
+            <Input type="text" v-model="form.keywords" placeholder="请输入关键词(尽量用英文符号分割)" style="width: 200px;"></Input>
           </Form-item>
         </Form>
       </div>
@@ -51,8 +85,10 @@
         }
       };
       return {
+        action: HOST + 'admin/uploadarticleimage',
         modal: false,
         modal_loading: false,
+        imgshow: true,
         editorOption: {},
         form: {
           title: "",
@@ -82,6 +118,28 @@
     created() {
     },
     methods: {
+      imgpath() {
+        return this.form.thumbnails;
+      },
+      formatError() {
+        this.$Message.error('文件格式只支持 jpg,jpeg,png三种格式。');
+      },
+      //缩略图上传回调
+      getResponse(response, file, filelist) {
+        this.form.thumbnails = response.url;
+        if (response.status) {
+          this.$Message.success(response.msg);
+          this.imgpath();
+          this.imgshow = true
+          this.$refs.upImg.clearFiles();
+        } else {
+          this.$Message.error(response.msg);
+        }
+        this.$refs.upImg.clearFiles()
+      },
+      getErrorInfo(error, file, filelist) {
+        this.$Message.error(error);
+      },
       updateData(data) {
         this.form.content = data
       },

@@ -16,6 +16,11 @@
           <Form-item label="作者" prop="title">
             <Input type="text" v-model="form.auther" placeholder="请输入作者"></Input>
           </Form-item>
+          <Form-item label="文章描述" prop="summary">
+            <Input v-model="form.summary" :rows="3" type="textarea" placeholder="请输入文章描述"></Input>
+          </Form-item>
+          <Row>
+            <Col span="12">
           <Form-item label="文章分类" prop="articletype_id">
             <Select v-model="form.articletype_id" style="text-align: left;width:300px;"
                     label-in-value 　@on-change="changeArticletype">
@@ -25,10 +30,45 @@
               </Option>
             </Select>
           </Form-item>
+            </Col>
+            <Col span="12">
+            <Form-item label="阅读次数" prop="readcount">
+              <InputNumber :min="1" v-model="form.readcount" placeholder="请输入作者"></InputNumber>
+            </Form-item>
+            </Col>
+          </Row>
+          <Row>
+            <Col span="12">
+            <Form-item label="缩略图上传">
+              <Upload
+                type="select"
+                ref="upImg"
+                with-credentials
+                name="file"
+                :format="['jpg','jpeg','png','gif']"
+                :on-success="getResponse"
+                :on-error="getErrorInfo"
+                :on-format-error="formatError"
+                :action="action">
+                <Button type="ghost" icon="ios-cloud-upload-outline">上传缩略图</Button>
+              </Upload>
+            </Form-item>
+            </Col>
+            <Col span="12">
+            <div v-if="imgshow" style="margin:0 auto;max-width: 200px;margin-right: 300px">
+              <img style="max-width: 200px;" :src=imgpath() alt=""></div>
+            </Col>
+          </Row>
           <Form-item label="内容" prop="content">
             <editor @change="updateData" :content="form.content"  :height="500" :auto-height="false"></editor>
           </Form-item>
+          <Form-item label="关键词" prop="keywords">
+            <Input type="text" v-model="form.keywords" placeholder="请输入关键词(尽量用英文符号分割)" style="width: 200px;"></Input>
+          </Form-item>
         </Form>
+        <Alert style="font-size:15px;font-weight: bold;text-align:center;" type="warning">
+          图片上传限制:&nbsp;&nbsp;&nbsp;单张图片限制为512KB大小&nbsp;&nbsp;&nbsp;
+        </Alert>
       </div>
       <div slot="footer">
         <Button type="success" size="large" :loading="modal_loading" @click="save">保存</Button>
@@ -49,6 +89,8 @@
         }
       };
       return {
+        action: HOST + 'admin/uploadarticleimage',
+        imgshow: true,
         modal: false,
         modal_loading: false,
         AddRule: {
@@ -68,6 +110,28 @@
       }
     },
     methods: {
+      //缩略图上传回调
+      getResponse(response, file, filelist) {
+        this.form.thumbnails = response.url;
+        if (response.status) {
+          this.$Message.success(response.msg);
+          this.imgpath();
+          this.imgshow = true
+          this.$refs.upImg.clearFiles();
+        } else {
+          this.$Message.error(response.msg);
+        }
+        this.$refs.upImg.clearFiles()
+      },
+      imgpath() {
+        return this.form.thumbnails;
+      },
+      getErrorInfo(error, file, filelist) {
+        this.$Message.error(error);
+      },
+      formatError() {
+        this.$Message.error('文件格式只支持 jpg,jpeg,png三种格式。');
+      },
       updateData(data) {
         this.form.content = data
       },
