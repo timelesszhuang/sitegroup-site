@@ -232,7 +232,7 @@
               is_collection:this.form.is_collection
             }
 //            let data = this.form;
-            this.apiPost('article', data).then((res) => {
+            this.apiPost('user/article', data).then((res) => {
               this.handelResponse(res, (data, msg) => {
                 this.modal = false;
                 this.$parent.getData();
