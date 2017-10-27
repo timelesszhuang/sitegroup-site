@@ -7,28 +7,90 @@
       </p>
       <div>
         <Form ref="add" :model="form" :label-width="90" :rules="AddRule" class="node-add-form">
-          <Form-item label="标题" prop="title">
-            <Input type="text" v-model="form.title" placeholder="请输入标题"></Input>
-          </Form-item>
-          <Form-item label="来源" prop="come_from">
-            <Input type="text" v-model="form.come_from" placeholder="请输入来源" style="width: 200px;"></Input>
-          </Form-item>
-          <Form-item label="作者" prop="auther">
-            <Input type="text" v-model="form.auther" placeholder="请输入作者" style="width: 200px;"></Input>
-          </Form-item>
-          <Form-item label="文章分类" prop="articletype_id">
-            <Select v-model="form.articletype_id" ref="select" :clearable="selects" style="position:relative;z-index:10000;text-align: left;width:300px;"
-                    label-in-value filterable　@on-change="changeArticletype">
-              <Option disabled :value="0">分类名—标签</Option>
-              <Option v-for="item in articletype" :value="item.id" :label="item.name" :key="item">
-                {{ item.text }}
-              </Option>
-            </Select>
+          <Row>
+            <Col span="17">
+            <Form-item label="标题" prop="title">
+              <Input type="text" v-model="form.title" placeholder="请输入标题"></Input>
+            </Form-item>
+            </Col>
+          </Row>
+          <Row>
+            <Col span="8">
+            <Form-item label="简略标题" prop="shorttitle">
+              <Input type="text" v-model="form.shorttitle" placeholder="请输入简略标题"></Input>
+            </Form-item>
+            </Col>
+          </Row>
+          <Row>
+            <Col span="12">
+            <Form-item label="来源" prop="come_from">
+              <Input type="text" v-model="form.come_from" placeholder="请输入来源" style="width: 200px;"></Input>
+            </Form-item>
+            </Col>
+            <Col span="12">
+            <Form-item label="作者" prop="auther">
+              <Input type="text" v-model="form.auther" placeholder="请输入作者" style="width: 200px;"></Input>
+            </Form-item>
+            </Col>
+          </Row>
+          <Row>
+            <Col span="12">
+            <Form-item label="缩略图上传">
+              <Upload
+                type="select"
+                ref="upImg"
+                with-credentials
+                name="file"
+                :format="['jpg','jpeg','png','gif']"
+                :on-success="getResponse"
+                :on-error="getErrorInfo"
+                :on-format-error="formatError"
+                :action="action">
+                <Button type="ghost" icon="ios-cloud-upload-outline">上传缩略图</Button>
+              </Upload>
+            </Form-item>
+            </Col>
+            <Col span="12">
+            <div v-if="imgshow" style="margin:0 auto;max-width: 200px;margin-right: 300px">
+              <img style="max-width: 200px;" :src=imgpath() alt=""></div>
+            </Col>
+          </Row>
+          <Row>
+            <Col span="12">
+            <Form-item label="文章分类" prop="articletype_id">
+              <Select ref="select" :clearable="selects" v-model="form.articletype_id"
+                      style="position:relative;text-align: left;width:250px;z-index: 10000;"
+                      label-in-value filterable　@on-change="changeArticletype">
+                <Option disabled :value="0">分类名—标签</Option>
+                <Option v-for="item in articletype" :value="item.id" :label="item.name" :key="item">
+                  {{ item.text }}
+                </Option>
+              </Select>
+            </Form-item>
+            </Col>
+            <Col span="12">
+            <Form-item label="阅读次数" prop="readcount">
+              <InputNumber :min="1" v-model="form.readcount" placeholder="请输入作者"></InputNumber>
+            </Form-item>
+            </Col>
+          </Row>
+          <Form-item label="文章描述" prop="summary">
+            <Input v-model="form.summary" :rows="3" type="textarea" placeholder="请输入文章描述"></Input>
           </Form-item>
           <Form-item label="内容" prop="content" style="height:100%;">
-            <editor @change="updateData" :content="form.content"  :height="500" :auto-height="false"></editor>
+            <editor @change="updateData" :content="form.content" :height="300" :auto-height="false"></editor>
           </Form-item>
+          <Row>
+            <Col span="12">
+            <Form-item label="页面关键词" prop="keywords">
+              <Input type="text" v-model="form.keywords" placeholder="请输入页面关键词(请用英文符号,分割)"></Input>
+            </Form-item>
+            </Col>
+          </Row>
         </Form>
+        <Alert style="font-size:15px;font-weight: bold;text-align:center;" type="warning">
+          图片上传限制:&nbsp;&nbsp;&nbsp;单张图片限制为512KB大小&nbsp;&nbsp;&nbsp;
+        </Alert>
       </div>
       <div slot="footer">
         <Button type="success" size="large" :loading="modal_loading" @click="add">保存</Button>
@@ -41,6 +103,7 @@
 
 <script type="text/ecmascript-6">
   import http from '../../../assets/js/http.js';
+
   export default {
     data() {
       const checkarticletype = (rule, value, callback) => {
@@ -51,18 +114,25 @@
         }
       };
       return {
+        action: HOST + 'user/uploadarticleimage',
         modal: false,
+        imgshow: true,
         modal_loading: false,
-        editorOption: {},
+        editor_id: '',
         form: {
+          summary: '',
+          thumbnails: '',
+          keywords: '',
+          readcount: 0,
           title: "",
+          shorttitle: '',
           auther: '',
           come_from: '',
           articletype_id: 0,
           articletype_name: '',
-          content: ''
+          content: '',
         },
-        selects:true,
+        selects: true,
         AddRule: {
           title: [
             {required: true, message: '请填写文章标题', trigger: 'blur'},
@@ -74,16 +144,37 @@
             {required: true, message: '请填写文章作者', trigger: 'blur'},
           ],
           articletype_id: [
-            {required: true,validator: checkarticletype, trigger: 'blur'}
+            {required: true, validator: checkarticletype, trigger: 'blur'}
           ]
         }
       }
     },
-    created() {
-    },
     methods: {
+      imgpath() {
+        return this.form.thumbnails;
+      },
+      //缩略图上传回调
+      getResponse(response, file, filelist) {
+        this.form.thumbnails = response.url;
+        if (response.status) {
+          this.$Message.success(response.msg);
+          this.imgpath();
+          this.imgshow = true
+          this.$refs.upImg.clearFiles();
+        } else {
+          this.$Message.error(response.msg);
+        }
+        this.$refs.upImg.clearFiles()
+      },
+      getErrorInfo(error, file, filelist) {
+        this.$Message.error(error);
+      },
+      formatError() {
+        this.$Message.error('文件格式只支持 jpg,jpeg,png三种格式。');
+      },
       updateData(data) {
         this.form.content = data
+        this.editorText = data
       },
       changeArticletype(value) {
         this.form.articletype_name = value.label
@@ -100,6 +191,7 @@
                 this.$parent.getData();
                 this.$Message.success(msg);
                 this.modal_loading = false;
+                this.imgshow = false
                 this.$refs.add.resetFields();
                 this.$refs.select.clearSingleSelect()
               }, (data, msg) => {

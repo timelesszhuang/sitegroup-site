@@ -32,7 +32,7 @@
 <script type="text/ecmascript-6">
   import http from '../../../assets/js/http.js'
   import common from '../../../assets/js/common.js'
-  import qqarticlesave from './save.vue'
+  import qqarticlesave from '../article/save.vue'
   export default {
     data () {
       return {
@@ -122,7 +122,12 @@
         let editid = this.datas[index].id
         this.apiGet('user/QQOneArticle/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
+            data.thumbnails='';
+            data.is_collection = 20
+            data.readcount = 0;
             this.editinfo = data
+            this.editinfo.come_from = data.source
+            this.editinfo.createtime = data.ptime
 //            console.log(data.url)
           }, (data, msg) => {
             this.$Message.error(msg);
