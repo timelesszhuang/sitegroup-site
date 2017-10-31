@@ -55,7 +55,6 @@
             <div v-if="imgshow" style="margin:0 auto;max-width: 200px;margin-right: 300px">
               <img style="max-width: 200px;max-height: 200px; width:100px" :src='imgpath()' alt=""></div>
             </Col>
-
           </Row>
           <Row>
             <Col span="12">
@@ -117,18 +116,8 @@
       return {
         action: HOST + 'user/uploadarticleimage',
         imgshow: true,
-        editorOption: {
-          modules: {
-            history: {
-              delay: 1000,
-              maxStack: 50,
-            }
-          }
-        },
-        selects: true,
-        fullscreenLoading: '',
-        uploadData: {},
         modal: false,
+        selects: true,
         modal_loading: false,
         AddRule: {
           title: [
@@ -153,12 +142,6 @@
 
       },
     methods: {
-      imgpath() {
-        if (this.form.thumbnails) {
-          return this.form.thumbnails;
-        }
-        return '';
-      },
       //缩略图上传回调
       getResponse(response, file, filelist) {
         this.form.thumbnails = response.url;
@@ -172,6 +155,11 @@
         }
         this.$refs.upImg.clearFiles()
       },
+
+      imgpath() {
+        return this.form.thumbnails;
+      },
+
       getErrorInfo(error, file, filelist) {
         this.$Message.error(error);
       },

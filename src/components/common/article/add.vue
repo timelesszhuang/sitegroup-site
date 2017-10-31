@@ -116,9 +116,8 @@
       return {
         action: HOST + 'user/uploadarticleimage',
         modal: false,
-        imgshow: true,
         modal_loading: false,
-        editor_id: '',
+        imgshow: true,
         form: {
           summary: '',
           thumbnails: '',
@@ -153,6 +152,9 @@
       imgpath() {
         return this.form.thumbnails;
       },
+      formatError() {
+        this.$Message.error('文件格式只支持 jpg,jpeg,png三种格式。');
+      },
       //缩略图上传回调
       getResponse(response, file, filelist) {
         this.form.thumbnails = response.url;
@@ -168,9 +170,6 @@
       },
       getErrorInfo(error, file, filelist) {
         this.$Message.error(error);
-      },
-      formatError() {
-        this.$Message.error('文件格式只支持 jpg,jpeg,png三种格式。');
       },
       updateData(data) {
         this.form.content = data
