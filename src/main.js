@@ -10,7 +10,7 @@ import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import moment from 'moment'
 import VueHtml5Editor from 'vue-html5-editor'
-let domain = 'local.sitegroup.com'
+let domain = 'api.salesman.cc'
 
 var HOST = 'http://' + domain + '/index.php/'
 var ROOTHOST = 'http://' + domain + '/'
