@@ -193,8 +193,8 @@
               render (row, column, index) {
                 return `
 <i-button type="info" size="small" @click="show(${index})">预览</i-button>&nbsp;
-<i-button type="primary" size="small" @click="edit(${index})">修改</i-button>
 <i-button type="error" size="small" @click="showhtml(${index})">页面预览</i-button>&nbsp;
+<i-button type="primary" size="small" @click="edit(${index})">查看</i-button>
 
 
 `;
