@@ -109,8 +109,11 @@
         this.getArticle(index);
         this.$refs.show.modal = true
       },
-      lohref(){
-        window.open(this.url)
+      error(nodesc) {
+        this.$Notice.error({
+          title: '预览模板页被浏览器拦截,请允许',
+          desc: nodesc ? '' : ''
+        });
       },
       showhtml(index) {
         let data = this.datas[index]
@@ -118,7 +121,7 @@
           this.handelResponse(res, (data, msg) => {
             let open =  window.open(data);
             if(!open){
-              this.$Message.error('预览模板页被浏览器拦截,请允许');
+              this.error(false)
             }
             this.modal = false;
           }, (data, msg) => {
@@ -145,6 +148,7 @@
           this.$Message.error('网络异常，请稍后重试。');
         })
       },
+
     },
     computed: {
       tableColumns()
