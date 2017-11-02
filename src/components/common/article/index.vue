@@ -40,7 +40,7 @@
   import articleshow from './show.vue';
 
   export default {
-    data () {
+    data() {
       return {
         self: this,
         border: true,
@@ -60,7 +60,7 @@
       }
     },
     components: {articleadd, articlesave, articleshow},
-    created () {
+    created() {
       this.getData();
       this.getArticleType((data) => {
         this.articletypelist = data
@@ -87,25 +87,25 @@
           this.$Message.error('网络异常，请稍后重试');
         })
       },
-      changePage(page){
+      changePage(page) {
         this.page = page;
         this.getData();
       },
-      changePageSize(pagesize){
+      changePageSize(pagesize) {
         this.rows = pagesize;
         this.getData();
       },
-      queryData(){
+      queryData() {
         this.getData();
       },
-      add(){
+      add() {
         this.$refs.add.modal = true
       },
-      edit(index){
+      edit(index) {
         this.getArticle(index);
         this.$refs.save.modal = true
       },
-      show(index){
+      show(index) {
         this.getArticle(index);
         this.$refs.show.modal = true
       },
@@ -119,8 +119,8 @@
         let data = this.datas[index]
         this.apiPost('user/articleshowhtml', data).then((res) => {
           this.handelResponse(res, (data, msg) => {
-            let open =  window.open(data);
-            if(!open){
+            let open = window.open(data);
+            if (!open) {
               this.error(false)
             }
             this.modal = false;
@@ -135,7 +135,7 @@
         })
 
       },
-      getArticle(index){
+      getArticle(index) {
         let editid = this.datas[index].id
         this.apiGet('user/article/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
@@ -151,8 +151,7 @@
 
     },
     computed: {
-      tableColumns()
-      {
+      tableColumns() {
         let columns = [];
         if (this.showCheckbox) {
           columns.push({
@@ -190,15 +189,16 @@
             align: 'center',
             fixed: 'right',
 
-              render (row, column, index) {
-                return `
-<i-button type="info" size="small" @click="show(${index})">预览</i-button>&nbsp;
+            render(row, column, index) {
+              return `
+                <i-button type="primary" size="small" @click="edit(${index})">修改</i-button>
+<i-button type="info" size="small" @click="show(${index})">查看</i-button>&nbsp;
 <i-button type="error" size="small" @click="showhtml(${index})">页面预览</i-button>&nbsp;
-<i-button type="primary" size="small" @click="edit(${index})">查看</i-button>
+
 
 
 `;
-              }
+            }
 
           }
         );
