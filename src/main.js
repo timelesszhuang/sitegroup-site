@@ -11,12 +11,6 @@ import 'iview/dist/styles/iview.css';
 import moment from 'moment'
 import VueHtml5Editor from 'vue-html5-editor'
 
-// let domain = 'api.salesman.cc'
-let domain = "www.sitegroupback.com"
-var HOST = 'http://' + domain + '/index.php/'
-var ROOTHOST = 'http://' + domain + '/'
-
-
 Vue.use(VueHtml5Editor, {
   // 全局组件名称，使用new VueHtml5Editor(options)时该选项无效
   // global component name
@@ -51,10 +45,10 @@ Vue.use(VueHtml5Editor, {
     // 上传参数,默认把图片转为base64而不上传
     // upload config,default null and convert image to base64
     upload: {
-      url: HOST+'uploadimg',
+      url: null,
       headers: {},
       params: {},
-      fieldName: 'img'
+      fieldName: {}
     },
     // 压缩参数,默认使用localResizeIMG进行压缩,设置为null禁止压缩
     // compression config,default resize image by localResizeIMG (https://github.com/think2011/localResizeIMG)
@@ -69,10 +63,10 @@ Vue.use(VueHtml5Editor, {
     uploadHandler(responseText){
       //default accept json data like  {ok:false,msg:"unexpected"} or {ok:true,data:"image url"}
       var json = JSON.parse(responseText)
-      if (!json.status) {
+      if (!json.ok) {
         alert(json.msg)
       } else {
-        return json.url
+        return json.data
       }
     }
   },
@@ -157,7 +151,10 @@ Vue.use(iView);
 window.Cookies = Cookies
 window.axios = axios
 
+let domain = 'api.salesman.cc'
 
+var HOST = 'http://' + domain + '/index.php/'
+var ROOTHOST = 'http://' + domain + '/'
 
 axios.defaults.baseURL = HOST
 axios.defaults.timeout = 1000 * 15

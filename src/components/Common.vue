@@ -168,6 +168,12 @@
               文章管理
             </span>
             </Menu-item>
+            <Menu-item name="问答管理">
+              <span class="layout-text" @click="routerChange('/common/question','问答管理')">
+                <Icon type="ios-help-empty"></Icon>
+                 问答管理
+              </span>
+            </Menu-item>
           </Submenu>
           <Submenu name="3">
             <template slot="title">

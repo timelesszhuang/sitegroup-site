@@ -22,6 +22,7 @@ import Substitution from '../components/common/substitution/index.vue'
 import Staticconfig from '../components/common/staticconfig/index.vue'
 import Weixinarticle from '../components/common/wechatarticle/index.vue'
 import News from '../components/common/news/tab.vue'
+import Question from '../components/common/question/index.vue'
 
 
 Vue.use(Router)
@@ -56,6 +57,7 @@ export default new Router({
         {path: 'staticconfig', component: Staticconfig, name: 'staticconfig'},
         {path: 'weixinarticle', component: Weixinarticle, name: 'weixinarticle'},
         {path: 'news', component: News, name: 'news'},
+        {path: 'question', component: Question, name: 'question'},
       ]
     },
     {

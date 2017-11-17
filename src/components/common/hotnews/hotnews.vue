@@ -26,7 +26,7 @@
 <script type="text/ecmascript-6">
   import http from '../../../assets/js/http.js'
   import common from '../../../assets/js/common.js'
-  import hotnews from './save.vue'
+  import hotnews from '../article/save.vue'
   export default {
     data () {
       return {
@@ -104,9 +104,14 @@
         let editid = this.datas[index].id
         this.apiGet('user/hotnews/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
+            data.thumbnails='';
+            data.readcount = 0;
+            data.is_collection = 20
             this.editinfo = data
             this.editinfo.articletype_id = ''
             this.editinfo.articletype_name = ''
+            this.editinfo.come_from = data.source
+            this.editinfo.createtime = data.ptime
           }, (data, msg) => {
             this.$Message.error(msg);
           })
