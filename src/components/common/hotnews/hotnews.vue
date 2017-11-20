@@ -104,12 +104,12 @@
         let editid = this.datas[index].id
         this.apiGet('user/hotnews/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
-            data.thumbnails='';
             data.readcount = 0;
             data.is_collection = 20
             this.editinfo = data
             this.editinfo.articletype_id = ''
             this.editinfo.articletype_name = ''
+            this.editinfo.thumbnails = data.base64img
             this.editinfo.come_from = data.source
             this.editinfo.createtime = data.ptime
           }, (data, msg) => {
@@ -146,8 +146,7 @@
           key: 'base64img',
           sortable: true,
           render(row, index) {
-            var type = '<div class="imggg">' + row.base64img + '</div>';
-            return type;
+            return '<img width="150" src="' + row.base64img + '">';
           },
         });
         columns.push({

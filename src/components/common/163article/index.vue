@@ -125,10 +125,10 @@
         let editid = this.datas[index].id
         this.apiGet('user/WangyiOneArticle/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
-            data.thumbnails='';
             data.readcount = 0;
             data.is_collection = 20
             this.editinfo = data
+            this.editinfo.thumbnails = data.imgsrc
             this.editinfo.summary = data.digest
             this.editinfo.come_from = data.source
 //            console.log(data.url)
