@@ -222,6 +222,12 @@
               静态化配置
             </span>
             </Menu-item>
+            <Menu-item name="联系方式">
+            <span class="layout-text" @click="sitecontact()">
+              <Icon type="android-apps"></Icon>
+              联系方式
+            </span>
+            </Menu-item>
           </Submenu>
           <Submenu name="5">
             <template slot="title">
@@ -323,12 +329,14 @@
     <logout ref="logout"></logout>
     <changepwd ref="changePwd"></changepwd>
     <operation ref="operation"></operation>
+    <contact :site_contact="site_contact" ref="contact"></contact>
   </div>
 </template>
 <script>
   import logout from './login/Logout.vue';
   import changepwd from './login/Changepwd.vue';
   import operation from './operation/operation.vue';
+  import contact from './operation/sitecontact.vue';
   import http from '../assets/js/http.js';
 
   export default {
@@ -337,13 +345,15 @@
         activeName: '',
         count: '无',
         SiteName: '',
-        copytime:''
+        copytime:'',
+        site_contact:''
       }
     },
     components: {
       changepwd,
       logout,
       operation,
+      contact
     },
     computed: {
       url: function () {
@@ -352,6 +362,20 @@
       }
     },
     methods: {
+      sitecontact(){
+        this.apiGet('user/siteResource').then((res) => {
+          this.handelResponse(res, (data, msg) => {
+            this.site_contact = data;
+            this.$refs.contact.modal = true
+          }, (data, msg) => {
+            this.$Message.error(msg);
+          })
+        }, (res) => {
+          //处理错误信息
+          this.$Message.error('网络异常，请稍后重试。');
+        })
+
+      },
       checkAlert() {
         this.apiGet('user/getErrorStatus').then((res) => {
           this.handelResponse(res, (data, msg) => {

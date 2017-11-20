@@ -8,7 +8,7 @@
         </p>
         <div>
           <div style="font-size: 25px;">当前修改{{this.filename}}.html</div>
-          <Form ref="tdksave" :label-width="90" :rules="AddRule" class="node-add-form">
+          <Form ref="tdksave" :rules="AddRule" class="node-add-form">
             <Form-item  prop="tdk">
               <Input type="textarea" :rows="30" v-model="form" placeholder="tdk"></Input>
             </Form-item>
