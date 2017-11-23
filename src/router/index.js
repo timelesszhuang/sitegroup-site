@@ -25,6 +25,7 @@ import News from '../components/common/news/tab.vue'
 import Question from '../components/common/question/index.vue'
 
 
+
 Vue.use(Router)
 Vue.use(ElementUI)
 Vue.use(VueQuillEditor)

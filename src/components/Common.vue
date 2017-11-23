@@ -329,7 +329,7 @@
     <logout ref="logout"></logout>
     <changepwd ref="changePwd"></changepwd>
     <operation ref="operation"></operation>
-    <contact :site_contact="site_contact" ref="contact"></contact>
+    <contact :form="site_contact" ref="contact"></contact>
   </div>
 </template>
 <script>
@@ -346,7 +346,7 @@
         count: '无',
         SiteName: '',
         copytime:'',
-        site_contact:''
+        site_contact:{}
       }
     },
     components: {
