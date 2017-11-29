@@ -10,7 +10,10 @@ import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import moment from 'moment'
 import VueHtml5Editor from 'vue-html5-editor'
+let domain = 'api.salesman.cc'
 
+var HOST = 'http://' + domain + '/index.php/'
+var ROOTHOST = 'http://' + domain + '/'
 Vue.use(VueHtml5Editor, {
   // 全局组件名称，使用new VueHtml5Editor(options)时该选项无效
   // global component name
@@ -41,14 +44,14 @@ Vue.use(VueHtml5Editor, {
   // config image module
   image: {
     // 文件最大体积，单位字节  max file size
-    sizeLimit: 512 * 1024,
+    sizeLimit: 1024 * 1024,
     // 上传参数,默认把图片转为base64而不上传
     // upload config,default null and convert image to base64
     upload: {
-      url: null,
+      url: HOST+'uploadimg',
       headers: {},
       params: {},
-      fieldName: {}
+      fieldName: 'img'
     },
     // 压缩参数,默认使用localResizeIMG进行压缩,设置为null禁止压缩
     // compression config,default resize image by localResizeIMG (https://github.com/think2011/localResizeIMG)
@@ -63,10 +66,10 @@ Vue.use(VueHtml5Editor, {
     uploadHandler(responseText){
       //default accept json data like  {ok:false,msg:"unexpected"} or {ok:true,data:"image url"}
       var json = JSON.parse(responseText)
-      if (!json.ok) {
+      if (!json.status) {
         alert(json.msg)
       } else {
-        return json.data
+        return json.url
       }
     }
   },
@@ -149,12 +152,10 @@ import 'iview/dist/styles/iview.css';    // 使用 CSS
 import '../my-theme/index.less'
 Vue.use(iView);
 window.Cookies = Cookies
+
 window.axios = axios
 
-let domain = 'api.salesman.cc'
 
-var HOST = 'http://' + domain + '/index.php/'
-var ROOTHOST = 'http://' + domain + '/'
 
 axios.defaults.baseURL = HOST
 axios.defaults.timeout = 1000 * 15
