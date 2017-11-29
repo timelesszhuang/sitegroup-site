@@ -10,7 +10,10 @@ import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import moment from 'moment'
 import VueHtml5Editor from 'vue-html5-editor'
-let domain = 'local.sitegroup.com'
+//let domain = 'local.sitegroup.com'
+let domain = 'api.salesman.cc'
+
+
 
 var HOST = 'http://' + domain + '/index.php/'
 var ROOTHOST = 'http://' + domain + '/'
@@ -44,7 +47,7 @@ Vue.use(VueHtml5Editor, {
   // config image module
   image: {
     // 文件最大体积，单位字节  max file size
-    sizeLimit: 512 * 1024,
+    sizeLimit: 1024 * 1024,
     // 上传参数,默认把图片转为base64而不上传
     // upload config,default null and convert image to base64
     upload: {
