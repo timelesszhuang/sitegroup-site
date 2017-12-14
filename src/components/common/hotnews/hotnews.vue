@@ -125,7 +125,7 @@
       tableColumns()
       {
         let columns = [];
-
+        let _this = this;
         if (this.showCheckbox) {
           columns.push({
             type: 'selection',
@@ -142,13 +142,26 @@
         }
         columns.push({
           title: '缩略图',
-          width:'200',
-          key: 'base64img',
-          sortable: true,
-          render(row, index) {
-            return '<img width="150" src="' + row.base64img + '">';
+          key: 'thumbnail',
+          render(h, params) {
+            if(params.row.base64img){
+              return h('img', {
+                attrs: {
+                  src: params.row.base64img,
+                  title: params.row.title,
+                  style: 'max-width:190px;max-height: 150px;padding:5px;'
+                },
+              })
+            }
+            return h('img', {
+              attrs: {
+                style: 'max-width:190px;max-height: 150px;padding:5px;'
+              },
+            })
+
           },
         });
+
         columns.push({
           title: '标题',
           key: 'title',
@@ -175,11 +188,28 @@
             key: 'action',
             align: 'center',
             fixed: 'right',
-            render (row, column, index) {
-              return `<i-button type="success" size="small" @click="edit(${index})">添加到文章库</i-button>`;
-            }
+            render(h, params) {
+              return h('div', [
+                h('Button', {
+                  props: {
+                    size: 'small'
+                  },
+                  attrs: {
+                    type: 'success'
+                  },
+                  on: {
+
+                    click: function () {
+                      //不知道为什么这个地方不是我需要的this
+                      _this.edit(params.index)
+                    }
+                  }
+                }, '添加到文章库'),
+              ]);
+            },
           }
         );
+
         return columns;
       }
     },

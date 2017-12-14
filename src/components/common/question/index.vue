@@ -20,7 +20,7 @@
         <div style="float: right;">
           <Page :total="total" :current="current" @on-change="changePage" @on-page-size-change="changePageSize"
                 show-total
-                show-elevator >
+                show-elevator>
           </Page>
         </div>
       </div>
@@ -38,7 +38,7 @@
   import questionsave from './save.vue';
 
   export default {
-    data () {
+    data() {
       return {
         self: this,
         border: true,
@@ -58,7 +58,7 @@
       }
     },
     components: {questionadd, questionsave},
-    created () {
+    created() {
       //该 函数封装在 common 中
       this.getQuestionType((data) => {
         this.questiontypelist = data
@@ -89,18 +89,18 @@
           this.$Message.error('网络异常，请稍后重试');
         })
       },
-      changePage(page){
+      changePage(page) {
         this.page = page;
         this.getData();
       },
-      changePageSize(pagesize){
+      changePageSize(pagesize) {
         this.rows = pagesize;
         this.getData();
       },
-      queryData(){
+      queryData() {
         this.getData();
       },
-      add(){
+      add() {
         this.$refs.add.modal = true
       },
       error(nodesc) {
@@ -109,7 +109,7 @@
           desc: nodesc ? '' : ''
         });
       },
-      edit(index){
+      edit(index) {
         let editid = this.datas[index].id
         this.apiGet('user/question/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
@@ -132,10 +132,10 @@
         this.apiPost('user/questionshowhtml', data).then((res) => {
           this.handelResponse(res, (data, msg) => {
 //            console.log(data)
-             let open =  window.open(data);
-             if(!open){
-               this.error(false)
-             }
+            let open = window.open(data);
+            if (!open) {
+              this.error(false)
+            }
             this.modal = false;
           }, (data, msg) => {
             this.modal_loading = false;
@@ -149,8 +149,8 @@
       },
     },
     computed: {
-      tableColumns()
-      {
+      tableColumns() {
+        let _this = this
         let columns = [];
         if (this.showCheckbox) {
           columns.push({
@@ -186,12 +186,45 @@
             key: 'action',
             align: 'center',
             fixed: 'right',
-            render (row, column, index) {
-              return `<i-button type="primary" size="small" @click="edit(${index})">修改</i-button>
-&nbsp;<i-button type="error" size="small" @click="showhtml(${index})">页面预览</i-button>&nbsp;`;
-            }
+            render(h, params) {
+              return h('div', [
+                h('Button', {
+                  props: {
+                    size: 'small'
+                  },
+                  style: {
+                    marginRight: '5px'
+                  },
+                  attrs: {
+                    type: 'primary'
+                  },
+                  on: {
+                    click: function () {
+                      //不知道为什么这个地方不是我需要的this
+                      _this.edit(params.index)
+                    }
+                  }
+                }, '修改'),
+                h('Button', {
+                  props: {
+                    size: 'small'
+                  },
+                  attrs: {
+                    type: 'error'
+                  },
+                  on: {
+                    click: function () {
+                      //不知道为什么这个地方不是我需要的this
+                      _this.showhtml(params.index)
+                    }
+                  }
+                }, '页面预览'),
+              ]);
+            },
           }
         );
+
+
         return columns;
       }
     },

@@ -153,6 +153,7 @@
     computed: {
       tableColumns() {
         let columns = [];
+        let _this = this;
         if (this.showCheckbox) {
           columns.push({
             type: 'selection',
@@ -183,24 +184,65 @@
           sortable: true
         });
         columns.push(
-          {
-            title: '操作',
+        {
+          title: '操作',
             key: 'action',
-            align: 'center',
-            fixed: 'right',
-
-            render(row, column, index) {
-              return `
-                <i-button type="primary" size="small" @click="edit(${index})">修改</i-button>
-<i-button type="info" size="small" @click="show(${index})">查看</i-button>&nbsp;
-<i-button type="error" size="small" @click="showhtml(${index})">页面预览</i-button>&nbsp;
-
-
-
-`;
-            }
-
-          }
+          width: 200,
+          align: 'center',
+          fixed: 'right',
+          render(h, params) {
+          return h('div', [
+            h('Button', {
+              props: {
+                size: 'small'
+              },
+              style: {
+                marginRight: '5px'
+              },
+              attrs: {
+                type: 'primary'
+              },
+              on: {
+                click: function () {
+                  //不知道为什么这个地方不是我需要的this
+                  _this.edit(params.index)
+                }
+              }
+            }, '修改'),
+            h('Button', {
+              props: {
+                size: 'small'
+              },
+              style: {
+                marginRight: '5px'
+              },
+              attrs: {
+                type: 'info'
+              },
+              on: {
+                click: function () {
+                  //不知道为什么这个地方不是我需要的this
+                  _this.show(params.index)
+                }
+              }
+            }, '查看'),
+            h('Button', {
+              props: {
+                size: 'small'
+              },
+              attrs: {
+                type: 'error'
+              },
+              on: {
+                click: function () {
+                  //不知道为什么这个地方不是我需要的this
+                  _this.showhtml(params.index)
+                }
+              }
+            }, '页面预览'),
+          ]);
+        },
+        }
         );
         return columns;
       }
