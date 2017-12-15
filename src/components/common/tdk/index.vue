@@ -220,6 +220,25 @@
                   }, '修改主关键词'),
                 ]);
               }
+              else{
+                h('Button', {
+                  props: {
+                    size: 'small'
+                  },
+                  style: {
+                    marginRight: '5px'
+                  },
+                  attrs: {
+                    type: 'primary'
+                  },
+                  on: {
+                    click: function () {
+                      //不知道为什么这个地方不是我需要的this
+                      _this.edit(params.index)
+                    }
+                  }
+                }, '修改')
+              }
 
             },
           }
