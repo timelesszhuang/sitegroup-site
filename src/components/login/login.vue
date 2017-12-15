@@ -107,7 +107,7 @@
         systemName: '',
         loading: false,
         verifyUrl: '',
-        verifyImg: 'http://sitegroup.youdao.so/index.php/captcha.html',
+        verifyImg: ROOTHOST+'/captcha.html',
         successMsg: '',
         successShow: false,
         warningMsg: '',
@@ -131,10 +131,7 @@
         }
       },
       refreshVerify() {
-        this.verifyUrl = ''
-        setTimeout(() => {
-          this.verifyUrl = this.verifyImg + '?v=' + moment().unix()
-        }, 300)
+        this.verifyUrl = this.verifyImg + '?v=' + moment().unix()
       },
       checkIsRememberPwd() {
         if (Cookies.get('site_rememberMe')) {
