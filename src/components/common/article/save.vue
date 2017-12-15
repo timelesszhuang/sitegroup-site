@@ -256,8 +256,3 @@
     }
   }
 </script>
-<style>
-  .ql-editor {
-    max-height: 1000px !important;
-  }
-</style>

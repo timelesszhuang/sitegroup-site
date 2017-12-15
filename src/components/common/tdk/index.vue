@@ -115,6 +115,7 @@
     computed: {
       tableColumns()
       {
+        let _this = this
         let columns = [];
         if (this.showCheckbox) {
           columns.push({
@@ -158,20 +159,88 @@
           key: 'keyword',
           sortable: true
         });
+//         columns.push(
+//           {
+//             title: '操作',
+//             key: 'action',
+//             width: 150,
+//             align: 'center',
+//             fixed: 'right',
+//             render (row, column, index) {
+//               if(row.akeyword_id!=0) {
+//                 return `<i-button type="success" size="small" @click="edit(${index})">修改</i-button>
+// <span style="display:inline-block;width:100%;margin:5px">
+// <i-button type="primary" size="small" @click="editMain(${index})">修改主关键词</i-button></span>`;
+//               }else{
+//                 return `<i-button type="success" size="small" @click="edit(${index})">修改</i-button>`
+//               }
+//             }
+//           }
+//         );
         columns.push(
           {
             title: '操作',
             key: 'action',
-            width: 150,
+            width: 200,
             align: 'center',
             fixed: 'right',
-            render (row, column, index) {
-              if(row.akeyword_id!=0) {
-                return `<i-button type="success" size="small" @click="edit(${index})">修改</i-button><span style="display:inline-block;width:100%;margin:5px"><i-button type="primary" size="small" @click="editMain(${index})">修改主关键词</i-button></span>`;
-              }else{
-                return `<i-button type="success" size="small" @click="edit(${index})">修改</i-button>`
+            render(h, params) {
+              if(params.row.akeyword_id!=0){
+                return h('div', [
+                  h('Button', {
+                    props: {
+                      size: 'small'
+                    },
+                    style: {
+                      marginRight: '5px'
+                    },
+                    attrs: {
+                      type: 'primary'
+                    },
+                    on: {
+                      click: function () {
+                        //不知道为什么这个地方不是我需要的this
+                        _this.edit(params.index)
+                      }
+                    }
+                  }, '修改'),
+                  h('Button', {
+                    props: {
+                      size: 'small'
+                    },
+                    attrs: {
+                      type: 'primary'
+                    },
+                    on: {
+                      click: function () {
+                        //不知道为什么这个地方不是我需要的this
+                        _this.editMain(params.index)
+                      }
+                    }
+                  }, '修改主关键词'),
+                ]);
               }
-            }
+              else{
+                h('Button', {
+                  props: {
+                    size: 'small'
+                  },
+                  style: {
+                    marginRight: '5px'
+                  },
+                  attrs: {
+                    type: 'primary'
+                  },
+                  on: {
+                    click: function () {
+                      //不知道为什么这个地方不是我需要的this
+                      _this.edit(params.index)
+                    }
+                  }
+                }, '修改')
+              }
+
+            },
           }
         );
         return columns;

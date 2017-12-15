@@ -21,7 +21,7 @@ const commonMethods = {
       });
     },
     getQuestionType(func) {
-      this.apiGet('questionType/list').then((res) => {
+      this.apiGet('user/QuestionType').then((res) => {
         this.handelResponse(res, (data, msg) => {
           func(data)
         }, (data, msg) => {

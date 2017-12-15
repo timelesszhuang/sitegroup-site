@@ -135,7 +135,7 @@
   <div class="layout">
     <Row type="flex">
       <i-col span="4" class="layout-menu-left">
-        <Menu active-name="activename" theme="dark" width="auto" :open-names="['1']" accordion>
+        <Menu active-name="activename" theme="dark" :open-names="['1']" width="auto" accordion>
           <div class="layout-logo-left">
             <img class="logo" style="" src="../../src/assets/logo.png" alt="乐销易创意发布平台">
           </div>
@@ -167,6 +167,12 @@
             <Icon type="ios-book-outline"></Icon>
               文章管理
             </span>
+            </Menu-item>
+            <Menu-item name="问答管理">
+              <span class="layout-text" @click="routerChange('/common/question','问答管理')">
+                <Icon type="ios-help-empty"></Icon>
+                 问答管理
+              </span>
             </Menu-item>
           </Submenu>
           <Submenu name="3">
@@ -216,6 +222,12 @@
               静态化配置
             </span>
             </Menu-item>
+            <Menu-item name="联系方式">
+            <span class="layout-text" @click="sitecontact()">
+              <Icon type="android-apps"></Icon>
+              联系方式
+            </span>
+            </Menu-item>
           </Submenu>
           <Submenu name="5">
             <template slot="title">
@@ -260,39 +272,43 @@
       <i-col style="overflow-y:scroll;padding-bottom: 50px" span="20">
         <div class="layout-header">
           <Row type="flex" justify="end" align="middle" class="code-row-bg">
-            <Col span="3"  align="center" style="cursor: pointer">
-            <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 15px;"
+            <Col span="2" style="cursor: pointer;padding-left: 10px">
+            <span class="layout-text"
                   @click="routerChange('/common/count')">
               <Icon type="home" style="font-size: 15px" @click="routerChange('/common/count')"></Icon>
               首页
             </span>
             </Col>
-            <Col span="4" offset="11" align="right" style="cursor: pointer">
+            <Col span="3" align="right" style="cursor: pointer">
             <Icon type="paper-airplane"></Icon>
-            <a v-bind:href="url" target="_blank" title="点此预览此网站" style="font-size: 15px;">
+            <a v-bind:href="url" target="_blank" title="点此预览此网站" >
               {{SiteName}}
             </a>
             </Col>
-            <Col span="2" align="center">
-            <Badge :count="count">
-              <span @click="routerChange('/common/messageLog','消息')" style="cursor:pointer;">
+            <Col span="19" align="right" style="cursor: pointer;padding-right: 80px">
+            <div>
+              <div style="display: inline-block;padding: 0px 20px">
+                <Badge :count="count">
+                <span @click="routerChange('/admin/messageLog','消息')" title="错误信息" style="cursor:pointer;">
                 <Icon type="ios-bell-outline" size="26"></Icon>
-              </span>
-            </Badge>
-            </Col>
-            <Col span="2"  align="center" style="cursor: pointer">
-            <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 12px;"
-                  @click="changePwd()">
+                </span>
+                </Badge>
+              </div>
+              <div style="display: inline-block;padding: 0px 20px">
+                <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 12px;"
+                      @click="changePwd()">
               <Icon type="android-lock"  @click="changePwd()"></Icon>
               重置密码
             </span>
-            </Col>
-            <Col span="2"  align="center" style="cursor: pointer">
-            <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 12px;"
-                  @click="logOut()">
+              </div>
+              <div style="display: inline-block;padding: 0px 20px">
+                <span class="layout-text" style="font-family:Microsoft YaHei;font-size: 12px;"
+                      @click="logOut()">
               <Icon type="log-out"  @click="logOut()"></Icon>
               退出系统
             </span>
+              </div>
+            </div>
             </Col>
           </Row>
         </div>
@@ -317,12 +333,14 @@
     <logout ref="logout"></logout>
     <changepwd ref="changePwd"></changepwd>
     <operation ref="operation"></operation>
+    <contact :form="site_contact" ref="contact"></contact>
   </div>
 </template>
 <script>
   import logout from './login/Logout.vue';
   import changepwd from './login/Changepwd.vue';
   import operation from './operation/operation.vue';
+  import contact from './operation/sitecontact.vue';
   import http from '../assets/js/http.js';
 
   export default {
@@ -331,13 +349,15 @@
         activeName: '',
         count: '无',
         SiteName: '',
-        copytime:''
+        copytime:'',
+        site_contact:{}
       }
     },
     components: {
       changepwd,
       logout,
       operation,
+      contact
     },
     computed: {
       url: function () {
@@ -346,6 +366,20 @@
       }
     },
     methods: {
+      sitecontact(){
+        this.apiGet('user/siteResource').then((res) => {
+          this.handelResponse(res, (data, msg) => {
+            this.site_contact = data;
+            this.$refs.contact.modal = true
+          }, (data, msg) => {
+            this.$Message.error(msg);
+          })
+        }, (res) => {
+          //处理错误信息
+          this.$Message.error('网络异常，请稍后重试。');
+        })
+
+      },
       checkAlert() {
         this.apiGet('user/getErrorStatus').then((res) => {
           this.handelResponse(res, (data, msg) => {

@@ -155,6 +155,7 @@ import 'iview/dist/styles/iview.css';    // 使用 CSS
 import '../my-theme/index.less'
 Vue.use(iView);
 window.Cookies = Cookies
+
 window.axios = axios
 
 
