@@ -55,7 +55,9 @@
         title: '',
         article_type: 0,
         datas: [],
-        editinfo: {},
+        editinfo: {
+          title_color:''
+        },
         articletypelist: [],
       }
     },
@@ -170,8 +172,15 @@
         }
         columns.push({
           title: '标题',
-          key: 'title',
-          sortable: true
+          sortable: true,
+          render(h, params) {
+            return h('span', {
+              attrs: {
+                title: params.row.title,
+                style:"color:"+params.row.title_color
+              },
+            },params.row.title )
+          }
         });
         columns.push({
           title: '分类名称',

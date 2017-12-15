@@ -54,6 +54,7 @@
         keyword_type: 0,
         datas: [],
         editinfo: {
+          title_color:''
         },
         articletypelist: [],
         keywordtype: []
@@ -132,6 +133,7 @@
           this.handelResponse(res, (data, msg) => {
             data.readcount = 0;
             data.summary = ''
+            data.title_color = ''
             this.editinfo.shorttitle = data.short_title
             data.is_collection = 20
             this.editinfo = data

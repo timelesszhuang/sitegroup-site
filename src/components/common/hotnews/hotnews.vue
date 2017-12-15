@@ -46,7 +46,9 @@
         article_type: 0,
         keyword_type:0,
         datas: [],
-        editinfo: {},
+        editinfo: {
+          title_color:''
+        },
         articletypelist: [],
         keywordtype:[]
       }
@@ -105,6 +107,7 @@
         this.apiGet('user/hotnews/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
             data.readcount = 0;
+            data.title_color = ''
             data.is_collection = 20
             this.editinfo = data
             this.editinfo.articletype_id = ''

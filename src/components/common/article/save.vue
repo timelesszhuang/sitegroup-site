@@ -8,11 +8,14 @@
       </p>
       <div>
         <Form ref="save" :model="form" :label-width="90" :rules="AddRule" class="node-add-form">
-          <Row>
+          <Row :gutter="16">
             <Col span="17">
             <Form-item label="标题" prop="title">
               <Input type="text" v-model="form.title" placeholder="请输入标题"></Input>
             </Form-item>
+            </Col>
+            <Col span="5" >
+            <ColorPicker v-model="form.title_color" />
             </Col>
           </Row>
           <Row>
@@ -170,7 +173,6 @@
         this.form.content = data
       },
       changeArticletype(value) {
-        console.log(value)
         this.form.articletype_name = value.label
         this.form.articletype_id = value.value
       },
@@ -179,6 +181,7 @@
           if (valid) {
             this.modal_loading = true;
             let data = this.form;
+            console.log(this.form)
             let id = data.id;
             this.apiPut('user/article/' + id, data).then((res) => {
               this.handelResponse(res, (data, msg) => {
@@ -250,7 +253,8 @@
       },
       form: {
         default: {
-          readcount: 0
+          readcount: 0,
+          title_color:''
         }
       }
     }
