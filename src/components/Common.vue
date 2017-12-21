@@ -289,7 +289,7 @@
             <div>
               <div style="display: inline-block;padding: 0px 20px">
                 <Badge :count="count">
-                <span @click="routerChange('/admin/messageLog','消息')" title="错误信息" style="cursor:pointer;">
+                <span @click="routerChange('/common/messageLog','消息')" title="错误信息" style="cursor:pointer;">
                 <Icon type="ios-bell-outline" size="26"></Icon>
                 </span>
                 </Badge>
