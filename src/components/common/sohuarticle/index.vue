@@ -5,7 +5,7 @@
       <Input v-model="title" placeholder="请输入文章标题" style="width:300px;"></Input>
       文章分类:
       <Select v-model="keyword_type" style="width: 200px;" label-in-value filterable clearable>
-        <Option v-for="item in keywordtype" :value="item.id" :label="item.text" :key="item">
+        <Option v-for="item in keywordtype" :value="item.id" :label="item.text" :key="item.id">
           {{ item.text }}
         </Option>
       </Select>
