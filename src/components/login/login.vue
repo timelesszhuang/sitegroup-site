@@ -107,7 +107,7 @@
         systemName: '',
         loading: false,
         verifyUrl: '',
-        verifyImg: ROOTHOST+'/captcha.html',
+        verifyImg: HOST+'/captcha.html',
         successMsg: '',
         successShow: false,
         warningMsg: '',
