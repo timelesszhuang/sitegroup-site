@@ -4,10 +4,11 @@
       问答:
       <Input v-model="content" placeholder="问答" style="width:300px;"></Input>
       问答分类:
-      <Select v-model="type_id" style="width: 200px;" label-in-value filterable clearable>
-        <Option v-for="item in questiontypelist" :value="item.id" :label="item.name" :key="item">
-          {{ item.name }}
-        </Option>
+      <Select  v-model="type_id" style="width:200px"
+               label-in-value    filterable clearable    >
+        <Option-group  v-for="(item,index) in questiontypelist" :label="index" :key="index">
+          <Option v-for="items in item"  :value="items.id" :label="items.name" :key="items.id">{{ items.name }}</Option>
+        </Option-group>
       </Select>
       <Button type="primary" @click="queryData">查询</Button>
       <Button type="success" @click="add">添加</Button>

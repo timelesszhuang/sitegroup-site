@@ -4,9 +4,9 @@
       标题:
       <Input v-model="title" placeholder="请输入文章标题" style="width:300px;"></Input>
       分类:
-      <Select v-model="keyword_type" style="width:200px">
-        <Option-group  v-for="(item,index) in keywordtype" :label="index" :key="item">
-          <Option v-for="items in item" :value="items.id" :key="items.value">{{ items.text }}</Option>
+      <Select v-model="keyword_type" style="width:200px"  label-in-value    filterable clearable >
+        <Option-group  v-for="(item,index) in keywordtype" :label="index":key="index">
+          <Option v-for="items in item" :value="items.id" :label="items.name" :key="items.id">{{ items.text }}</Option>
         </Option-group>
       </Select>
       <Button type="primary" @click="queryData">查询</Button>
@@ -15,6 +15,7 @@
       <Table :context="self" :border="border" :stripe="stripe" :show-header="showheader"
              :size="size" :data="datas" :columns="tableColumns" style="width: 100%">
       </Table>
+
       <div style="margin: 10px;overflow: hidden">
         <div style="float: right;">
           <Page v-show="page_show" :total="total" :current="current" :page-size="pageSize" @on-change="changePage"
