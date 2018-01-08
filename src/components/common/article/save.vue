@@ -195,7 +195,7 @@
           type: "article",
           name:this.form.tags
         }
-        this.apiPost('admin/tags', data).then((res) => {
+        this.apiPost('user/tags', data).then((res) => {
           this.handelResponse(res, (data, msg) => {
             let tempN = []
             let tagId = data.id

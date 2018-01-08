@@ -26,8 +26,8 @@
         </div>
       </div>
     </div>
-    <questionadd ref="add" :questiontype="questiontypelist"></questionadd>
-    <questionsave ref="save" :form="editinfo" :questiontype="questiontypelist"></questionsave>
+    <questionadd ref="add"  :tagname="tagname" :questiontype="questiontypelist"></questionadd>
+    <questionsave ref="save"  :tagname="tagname" :form="editinfo" :questiontype="questiontypelist"></questionsave>
   </div>
 
 </template>
@@ -56,6 +56,7 @@
         datas: [],
         editinfo: {},
         questiontypelist: [],
+        tagname:{},
       }
     },
     components: {questionadd, questionsave},
@@ -65,10 +66,29 @@
         this.questiontypelist = data
       });
       this.getData();
+      this.gettag();
     },
     methods: {
       setQuestionTypelist(data) {
         this.questiontypelist = data
+      },
+      gettag() {
+        let data = {
+          type: "question",
+        }
+        this.apiPost('user/gettags', data).then((res) => {
+          this.handelResponse(res, (data, msg) => {
+            this.tagname = data
+            this.modal = false;
+          }, (data, msg) => {
+            this.modal_loading = false;
+            this.$Message.error(msg);
+          })
+        }, (res) => {
+          //处理错误信息
+          this.modal_loading = false;
+          this.$Message.error('网络异常，请稍后重试。');
+        })
       },
       getData() {
         let data = {

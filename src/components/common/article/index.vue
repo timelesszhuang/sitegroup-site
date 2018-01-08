@@ -95,7 +95,7 @@
         let data = {
           type: "article",
         }
-        this.apiPost('admin/gettags', data).then((res) => {
+        this.apiPost('user/gettags', data).then((res) => {
           this.handelResponse(res, (data, msg) => {
             this.tagname = data
             this.modal = false;
