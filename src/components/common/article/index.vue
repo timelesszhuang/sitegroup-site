@@ -25,8 +25,8 @@
         </div>
       </div>
     </div>
-    <articleadd ref="add" :articletype="articletypelist"></articleadd>
-    <articlesave ref="save" :form="editinfo" :articletype="articletypelist"></articlesave>
+    <articleadd ref="add" :tagname="tagname" :articletype="articletypelist"></articleadd>
+    <articlesave ref="save" :tagname="tagname" :form="editinfo" :articletype="articletypelist"></articlesave>
     <articleshow ref="show" :form="editinfo"></articleshow>
   </div>
 
@@ -59,6 +59,7 @@
           title_color:''
         },
         articletypelist: [],
+        tagname:{},
       }
     },
     components: {articleadd, articlesave, articleshow},
@@ -67,6 +68,7 @@
       this.getArticleType((data) => {
         this.articletypelist = data
       });
+      this.gettag();
     },
     methods: {
       getData() {
@@ -87,6 +89,24 @@
           })
         }, (data) => {
           this.$Message.error('网络异常，请稍后重试');
+        })
+      },
+      gettag() {
+        let data = {
+          type: "article",
+        }
+        this.apiPost('admin/gettags', data).then((res) => {
+          this.handelResponse(res, (data, msg) => {
+            this.tagname = data
+            this.modal = false;
+          }, (data, msg) => {
+            this.modal_loading = false;
+            this.$Message.error(msg);
+          })
+        }, (res) => {
+          //处理错误信息
+          this.modal_loading = false;
+          this.$Message.error('网络异常，请稍后重试。');
         })
       },
       changePage(page) {
