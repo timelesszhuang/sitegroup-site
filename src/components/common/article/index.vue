@@ -192,15 +192,8 @@
         }
         columns.push({
           title: '标题',
-          sortable: true,
-          render(h, params) {
-            return h('span', {
-              attrs: {
-                title: params.row.title,
-                style:"color:"+params.row.title_color
-              },
-            },params.row.title )
-          }
+          key: 'title',
+          sortable: true
         });
         columns.push({
           title: '分类名称',
