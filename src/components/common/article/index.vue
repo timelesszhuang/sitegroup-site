@@ -155,7 +155,6 @@
           this.modal_loading = false;
           this.$Message.error('网络异常，请稍后重试。');
         })
-
       },
       getArticle(index) {
         let editid = this.datas[index].id
