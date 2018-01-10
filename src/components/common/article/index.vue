@@ -162,6 +162,14 @@
         this.apiGet('user/article/' + editid).then((res) => {
           this.handelResponse(res, (data, msg) => {
             this.editinfo = data
+            let tempNUmber = [];
+            if (this.editinfo.tags !== "") {
+              this.editinfo.tags.split(",").map(function (key) {
+                tempNUmber.push(key)
+              })
+            }
+            this.editinfo.tag_id = tempNUmber
+            this.editinfo.tags = ''
           }, (data, msg) => {
             this.$Message.error(msg);
           })
