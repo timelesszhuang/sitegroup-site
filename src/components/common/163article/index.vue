@@ -154,6 +154,8 @@
             this.editinfo.thumbnails = data.imgsrc
             this.editinfo.summary = data.digest
             this.editinfo.come_from = data.source
+            let tempNUmber = [];
+            this.editinfo.tag_id = tempNUmber
 //            console.log(data.url)
           }, (data, msg) => {
             this.$Message.error(msg);

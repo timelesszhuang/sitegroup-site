@@ -151,6 +151,8 @@
             this.editinfo = data
             this.editinfo.come_from = data.source
             this.editinfo.createtime = data.ptime
+            let tempNUmber = [];
+            this.editinfo.tag_id = tempNUmber
 //            console.log(data.url)
           }, (data, msg) => {
             this.$Message.error(msg);

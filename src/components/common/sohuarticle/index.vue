@@ -159,7 +159,8 @@
             this.editinfo = data
             this.editinfo.thumbnails = data.thumbnail
             this.editinfo.come_from = data.source
-            console.log(this.editinfo)
+            let tempNUmber = [];
+            this.editinfo.tag_id = tempNUmber
           }, (data, msg) => {
             this.$Message.error(msg);
           })

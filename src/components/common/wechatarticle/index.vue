@@ -156,7 +156,10 @@
             data.readcount = 0;
             this.editinfo.come_from = data.source
             this.editinfo = data
+            let tempNUmber = [];
+            this.editinfo.tag_id = tempNUmber
           }, (data, msg) => {
+
             this.$Message.error(msg);
           })
         }, (res) => {
