@@ -288,7 +288,8 @@
               readcount: this.form.readcount,
               keywords: this.form.keywords,
               shorttitle:this.form.shorttitle,
-              is_collection:this.form.is_collection
+              is_collection:this.form.is_collection,
+              tag_id:this.form.tag_id
             }
 //            let data = this.form;
             this.apiPost('user/article', data).then((res) => {
