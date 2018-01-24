@@ -190,9 +190,7 @@
           articletype_id: [
             {required: true, validator: checkarticletype, trigger: 'blur'}
           ],
-          tag_id: [
-            {required: true, validator: checktag, trigger: 'blur'}
-          ]
+
         }
       }
     },
